@@ -13,3 +13,7 @@
 .purge .window-main-col {
     width: 710px;
 }
+
+.purge .window {
+    margin: 3pc 0 3pc;
+}
