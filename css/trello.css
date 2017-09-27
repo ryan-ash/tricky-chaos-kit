@@ -1,0 +1,15 @@
+.purge .window-sidebar, .purge .window-header-inline-content, .purge .card-detail-data, .purge .add-comment-section, .purge .window-module:last-child{
+    display: none;
+}
+
+.purge .checklist-new-item-text {
+    overflow-y: hidden !important;
+}
+
+.purge .window-overlay {
+    background: #111;
+}
+
+.purge .window-main-col {
+    width: 710px;
+}

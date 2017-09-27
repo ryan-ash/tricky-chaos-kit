@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  
+  "name": "Clutter purge",
+  "description": "Press [`] to enable alternative view for several specific websites",
+  "version": "1.0",
+  
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://trello.com/c/*", "https://trello.com/b/*"],
+      "css": ["css/trello.css"],
+      "js": ["js/jquery-3.2.1.min.js", "js/trello.js"]
+    }
+  ]
+}
