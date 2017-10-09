@@ -15,9 +15,14 @@
   ],
   "content_scripts": [
     {
-      "matches": ["https://trello.com/c/*", "https://trello.com/b/*"],
+      "matches": ["https://trello.com/*"],
       "css": ["css/trello.css"],
       "js": ["js/jquery-3.2.1.min.js", "js/trello.js"]
+    },
+    {
+      "matches": ["https://vk.com/*"],
+      "css": ["css/vk.css"],
+      "js": ["js/jquery-3.2.1.min.js", "js/vk.js"]
     }
   ]
 }
