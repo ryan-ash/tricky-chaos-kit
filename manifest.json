@@ -23,6 +23,11 @@
       "matches": ["https://vk.com/*"],
       "css": ["css/vk.css"],
       "js": ["js/jquery-3.2.1.min.js", "js/vk.js"]
+    },
+    {
+      "matches": ["https://youtube.com/*", "https://www.youtube.com/*"],
+      "css": ["css/youtube.css"],
+      "js": ["js/jquery-3.2.1.min.js", "js/youtube.js"]
     }
   ]
 }

@@ -1,0 +1,7 @@
+.purge #top #container, .purge #content #masthead {
+    display: none;
+}
+
+.purge #page-manager {
+    margin-top: var(--ytd-masthead-height, 256px);
+}
