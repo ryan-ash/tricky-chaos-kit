@@ -1,5 +1,9 @@
-.purge .window-sidebar, .purge .window-header-inline-content, .purge .card-detail-data, .purge .add-comment-section, .purge .window-module:last-child{
+.purge .window-sidebar, .purge .window-header-inline-content, .purge .card-detail-data, .purge .add-comment-section, .purge .window-module {
     display: none;
+}
+
+.purge .window-module.checklist-list {
+    display: block;
 }
 
 .purge .checklist-new-item-text {

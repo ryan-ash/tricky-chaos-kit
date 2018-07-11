@@ -15,7 +15,7 @@
   ],
   "content_scripts": [
     {
-      "matches": ["https://trello.com/c/*", "https://trello.com/b/*"],
+      "matches": ["https://trello.com/c/*", "https://trello.com/b/*", "https://trello.com/*"],
       "css": ["css/trello.css"],
       "js": ["js/jquery-3.2.1.min.js", "js/trello.js"]
     }
