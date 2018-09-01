@@ -15,14 +15,19 @@
   ],
   "content_scripts": [
     {
-      "matches": ["https://trello.com/c/*", "https://trello.com/b/*", "https://trello.com/*"],
+      "matches": ["https://trello.com/*"],
       "css": ["css/trello.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/trello.js"]
+      "js": ["js/jquery-3.2.1.min.js", "js/purge.js"]
     },
     {
       "matches": ["https://youtube.com/*", "https://www.youtube.com/*"],
       "css": ["css/youtube.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/youtube.js"]
+      "js": ["js/jquery-3.2.1.min.js", "js/purge.js"]
+    },
+    {
+      "matches": ["https://keep.google.com/*"],
+      "css": ["css/keep.css"],
+      "js": ["js/jquery-3.2.1.min.js", "js/purge.js"]
     }
   ]
 }
