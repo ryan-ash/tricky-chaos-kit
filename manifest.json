@@ -17,17 +17,17 @@
     {
       "matches": ["https://trello.com/*"],
       "css": ["css/trello.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/purge.js"]
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.cookie-1.4.1.min.js", "js/purge.js"]
     },
     {
       "matches": ["https://youtube.com/*", "https://www.youtube.com/*"],
       "css": ["css/youtube.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/purge.js"]
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.cookie-1.4.1.min.js", "js/purge.js"]
     },
     {
       "matches": ["https://keep.google.com/*"],
       "css": ["css/keep.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/purge.js"]
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.cookie-1.4.1.min.js", "js/purge.js"]
     }
   ]
 }

@@ -2,6 +2,10 @@ $(document).ready(function() {
     var $body = $("body");
     var purge = "purge";
 
+    if ($.cookie("purge-enabled")) {
+        enable_purge();
+    }
+
     $(document).keydown(function(e) {
         if (e.which != 113)
             return;
@@ -10,8 +14,18 @@ $(document).ready(function() {
 
     function toggle_display_mode() {
         if ($body.hasClass(purge))
-            $body.removeClass(purge);
+            disable_purge();
         else
-            $body.addClass(purge);
+            enable_purge();
+    }
+
+    function enable_purge() {
+        $body.addClass(purge);
+        $.cookie("purge-enabled", true);
+    }
+
+    function disable_purge() {
+        $body.removeClass(purge);
+        $.removeCookie("purge-enabled");
     }
 });
