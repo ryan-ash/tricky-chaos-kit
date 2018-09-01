@@ -2,11 +2,8 @@ $(document).ready(function() {
     var $body = $("body");
     var purge = "purge";
 
-    // TODO: finish locking on input & textarea
-    var keypressLocked = false;
-
     $(document).keydown(function(e) {
-        if (e.which != 192 || keypressLocked)
+        if (e.which != 113)
             return;
         toggle_display_mode();
     });
