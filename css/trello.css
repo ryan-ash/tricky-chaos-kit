@@ -11,9 +11,13 @@
 }
 
 .purge .window-overlay {
-    background: #111;
+    background: #222;
 }
 
 .purge .window-main-col {
     width: 710px;
+}
+
+.purge .window {
+    margin: 10pc 0 0;
 }
