@@ -1,13 +1,18 @@
 {
   "manifest_version": 2,
   
-  "name": "Clutter purge",
-  "description": "Press [`] to enable alternative view for several specific websites",
-  "version": "1.1",
-  
+  "name": "Clutter Purge",
+  "description": "Press [F2] to enable clutter-free view on trello, youtube & google keep individual item screens.",
+  "version": "1.0",
+  "author": "Ryan Ash",  
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "icons/icon128.png",
     "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+   "128": "icons/icon128.png"
   },
   "permissions": [
     "activeTab",
