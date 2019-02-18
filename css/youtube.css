@@ -1,7 +1,8 @@
-.purge #top #container, .purge #content #masthead {
+.purge #content #masthead, .purge #guide-spacer, .purge #info, .purge #meta, .purge #comments, .purge #related {
     display: none;
 }
 
-.purge #page-manager {
-    margin-top: var(--ytd-masthead-height, 256px);
+.purge #page-manager.ytd-app {
+    --ytd-toolbar-offset: 0;
+    margin-top: 0;
 }
