@@ -37,7 +37,7 @@
     {
       "matches": ["https://web.controller.bot/*"],
       "css": ["css/web_controller.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/jquery.cookie-1.4.1.min.js", "js/purge.js"]
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.cookie-1.4.1.min.js", "js/purge.js", "js/text-template.js"]
     }
   ]
 }

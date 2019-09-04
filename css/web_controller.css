@@ -1,0 +1,23 @@
+.purge {
+    background: #000;
+    color: #ddd;
+}
+
+.purge .ql-container .ql-editor.ql-blank:before {
+    color: #bbb;
+}
+
+.purge .el-button {
+    background: #222 !important;
+    color: #ccc !important;
+}
+
+.purge .el-button--text {
+    background: none !important;
+}
+
+.text-template .overlay-text-template {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+}
