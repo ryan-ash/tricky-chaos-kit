@@ -3,7 +3,23 @@ $(document).ready(function() {
     var feature_name = "text-template"
     var overlay_markup = `
         <div class="OUTER_CLASS_NAME">
-            test
+            <form>
+                <input type="text" placeholder="Title" class="tc-title"><div class="tc-remove tc-button">-</div><br/>
+                <div class="tc-add tc-button">+</div><br/>
+                <div class="tc-tag-selector"></div><br/>
+                <input type="text" placeholder="Preview Link"><br/>
+                <textarea class="tc-text"></textarea><br/>
+                <input type="text" placeholder="http://" class="tc-link"><input type="text" placeholder="Link" class="tc-link-text"><br/>
+                <div class="tc-add tc-button">+</div>
+            </form>
+
+            <div class="tc-ex">
+                <textarea class="tc-post-data"></textarea>
+            </div>
+            <div class="tc-bottom-links">
+                <a href="">Export</a>
+                <a href="">Import</a>
+            </div>
         </div>
     `;
     overlay_markup = overlay_markup.replace('OUTER_CLASS_NAME', get_overlay_class().substring(1));

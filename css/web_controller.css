@@ -21,3 +21,56 @@
     left: 15px;
     top: 15px;
 }
+
+/* Fields */
+.text-template textarea, .text-template .tc-button, .text-template form input[type=date], .text-template form input[type=datetime], .text-template form input[type=datetime-local], .text-template form input[type=email], .text-template form input[type=month], .text-template form input[type=number], .text-template form input[type=password], .text-template form input[type=range], .text-template form input[type=search], .text-template form input[type=tel], .text-template form input[type=text], .text-template form input[type=time], .text-template form input[type=url], .text-template form input[type=week], .text-template form select, .text-template form textarea {
+    background-color: transparent; /* Remove background fill */
+    text-transform: uppercase; /* Make text all uppercase */
+    border: 2px solid rgba(40, 35, 59, 0.801); /* 2px white border */
+    color: #fff; /* White text */
+    height: 35px; /* Increase input height */
+    border-radius: 30px 10px;
+    padding: 15px;
+    width: 208px;
+    margin: 2px 2px;
+}
+
+.text-template textarea {
+    min-height: 100px !important;
+    min-width: 420px !important;
+}
+
+.text-template .tc-button {
+    width: 42px !important;
+    padding-top: 5px !important;
+    transition: border 0.15s ease-out;
+    display: inline-block;
+}
+
+.text-template .tc-button:hover {
+    border: 2px solid rgba(81, 71, 119, 0.801);
+    cursor: pointer;
+}
+
+/* Button */
+.text-template .tc-bottom-links a, .text-template form input[type=submit], .text-template form button[type=submit], .text-template form .wpforms-page-button {
+   text-transform: uppercase;
+   padding: 10px 75px;
+   margin-right: 10px;
+   border-radius: 30px 10px;
+   color: white;
+   background: #444;
+   font-weight: normal;
+}
+
+.text-template .tc-ex {
+    margin-bottom: 16px;
+}
+
+.text-template .tc-ex * {
+    display: none;
+}
+
+.text-template .el-input__inner {
+    margin-right: -5px !important;
+}
