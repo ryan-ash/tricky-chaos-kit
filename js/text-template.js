@@ -4,12 +4,12 @@ $(document).ready(function() {
     var overlay_markup = `
         <div class="OUTER_CLASS_NAME">
             <form>
-                <input type="text" placeholder="Title" class="tc-title"><div class="tc-remove tc-button">-</div><br/>
+                <input type="text" class="tc-title" placeholder="Title"><div class="tc-remove tc-button">-</div><br/>
                 <div class="tc-add tc-button">+</div><br/>
                 <div class="tc-tag-selector"></div><br/>
-                <input type="text" placeholder="Preview Link"><br/>
-                <textarea class="tc-text"></textarea><br/>
-                <input type="text" placeholder="http://" class="tc-link"><input type="text" placeholder="Link" class="tc-link-text"><br/>
+                <input type="text" class="tc-preview-link" placeholder="Preview Link"><div class="tc-remove tc-button">-</div><br/>
+                <textarea class="tc-text" placeholder"Text..."></textarea><br/>
+                <input type="text" placeholder="http://" class="tc-bottom-link tc-link"><input type="text" placeholder="Link" class="tc-bottom-link tc-link-text"><div class="tc-remove tc-button">-</div><br/>
                 <div class="tc-add tc-button">+</div>
             </form>
 
@@ -24,6 +24,23 @@ $(document).ready(function() {
     `;
     overlay_markup = overlay_markup.replace('OUTER_CLASS_NAME', get_overlay_class().substring(1));
 
+    var data = {
+        titles: [
+            ""
+        ],
+        tags: [
+
+        ],
+        preview_link: "",
+        text: "",
+        bottom_links: [
+
+        ]
+    };
+
+    // data structure
+
+    // main
     if ($.cookie(feature_name)) {
         enable();
     }
@@ -46,6 +63,10 @@ $(document).ready(function() {
 
         $body.addClass(feature_name);
         $.cookie(feature_name, true);
+
+        // parse post contents
+
+        add_button_events();
     }
 
     function disable() {
@@ -56,7 +77,49 @@ $(document).ready(function() {
         $.removeCookie(feature_name);
     }
 
+    function add_button_events() {
+
+    }
+
     function get_overlay_class() {
         return ".overlay-" + feature_name;
     }
+
+    // event code
+    function add_title() {
+
+    }
+
+    function update_title(title) {
+
+    }
+
+    function remove_title(title) {
+
+    }
+
+    function update_preview_link(link) {
+        
+    }
+
+    function add_tag(tag) {
+
+    }
+
+    function remove_tag(tag) {
+
+    }
+
+    function add_bottom_link(url, text) {
+
+    }
+
+    function remove_bottom_link(url) {
+
+    }
+
+    function update_text(text) {
+
+    }
+
 });

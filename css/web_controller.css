@@ -33,6 +33,7 @@
     padding: 15px;
     width: 208px;
     margin: 2px 2px;
+    transition: border 0.25s ease-out;
 }
 
 .text-template textarea {
@@ -40,20 +41,21 @@
     min-width: 420px !important;
 }
 
-.text-template .tc-button {
-    width: 42px !important;
+
+.text-template .el-button, .text-template .tc-button {
+    width: auto !important;
     padding-top: 5px !important;
     transition: border 0.15s ease-out;
     display: inline-block;
 }
 
-.text-template .tc-button:hover {
+.text-template .el-button:hover, .text-template .tc-button:hover {
     border: 2px solid rgba(81, 71, 119, 0.801);
     cursor: pointer;
 }
 
 /* Button */
-.text-template .tc-bottom-links a, .text-template form input[type=submit], .text-template form button[type=submit], .text-template form .wpforms-page-button {
+.text-template .tc-bottom-links a, .text-template .el-button, .text-template form input[type=submit], .text-template form button[type=submit], .text-template form .wpforms-page-button {
    text-transform: uppercase;
    padding: 10px 75px;
    margin-right: 10px;
@@ -61,6 +63,17 @@
    color: white;
    background: #444;
    font-weight: normal;
+}
+
+.text-template .el-button {
+    padding: 10px 12px !important;
+    height: auto !important;
+    border: 2px solid rgba(40, 35, 59, 0.801);
+}
+
+.text-template form input[type=text]:focus, .text-template textarea:focus {
+    outline: 0;
+    border: 2px solid rgba(80, 69, 121, 0.901); /* 2px white border */
 }
 
 .text-template .tc-ex {
@@ -73,4 +86,16 @@
 
 .text-template .el-input__inner {
     margin-right: -5px !important;
+}
+
+.text-template .cb-buttons, .text-template .cb-textarea-wrapper {
+    margin: 10px 0px;
+}
+
+.text-template .tc-title, .text-template .tc-preview-link {
+    width: 380px !important;
+}
+
+.text-template .tc-bottom-link {
+    width: 188px !important;
 }
