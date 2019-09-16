@@ -39,6 +39,10 @@
     background-color: rgba(0,0,0,.08);
 }
 
+.trello-addons .tc-add-checklist:hover {
+    background-color: rgba(0,0,0,.16);
+}
+
 .trello-addons .tc-add-checklist::before {
     content: "\E918";
 }
