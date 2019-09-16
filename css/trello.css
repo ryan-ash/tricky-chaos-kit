@@ -19,5 +19,33 @@
 }
 
 .purge .window {
-    margin: 10pc 0 0;
+    margin: 100px 0 0;
+}
+
+.trello-addons .tc-add-checklist {
+    background: rgba(9,30,66,.04);
+    color: #42526e;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 43px;
+    height: 32px;
+    overflow: hidden;
+    padding: 4px;
+    margin: 4px;
+    width: 32px;
+    z-index: 2;
+    transition: background-color .1s,color .1s;
+    background-color: rgba(0,0,0,.08);
+}
+
+.trello-addons .tc-add-checklist::before {
+    content: "\E918";
+}
+
+.trello-addons .pop-over {
+    top: 105px !important;
+    right: 50% !important;
+    left: auto !important;
+    margin-right: -378px;
 }
