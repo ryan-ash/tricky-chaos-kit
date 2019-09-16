@@ -15,11 +15,16 @@
 }
 
 .purge .window-main-col {
-    width: 710px;
+    width: 735px;
 }
 
 .purge .window {
     margin: 100px 0 0;
+}
+
+.purge .dialog-close-button {
+    top: 8px;
+    right: 14px;
 }
 
 .trello-addons .tc-add-checklist {
@@ -27,8 +32,8 @@
     color: #42526e;
     border-radius: 50%;
     position: absolute;
-    top: 0;
-    right: 43px;
+    top: 8px;
+    right: 57px;
     height: 32px;
     overflow: hidden;
     padding: 4px;
