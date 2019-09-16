@@ -49,3 +49,7 @@
     left: auto !important;
     margin-right: -378px;
 }
+
+.trello-addons .mod-card-back-title {
+    width: 90% !important;
+}
