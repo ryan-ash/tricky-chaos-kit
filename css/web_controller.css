@@ -7,6 +7,10 @@
     color: #bbb;
 }
 
+.purge .ql-container .ql-editor {
+    color: #ddd !important;
+}
+
 .purge .el-button {
     background: #222 !important;
     color: #ccc !important;
@@ -25,7 +29,7 @@
 /* Fields */
 .text-template textarea, .text-template .tc-button, .text-template .tc-form input[type=date], .text-template .tc-form input[type=datetime], .text-template .tc-form input[type=datetime-local], .text-template .tc-form input[type=email], .text-template .tc-form input[type=month], .text-template .tc-form input[type=number], .text-template .tc-form input[type=password], .text-template .tc-form input[type=range], .text-template .tc-form input[type=search], .text-template .tc-form input[type=tel], .text-template .tc-form input[type=text], .text-template .tc-form input[type=time], .text-template .tc-form input[type=url], .text-template .tc-form input[type=week], .text-template .tc-form select, .text-template .tc-form textarea {
     background-color: transparent; /* Remove background fill */
-    text-transform: uppercase; /* Make text all uppercase */
+    /* text-transform: uppercase; Make text all uppercase */
     border: 2px solid rgba(40, 35, 59, 0.801); /* 2px white border */
     color: #fff; /* White text */
     height: 35px; /* Increase input height */
