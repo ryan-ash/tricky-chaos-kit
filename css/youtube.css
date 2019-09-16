@@ -1,4 +1,4 @@
-.purge #content #masthead, .purge #guide-spacer, .purge #info, .purge #meta, .purge #comments, .purge #related {
+.purge #content #masthead, .purge #guide-spacer, .purge #info, .purge #meta, .purge #comments, .purge #related, .purge #playlist {
     display: none;
 }
 
