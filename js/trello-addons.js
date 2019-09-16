@@ -56,8 +56,16 @@ $(document).ready(function() {
             return;
         }
 
+        apply_windows_addons();
+    }
+
+    function apply_windows_addons()
+    {
         $target.append(overlay_markup);
         add_button_events();
+        $(".js-hide-checked-items").each(function() {
+            $(this)[0].click();
+        });
     }
 
     function disable() {
