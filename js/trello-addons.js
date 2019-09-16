@@ -32,13 +32,10 @@ $(document).ready(function() {
 
     function enable() {
         enabled = true;
-
-        setTimeout(function() {
-            check_window_addons();
-        }, 100);
-
         $body.addClass(feature_name);
         $.cookie(feature_name, true);
+
+        check_window_addons();
     }
 
     function check_window_addons()
@@ -64,12 +61,11 @@ $(document).ready(function() {
     }
 
     function disable() {
-        $target = $(".window-wrapper");
-        $target.find(".tc-add-checklist").remove();
         enabled = false;
-
         $body.removeClass(feature_name);
         $.removeCookie(feature_name);
+
+        $(".tc-add-checklist").remove();
     }
 
     function add_button_events() {
