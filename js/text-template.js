@@ -144,16 +144,20 @@ $(document).ready(function() {
             add_title();
             e.preventDefault();
         });
-        $form.find(".tc-add-bottom-link").click(function(e) {
-            add_bottom_link();
+        $form.find(".tc-tag-selector .tc-reset").click(function(e) {
+            $form.find(".tc-tag-selector-input").val("");
             e.preventDefault();
         });
         $form.find(".tc-preview-link .tc-reset").click(function(e) {
             $form.find(".tc-preview-link-input").val("");
             e.preventDefault();
         });
-        $form.find(".tc-tag-selector .tc-reset").click(function(e) {
-            $form.find(".tc-tag-selector-input").val("");
+        $form.find(".tc-add-bottom-link").click(function(e) {
+            add_bottom_link();
+            e.preventDefault();
+        });
+        $form.find(".tc-parse").click(function(e) {
+            parse_post();
             e.preventDefault();
         });
 
@@ -186,7 +190,7 @@ $(document).ready(function() {
 
     // event code
     function add_title() {
-        $titles_wrapper.append(title_markup);        
+        $titles_wrapper.append(title_markup);
         $titles = $titles_wrapper.find(".tc-title");
         $title_instance = $($titles[$titles.length-1]);
         id = "tc-title-" + last_title_id;
@@ -208,7 +212,7 @@ $(document).ready(function() {
     }
 
     function add_bottom_link() {
-        $bottom_links_wrapper.append(bottom_link_markup);        
+        $bottom_links_wrapper.append(bottom_link_markup);
         $bottom_links = $bottom_links_wrapper.find(".tc-bottom-link");
         $bottom_link_instance = $($bottom_links[$bottom_links.length-1]);
         id = "tc-bottom-link-" + last_bottom_link_id;
@@ -227,6 +231,68 @@ $(document).ready(function() {
     }
 
     function parse_post() {
+        post = "";
+        
+        $titles = $titles_wrapper.find(".tc-title");
+        $tags = $form.find(".tc-tag-selector-input");
+        $preview = $form.find(".tc-preview-link-input");
+        $text = $form.find(".tc-text");
+        $bottom_links = $bottom_links_wrapper.find(".tc-bottom-link");
 
+        tags = $tags.val().trim();
+        preview = $preview.val().trim();
+        text = $text.val().trim();
+
+        title_present = false;
+        tags_present = tags != "";
+        preview_present = preview != "";
+        text_present = text != "";
+
+        $.each($titles, function(index, value) {
+            $title = $(value).find(".tc-title-input");
+            title = $title.val().trim();
+            if (title == "")
+                return;
+                
+            title_present = true;
+            post += "[<b>" + title + "</b>]\n";
+        });
+        
+        if (tags_present) {
+            post += "[" + tags + "]";
+        }
+
+        if (preview_present) {
+            post += "<a href=\"" + preview + "\">&#8291;</a>\n";
+        } else if (tags_present) {
+            post += "\n";
+        }
+
+        if (text_present) {
+            if (title_present || tags_present) {
+                post += "\n";
+            }
+            post += text;
+        }
+
+        $.each($bottom_links, function(index, value) {
+            $link = $(value);
+            link_url = $link.find(".tc-link").val().trim();
+            link_text = $link.find(".tc-link-text").val().trim();
+            if (link_url == "" && link_text == "")
+                return;
+                
+            if (index == 0) {
+                post += "\n\n";
+            } else if (index > 0) {
+                post += " | ";
+            }
+            post += "<a href=\"" + link_url + "\">" + link_text + "</a>";
+        });
+
+        // post = post.replace(/\n/g, "</br>");
+
+        $message_box = $(".ql-editor p");
+        $message_box.html(post);
     }
 });
