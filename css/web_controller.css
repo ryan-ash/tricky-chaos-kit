@@ -36,13 +36,14 @@
     border-radius: 30px 10px;
     padding: 15px;
     width: 208px;
-    margin: 2px 2px;
+    margin: 2px;
+    margin-right: 0;
     transition: border 0.25s ease-out;
 }
 
 .text-template textarea {
     min-height: 100px !important;
-    min-width: 420px !important;
+    min-width: 429px !important;
 }
 
 
@@ -104,7 +105,7 @@
     margin: 10px 0px;
 }
 
-.text-template .tc-title-input, .text-template .tc-preview-link-input {
+.text-template .tc-title-input, .text-template .tc-preview-link-input, .text-template .tc-tag-selector-input {
     width: 380px !important;
 }
 

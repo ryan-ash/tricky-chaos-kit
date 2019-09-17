@@ -24,7 +24,10 @@ $(document).ready(function() {
     var form_content = `
         <div class="tc-title-wrapper"></div>
         <div class="tc-add tc-button tc-add-title">+</div><br/>
-        <div class="tc-tag-selector"></div><br/>
+        <div class="tc-tag-selector">
+            <input type="text" class="tc-tag-selector-input" placeholder="#tags">
+            <div class="tc-reset tc-button">×</div>
+        </div>
         <div class="tc-preview-link">
             <input type="text" class="tc-preview-link-input" placeholder="Preview Link">
             <div class="tc-reset tc-button">×</div>
@@ -55,19 +58,15 @@ $(document).ready(function() {
 
     var data = {
         titles: [
-            "Author",
-            "Title"
+            ""
         ],
         tags: [
 
         ],
-        preview_link: "https://t.me/gamedevporn",
+        preview_link: "",
         text: "",
         bottom_links: [
-            {
-                link: "https://t.me/gamedevporn",
-                text: "Game Dev Porn"
-            }
+
         ]
     };
 
@@ -106,7 +105,7 @@ $(document).ready(function() {
 
         build_form();
 
-        add_button_events();
+        add_handlers();
     }
 
     function disable() {
@@ -140,7 +139,7 @@ $(document).ready(function() {
         update_preview_link(data.preview_link);
     }
 
-    function add_button_events() {
+    function add_handlers() {
         $form.find(".tc-add-title").click(function(e) {
             add_title();
             e.preventDefault();
@@ -153,6 +152,10 @@ $(document).ready(function() {
             $form.find(".tc-preview-link-input").val("");
             e.preventDefault();
         });
+        $form.find(".tc-tag-selector .tc-reset").click(function(e) {
+            $form.find(".tc-tag-selector-input").val("");
+            e.preventDefault();
+        });
 
         // form auto-resize
         $form.find('textarea').each(function () {
@@ -161,6 +164,20 @@ $(document).ready(function() {
             this.style.height = 'auto';
             this.style.height = (this.scrollHeight) + 'px';
         });
+
+        $tags = $(".tc-tag-selector");
+
+        // todo: smart tag picker
+        // on tags focus: show tag hint
+        // tag hint:
+        // - each tag is a toggle button
+        // - comments are visible
+        // - edit button on top
+        // - show recent tags scroll
+        // on edit button:
+        // - hide tags
+        // - show textarea with hint
+        // - show accept / reject buttons
     }
 
     function get_overlay_class() {
