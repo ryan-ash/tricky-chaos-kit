@@ -46,20 +46,7 @@
     min-width: 429px !important;
 }
 
-
-.text-template .el-button, .text-template .tc-button {
-    width: auto !important;
-    padding-top: 5px !important;
-    transition: border 0.15s ease-out;
-    display: inline-block;
-}
-
-.text-template .el-button:hover, .text-template .tc-button:hover {
-    border: 2px solid rgba(81, 71, 119, 0.801);
-    cursor: pointer;
-}
-
-/* Button */
+/* Buttons */
 .text-template .tc-footer a, .text-template .tc-form a, .text-template .el-button, .text-template .tc-form input[type=submit], .text-template .tc-form button[type=submit], .text-template .tc-form .wpforms-page-button {
    text-transform: uppercase;
    padding: 10px 75px;
@@ -74,6 +61,18 @@
     padding: 10px 12px !important;
     height: auto !important;
     border: 2px solid rgba(40, 35, 59, 0.801);
+}
+
+.text-template .el-button, .text-template .tc-button {
+    width: auto !important;
+    padding-top: 5px !important;
+    transition: border 0.15s ease-out;
+    display: inline-block;
+}
+
+.text-template .el-button:hover, .text-template .tc-button:hover {
+    border: 2px solid rgba(81, 71, 119, 0.801);
+    cursor: pointer;
 }
 
 .text-template .tc-parse {
