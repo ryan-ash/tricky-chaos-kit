@@ -36,7 +36,7 @@ $(document).ready(function() {
         <div class="tc-bottom-link-wrapper"></div>
         <div class="tc-add tc-button tc-add-bottom-link">+</div><br/>
         <a href="#" class="tc-parse">Parse</a>
-    `
+    `;
     var title_markup = `
         <div class="tc-title">
             <input type="text" class="tc-title-input" placeholder="Title">
@@ -263,7 +263,8 @@ $(document).ready(function() {
         }
 
         if (preview_present) {
-            post += "<a href=\"" + preview + "\">&#8291;</a>\n";
+            preview_link_string = "<a href=\"" + preview + "\">&#8291;</a>\n";
+            post += preview_link_string;
         } else if (tags_present) {
             post += "\n";
         }
@@ -290,9 +291,9 @@ $(document).ready(function() {
             post += "<a href=\"" + link_url + "\">" + link_text + "</a>";
         });
 
-        // post = post.replace(/\n/g, "</br>");
+        post = "<p>" + post.trim().replace(/\n/g, "</p><p>") + "</p>";
 
-        $message_box = $(".ql-editor p");
+        $message_box = $(".ql-editor");
         $message_box.html(post);
     }
 });
