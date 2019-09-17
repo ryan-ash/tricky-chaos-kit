@@ -153,6 +153,14 @@ $(document).ready(function() {
             $form.find(".tc-preview-link-input").val("");
             e.preventDefault();
         });
+
+        // form auto-resize
+        $form.find('textarea').each(function () {
+            this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+        }).on('input', function () {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
     }
 
     function get_overlay_class() {
