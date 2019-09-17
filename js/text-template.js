@@ -15,7 +15,7 @@ $(document).ready(function() {
             <div class="tc-ex">
                 <textarea class="tc-post-data"></textarea>
             </div>
-            <div class="tc-footer">
+            <div class="tc-footer tc-disabled">
                 <a href="">Export</a>
                 <a href="">Import</a>
             </div>
@@ -207,14 +207,6 @@ $(document).ready(function() {
         $form.find(".tc-preview-link-input").val(link);
     }
 
-    function add_tag(tag) {
-
-    }
-
-    function remove_tag(tag) {
-
-    }
-
     function add_bottom_link() {
         $bottom_links_wrapper.append(bottom_link_markup);        
         $bottom_links = $bottom_links_wrapper.find(".tc-bottom-link");
@@ -234,8 +226,7 @@ $(document).ready(function() {
         $bottom_link.find(".tc-link-text").val(bottom_link.text);
     }
 
-    function update_text(text) {
+    function parse_post() {
 
     }
-
 });

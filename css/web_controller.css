@@ -111,3 +111,7 @@
 .text-template .tc-bottom-link-input {
     width: 188px !important;
 }
+
+.text-template .tc-disabled {
+    display: none;
+}
