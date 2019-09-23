@@ -75,7 +75,7 @@
 .text-template .el-button--text {
     color: #409eff !important;
     margin-right: 20px !important;
-    text-transform: lowercase;
+    text-transform: capitalize;
     transition: border 0.15s ease-out;
     padding: 2px 5px !important;
     margin-left: -5px !important;
