@@ -98,7 +98,14 @@ $(document).ready(function() {
     }
 
     function enable() {
-        $body.append(overlay_markup);
+        $newpost = $body.find(".newpost");
+        if (!$newpost.length) {
+            setTimeout(function() {
+                enable();
+            }, 100);
+            return;
+        }
+        $newpost.prepend(overlay_markup);
 
         $body.addClass(feature_name);
         $.cookie(feature_name, true);
@@ -263,9 +270,11 @@ $(document).ready(function() {
         }
 
         if (preview_present) {
-            preview_link_string = "<a href=\"" + preview + "\">&#8291;</a>\n";
+            preview_link_string = "<a href=\"" + preview + "\">&#8291;</a>";
             post += preview_link_string;
-        } else if (tags_present) {
+        }
+        
+        if (tags_present) {
             post += "\n";
         }
 

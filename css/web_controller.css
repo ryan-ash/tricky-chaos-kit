@@ -22,12 +22,19 @@
 
 .text-template .overlay-text-template {
     position: absolute;
-    left: 15px;
-    top: 15px;
+    left: -440px;
+    top: 33px;
 }
 
 /* Fields */
-.text-template textarea, .text-template .tc-button, .text-template .tc-form input[type=date], .text-template .tc-form input[type=datetime], .text-template .tc-form input[type=datetime-local], .text-template .tc-form input[type=email], .text-template .tc-form input[type=month], .text-template .tc-form input[type=number], .text-template .tc-form input[type=password], .text-template .tc-form input[type=range], .text-template .tc-form input[type=search], .text-template .tc-form input[type=tel], .text-template .tc-form input[type=text], .text-template .tc-form input[type=time], .text-template .tc-form input[type=url], .text-template .tc-form input[type=week], .text-template .tc-form select, .text-template .tc-form textarea {
+.text-template textarea, .text-template .tc-button, .text-template .tc-form input[type=date],
+.text-template .tc-form input[type=datetime], .text-template .tc-form input[type=datetime-local],
+.text-template .tc-form input[type=email], .text-template .tc-form input[type=month],
+.text-template .tc-form input[type=number], .text-template .tc-form input[type=password],
+.text-template .tc-form input[type=range], .text-template .tc-form input[type=search],
+.text-template .tc-form input[type=tel], .text-template .tc-form input[type=text],
+.text-template .tc-form input[type=time], .text-template .tc-form input[type=url],
+.text-template .tc-form input[type=week], .text-template .tc-form select, .text-template .tc-form textarea {
     background-color: transparent; /* Remove background fill */
     /* text-transform: uppercase; Make text all uppercase */
     border: 2px solid rgba(40, 35, 59, 0.801); /* 2px white border */
@@ -39,6 +46,7 @@
     margin: 2px;
     margin-right: 0;
     transition: border 0.25s ease-out;
+    font-size: 14px;
 }
 
 .text-template textarea {
@@ -47,7 +55,8 @@
 }
 
 /* Buttons */
-.text-template .tc-footer a, .text-template .tc-form a, .text-template .el-button, .text-template .tc-form input[type=submit], .text-template .tc-form button[type=submit], .text-template .tc-form .wpforms-page-button {
+.text-template .tc-footer a, .text-template .tc-form a, .text-template .el-button:not(.el-button--text), .text-template .tc-form input[type=submit], 
+.text-template .tc-form button[type=submit], .text-template .tc-form .wpforms-page-button {
    text-transform: uppercase;
    padding: 10px 75px;
    margin-right: 10px;
@@ -57,20 +66,57 @@
    font-weight: normal;
 }
 
-.text-template .el-button {
+.text-template .el-button:not(.el-button--text) {
     padding: 10px 12px !important;
     height: auto !important;
-    border: 2px solid rgba(40, 35, 59, 0.801);
+    border: 2px solid rgba(40, 35, 59, 0);
 }
 
-.text-template .el-button, .text-template .tc-button {
-    width: auto !important;
-    padding-top: 5px !important;
+.text-template .el-button--text {
+    color: #409eff !important;
+    margin-right: 20px !important;
+    text-transform: lowercase;
+    transition: border 0.15s ease-out;
+    padding: 2px 5px !important;
+    margin-left: -5px !important;
+    border-left: 2px solid rgba(40, 35, 59, 0);
+    border-bottom: 2px solid rgba(40, 35, 59, 0);
+}
+
+.text-template .el-button--text:hover {
+    border-left: 2px solid rgba(81, 71, 119, 0.801);
+    border-bottom: 2px solid rgba(81, 71, 119, 0.801);
+    cursor: pointer;
+}
+
+.text-template .el-button--primary.is-plain {
+    border: 2px solid rgba(40, 35, 59, 0);
+}
+
+.text-template .control-buttons .el-button {
+    text-transform: uppercase;
+    width: 40% !important;
+}
+
+.text-template .control-buttons .el-form-item__content {
+    margin-left: 0 !important;
+}
+
+.text-template .el-button:not(.el-button--text) {
+    padding-top: 10px !important;
+}
+
+.text-template .el-button:not(.el-button--text), .text-template .tc-button {
     transition: border 0.15s ease-out;
     display: inline-block;
 }
 
-.text-template .el-button:hover, .text-template .tc-button:hover {
+.text-template .tc-button {
+    width: auto !important;
+    padding-top: 5px !important;
+}
+
+.text-template .el-button:not(.el-button--text):hover, .text-template .tc-button:hover {
     border: 2px solid rgba(81, 71, 119, 0.801);
     cursor: pointer;
 }
@@ -114,4 +160,14 @@
 
 .text-template .tc-disabled {
     display: none;
+}
+
+.text-template .newpost {
+    position: relative;
+    overflow: visible;
+    margin-right: -660px;
+}
+
+.text-template .ql-editor {
+    font-size: 14px !important;
 }
