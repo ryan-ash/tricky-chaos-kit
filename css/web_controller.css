@@ -22,7 +22,7 @@
 
 .text-template .overlay-text-template {
     position: absolute;
-    left: -440px;
+    left: -540px;
     top: 33px;
 }
 
@@ -165,7 +165,7 @@
 .text-template .newpost {
     position: relative;
     overflow: visible;
-    margin-right: -660px;
+    margin-right: -700px;
 }
 
 .text-template .ql-editor {
