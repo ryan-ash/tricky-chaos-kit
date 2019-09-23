@@ -150,7 +150,7 @@
     margin: 10px 0px;
 }
 
-.text-template .tc-title-input, .text-template .tc-preview-link-input, .text-template .tc-tag-selector-input {
+.text-template .tc-wide-input input {
     width: 380px !important;
 }
 

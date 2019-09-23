@@ -24,21 +24,25 @@ $(document).ready(function() {
     var form_content = `
         <div class="tc-title-wrapper"></div>
         <div class="tc-add tc-button tc-add-title">+</div><br/>
-        <div class="tc-tag-selector">
+        <div class="tc-tag-selector tc-wide-input">
             <input type="text" class="tc-tag-selector-input" placeholder="#tags">
             <div class="tc-reset tc-button">×</div>
         </div>
-        <div class="tc-preview-link">
+        <div class="tc-preview-link tc-wide-input">
             <input type="text" class="tc-preview-link-input" placeholder="Preview Link">
             <div class="tc-reset tc-button">×</div>
         </div>
         <textarea class="tc-text" placeholder"Text..."></textarea><br/>
         <div class="tc-bottom-link-wrapper"></div>
         <div class="tc-add tc-button tc-add-bottom-link">+</div><br/>
+        <div class="tc-ps-text tc-wide-input">
+            <input type="text" class="tc-ps-text-input" placeholder="PS">
+            <div class="tc-reset tc-button">×</div>
+        </div>
         <a href="#" class="tc-parse">Parse</a>
     `;
     var title_markup = `
-        <div class="tc-title">
+        <div class="tc-title tc-wide-input">
             <input type="text" class="tc-title-input" placeholder="Title">
             <div class="tc-remove tc-button">-</div>
         </div>
@@ -46,7 +50,7 @@ $(document).ready(function() {
     var bottom_link_markup = `
         <div class="tc-bottom-link">
             <input type="text" placeholder="http://" class="tc-bottom-link-input tc-link">
-            <input type="text" placeholder="Link" class="tc-bottom-link-input tc-link-text">
+            <input type="text" placeholder="Link Text" class="tc-bottom-link-input tc-link-text">
             <div class="tc-remove tc-button">-</div>
         </div>
     `;
@@ -159,6 +163,10 @@ $(document).ready(function() {
             $form.find(".tc-preview-link-input").val("");
             e.preventDefault();
         });
+        $form.find(".tc-ps-text .tc-reset").click(function(e) {
+            $form.find(".tc-ps-text-input").val("");
+            e.preventDefault();
+        });
         $form.find(".tc-add-bottom-link").click(function(e) {
             add_bottom_link();
             e.preventDefault();
@@ -245,15 +253,18 @@ $(document).ready(function() {
         $preview = $form.find(".tc-preview-link-input");
         $text = $form.find(".tc-text");
         $bottom_links = $bottom_links_wrapper.find(".tc-bottom-link");
+        $ps = $form.find(".tc-ps-text-input");
 
         tags = $tags.val().trim();
         preview = $preview.val().trim();
         text = $text.val().trim();
+        ps = $ps.val().trim();
 
         title_present = false;
         tags_present = tags != "";
         preview_present = preview != "";
         text_present = text != "";
+        ps_present = ps != "";
 
         $.each($titles, function(index, value) {
             $title = $(value).find(".tc-title-input");
@@ -299,6 +310,11 @@ $(document).ready(function() {
             }
             post += "<a href=\"" + link_url + "\">" + link_text + "</a>";
         });
+
+        if (ps_present) {
+            post += "\n\n";
+            post += "&gt; <code>" + ps + "</code>";
+        }
 
         post = "<p>" + post.trim().replace(/\n/g, "</p><p>") + "</p>";
 
