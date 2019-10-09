@@ -7,7 +7,8 @@ $(document).ready(function() {
     var $bottom_links_wrapper = "";
     var $bottom_links = [];
 
-    var feature_name = "text-template"
+    var save = "trickychaos";
+    var feature_name = "text-template";
     var overlay_markup = `
         <div class="OUTER_CLASS_NAME">
             <form class="tc-form"></form>
@@ -80,7 +81,7 @@ $(document).ready(function() {
 
     overlay_markup = overlay_markup.replace('OUTER_CLASS_NAME', get_overlay_class().substring(1));
 
-    if ($.cookie(feature_name)) {
+    if ($.cookie(save)) {
         enable();
     }
 
@@ -112,7 +113,7 @@ $(document).ready(function() {
         $newpost.prepend(overlay_markup);
 
         $body.addClass(feature_name);
-        $.cookie(feature_name, true);
+        $.cookie(save, true);
 
         build_form();
 
@@ -123,7 +124,7 @@ $(document).ready(function() {
         $body.find(get_overlay_class()).remove();
 
         $body.removeClass(feature_name);
-        $.removeCookie(feature_name);
+        $.removeCookie(save);
     }
 
     function build_form() {

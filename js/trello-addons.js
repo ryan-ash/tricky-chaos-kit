@@ -1,5 +1,7 @@
 $(document).ready(function() {
     var $body = $("body");
+
+    var save = "trickychaos";
     var feature_name = "trello-addons"
     var overlay_markup = `
         <a class="icon-lg tc-add-checklist" href="#"></a>
@@ -10,7 +12,7 @@ $(document).ready(function() {
 
     // === main ===
 
-    if ($.cookie(feature_name)) {
+    if ($.cookie(save)) {
         enable();
     }
 
@@ -34,7 +36,7 @@ $(document).ready(function() {
     function enable() {
         enabled = true;
         $body.addClass(feature_name);
-        $.cookie(feature_name, true);
+        $.cookie(save, true);
 
         check_window_addons();
     }
@@ -42,7 +44,7 @@ $(document).ready(function() {
     function disable() {
         enabled = false;
         $body.removeClass(feature_name);
-        $.removeCookie(feature_name);
+        $.removeCookie(save);
 
         $(".tc-add-checklist").remove();
     }

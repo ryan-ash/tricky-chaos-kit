@@ -1,8 +1,10 @@
 $(document).ready(function() {
     var $body = $("body");
+
+    var save = "trickychaos";
     var feature_name = "purge";
 
-    if ($.cookie(feature_name)) {
+    if ($.cookie(save)) {
         enable();
     }
 
@@ -21,11 +23,11 @@ $(document).ready(function() {
 
     function enable() {
         $body.addClass(feature_name);
-        $.cookie(feature_name, true);
+        $.cookie(save, true);
     }
 
     function disable() {
         $body.removeClass(feature_name);
-        $.removeCookie(feature_name);
+        $.removeCookie(save);
     }
 });
