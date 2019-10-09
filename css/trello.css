@@ -28,7 +28,6 @@
 }
 
 .trello-addons .tc-add-checklist {
-    background: rgba(9,30,66,.04);
     color: #42526e;
     border-radius: 50%;
     position: absolute;
@@ -41,15 +40,15 @@
     width: 32px;
     z-index: 2;
     transition: background-color .1s,color .1s;
-    background-color: rgba(0,0,0,.08);
+    background: rgba(0,0,0,0);
 }
 
 .trello-addons .tc-add-checklist:hover {
-    background-color: rgba(0,0,0,.16);
+    background-color: rgba(9,30,66,.08);
 }
 
 .trello-addons .tc-add-checklist::before {
-    content: "\E918";
+    content: "\E901";
 }
 
 .trello-addons .pop-over {
