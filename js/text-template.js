@@ -8,7 +8,9 @@ $(document).ready(function() {
     var $bottom_links = [];
 
     var save = "trickychaos";
+    var auto_save = "tc-auto-save";
     var feature_name = "text-template";
+
     var overlay_markup = `
         <div class="OUTER_CLASS_NAME">
             <form class="tc-form"></form>
@@ -22,6 +24,7 @@ $(document).ready(function() {
             </div>
         </div>
     `;
+
     var form_content = `
         <div class="tc-title-wrapper"></div>
         <div class="tc-add tc-button tc-add-title">+</div><br/>
@@ -42,12 +45,14 @@ $(document).ready(function() {
         </div>
         <a href="#" class="tc-parse">Parse</a>
     `;
+
     var title_markup = `
         <div class="tc-title tc-wide-input">
             <input type="text" class="tc-title-input" placeholder="Title">
             <div class="tc-remove tc-button">-</div>
         </div>
     `;
+
     var bottom_link_markup = `
         <div class="tc-bottom-link">
             <input type="text" placeholder="http://" class="tc-bottom-link-input tc-link">
@@ -58,6 +63,8 @@ $(document).ready(function() {
 
     var last_title_id = 0;
     var last_bottom_link_id = 0;
+
+    var handlers_active = false;
 
     // === data ===
 
@@ -72,8 +79,11 @@ $(document).ready(function() {
         text: "",
         bottom_links: [
 
-        ]
+        ],
+        ps: ""
     };
+
+    var current_post = "";
 
 
 
@@ -115,8 +125,13 @@ $(document).ready(function() {
         $body.addClass(feature_name);
         $.cookie(save, true);
 
-        build_form();
+        if ($.cookie(auto_save)) {
+            current_post = JSON.parse($.cookie(auto_save));
+        } else {
+            current_post = data;
+        }
 
+        build_form();
         add_handlers();
     }
 
@@ -125,6 +140,8 @@ $(document).ready(function() {
 
         $body.removeClass(feature_name);
         $.removeCookie(save);
+
+        handlers_active = false;
     }
 
     function build_form() {
@@ -134,24 +151,30 @@ $(document).ready(function() {
         $titles_wrapper = $form.find(".tc-title-wrapper");
         $bottom_links_wrapper = $form.find(".tc-bottom-link-wrapper");
 
-        for (var i in data.titles)
+        for (var i in current_post.titles)
         {
-            title = data.titles[i];
+            title = current_post.titles[i];
             add_title();
             set_title(i, title);
         }
 
-        for (var i in data.bottom_links)
+        update_tags(current_post.tags);
+        update_preview_link(current_post.preview_link);
+        update_text(current_post.text);
+
+        for (var i in current_post.bottom_links)
         {
-            bottom_link = data.bottom_links[i];
+            bottom_link = current_post.bottom_links[i];
             add_bottom_link()
             set_bottom_link(i, bottom_link);
         }
 
-        update_preview_link(data.preview_link);
+        update_ps(current_post.ps);
     }
 
     function add_handlers() {
+        handlers_active = true;
+
         $form.find(".tc-add-title").click(function(e) {
             add_title();
             e.preventDefault();
@@ -187,6 +210,10 @@ $(document).ready(function() {
 
         $tags = $(".tc-tag-selector");
 
+        $form.find(".tc-tag-selector-input, .tc-preview-link-input, .tc-text, .tc-ps-text").change(function() {
+            parse_post(true);
+        });
+
         // todo: smart tag picker
         // on tags focus: show tag hint
         // tag hint:
@@ -212,8 +239,12 @@ $(document).ready(function() {
         id = "tc-title-" + last_title_id;
         $title_instance.attr("id", id);
 
-        $title_instance.find(".tc-remove").click(function(e){
+        $title_instance.find(".tc-remove").click(function(e) {
             $(this).parent().remove();
+            parse_post(true);
+        });
+        $title_instance.find(".tc-title-input").change(function() {
+            parse_post(true);
         });
         last_title_id += 1;
     }
@@ -223,8 +254,23 @@ $(document).ready(function() {
         $title.find(".tc-title-input").val(title);
     }
 
+    function update_tags(tags) {
+        if (!tags)
+            return;
+        tags_string = tags.join(" ");
+        $form.find(".tc-tag-selector-input").val(tags_string);
+    }
+
     function update_preview_link(link) {
         $form.find(".tc-preview-link-input").val(link);
+    }
+
+    function update_text(text) {
+        $form.find(".tc-text").val(text);
+    }
+
+    function update_ps(ps) {
+        $form.find(".tc-ps-text-input").val(ps);
     }
 
     function add_bottom_link() {
@@ -236,6 +282,10 @@ $(document).ready(function() {
 
         $bottom_link_instance.find(".tc-remove").click(function(e){
             $(this).parent().remove();
+            parse_post(true);
+        });
+        $bottom_link_instance.find(".tc-bottom-link-input").change(function() {
+            parse_post(true);
         });
         last_bottom_link_id += 1;
     }
@@ -246,8 +296,14 @@ $(document).ready(function() {
         $bottom_link.find(".tc-link-text").val(bottom_link.text);
     }
 
-    function parse_post() {
-        post = "";
+    function parse_post(data_run = false) {
+        if (data_run) {
+            if (!handlers_active)
+                return;
+            post = data;
+        } else {
+            post = "";
+        }
         
         $titles = $titles_wrapper.find(".tc-title");
         $tags = $form.find(".tc-tag-selector-input");
@@ -274,27 +330,43 @@ $(document).ready(function() {
                 return;
                 
             title_present = true;
-            post += "[<b>" + title + "</b>]\n";
+            if (data_run) {
+                post.titles.push(title);
+            } else {
+                post += "[<b>" + title + "</b>]\n";
+            }
         });
         
         if (tags_present) {
-            post += "[" + tags + "]";
+            if (data_run) {
+                post.tags = tags.split(" ");
+            } else {
+                post += "[" + tags + "]";
+            }
         }
 
         if (preview_present) {
-            preview_link_string = "<a href=\"" + preview + "\">&#8291;</a>";
-            post += preview_link_string;
+            if (data_run) {
+                post.preview_link = preview;
+            } else {
+                preview_link_string = "<a href=\"" + preview + "\">&#8291;</a>";
+                post += preview_link_string;
+            }
         }
         
-        if (tags_present) {
+        if (tags_present && !data_run) {
             post += "\n";
         }
 
         if (text_present) {
-            if (title_present || tags_present) {
-                post += "\n";
+            if (data_run) {
+                post.text = text;
+            } else {
+                if (title_present || tags_present) {
+                    post += "\n";
+                }
+                post += text;
             }
-            post += text;
         }
 
         $.each($bottom_links, function(index, value) {
@@ -304,22 +376,39 @@ $(document).ready(function() {
             if (link_url == "" && link_text == "")
                 return;
                 
-            if (index == 0) {
-                post += "\n\n";
-            } else if (index > 0) {
-                post += " | ";
+            if (data_run) {
+                post.bottom_links.push({link: link_url, text: link_text});
+            } else {
+                if (index == 0) {
+                    post += "\n\n";
+                } else if (index > 0) {
+                    post += " | ";
+                }
+                post += "<a href=\"" + link_url + "\">" + link_text + "</a>";
             }
-            post += "<a href=\"" + link_url + "\">" + link_text + "</a>";
         });
 
         if (ps_present) {
-            post += "\n\n";
-            post += "&gt; <code>" + ps + "</code>";
+            if (data_run) {
+                post.ps = ps;
+            } else {
+                post += "\n\n";
+                post += "&gt; <code>" + ps + "</code>";
+            }
         }
 
-        post = "<p>" + post.trim().replace(/\n/g, "</p><p>") + "</p>";
+        if (data_run) {
+            save_draft(post);
+        } else {
+            post = "<p>" + post.trim().replace(/\n/g, "</p><p>") + "</p>";
 
-        $message_box = $(".ql-editor");
-        $message_box.html(post);
+            $message_box = $(".ql-editor");
+            $message_box.html(post);
+        }
+    }
+
+    function save_draft(post_data) {
+        current_post = post_data;
+        $.cookie(auto_save, JSON.stringify(current_post));
     }
 });
