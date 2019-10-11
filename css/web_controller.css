@@ -89,8 +89,10 @@
     cursor: pointer;
 }
 
-.text-template .el-button--primary.is-plain {
+.text-template .el-button--primary.is-plain, .text-template .tc-button {
+    background: none !important;
     border: 2px solid rgba(40, 35, 59, 0);
+    width: 40px !important;
 }
 
 .text-template .control-buttons .el-button {
@@ -112,7 +114,6 @@
 }
 
 .text-template .tc-button {
-    width: auto !important;
     padding-top: 5px !important;
 }
 
@@ -151,7 +152,7 @@
 }
 
 .text-template .tc-wide-input input {
-    width: 380px !important;
+    width: 429px !important;
 }
 
 .text-template .tc-bottom-link-input {

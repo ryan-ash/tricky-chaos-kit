@@ -3,7 +3,7 @@
   
   "name": "Clutter Purge",
   "description": "Press [F2] to enable clutter-free view on trello, youtube & google keep individual item screens.",
-  "version": "1.4",
+  "version": "1.5",
   "author": "Ryan Ash",  
   "browser_action": {
     "default_icon": "icons/icon128.png",
