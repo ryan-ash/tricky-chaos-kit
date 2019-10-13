@@ -128,7 +128,7 @@ $(document).ready(function() {
         if ($.cookie(auto_save)) {
             current_post = JSON.parse($.cookie(auto_save));
         } else {
-            current_post = data;
+            current_post = copy_json(data);
         }
 
         build_form();
