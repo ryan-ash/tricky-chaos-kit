@@ -70,7 +70,7 @@ $(document).ready(function() {
 
     var data = {
         titles: [
-            ""
+
         ],
         tags: [
 
@@ -181,14 +181,17 @@ $(document).ready(function() {
         });
         $form.find(".tc-tag-selector .tc-reset").click(function(e) {
             $form.find(".tc-tag-selector-input").val("");
+            parse_post(true);
             e.preventDefault();
         });
         $form.find(".tc-preview-link .tc-reset").click(function(e) {
             $form.find(".tc-preview-link-input").val("");
+            parse_post(true);
             e.preventDefault();
         });
         $form.find(".tc-ps-text .tc-reset").click(function(e) {
             $form.find(".tc-ps-text-input").val("");
+            parse_post(true);
             e.preventDefault();
         });
         $form.find(".tc-add-bottom-link").click(function(e) {
@@ -300,7 +303,7 @@ $(document).ready(function() {
         if (data_run) {
             if (!handlers_active)
                 return;
-            post = data;
+            post = copy_json(data);
         } else {
             post = "";
         }
@@ -410,5 +413,9 @@ $(document).ready(function() {
     function save_draft(post_data) {
         current_post = post_data;
         $.cookie(auto_save, JSON.stringify(current_post));
+    }
+    
+    function copy_json(src) {
+        return JSON.parse(JSON.stringify(src));
     }
 });
