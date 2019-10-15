@@ -43,7 +43,22 @@ $(document).ready(function() {
             <input type="text" class="tc-ps-text-input" placeholder="PS">
             <div class="tc-reset tc-button">×</div>
         </div>
-        <a href="#" class="tc-parse">Parse</a>
+        <a href="#" class="tc-parse tc-wide-button tc-text-button">Parse</a>
+        <div class="tc-drafts">
+            <div class="tc-draft-left tc-draft-column">
+                <a href="#" class="tc-save-draft tc-narrow-button tc-text-button">Save Draft</a>
+                <a href="#" class="tc-save-draft-complete tc-narrow-button tc-text-button tc-disabled">v</a>
+            </div>
+            <div class="tc-draft-right tc-draft-column">
+                <a href="#" class="tc-load-draft tc-narrow-button tc-text-button">Load Draft</a>
+                <div class="tc-load-draft-form tc-disabled">
+                    <select class="tc-draft-list">
+                    </select>
+                    <div class="tc-accept tc-button">v</div>
+                    <div class="tc-cancel tc-button">×</div>                
+                </div>
+            </div>
+        </div>
     `;
 
     var title_markup = `
@@ -82,8 +97,8 @@ $(document).ready(function() {
         ],
         ps: ""
     };
-
     var current_post = "";
+    var saved_drafts = []
 
 
 
@@ -132,6 +147,7 @@ $(document).ready(function() {
         }
 
         build_form();
+        build_drafts();
         add_handlers();
     }
 
@@ -172,6 +188,12 @@ $(document).ready(function() {
         update_ps(current_post.ps);
     }
 
+    function build_drafts() {
+        // read cookie
+        // clear dropdown
+        // build dropdown from cookie
+    }
+
     function add_handlers() {
         handlers_active = true;
 
@@ -202,6 +224,22 @@ $(document).ready(function() {
             parse_post();
             e.preventDefault();
         });
+        $form.find(".tc-save-draft").click(function(e) {
+            $(this).addClass("tc-disabled");
+            $(this).next().removeClass("tc-disabled");
+            e.preventDefault();
+        });
+        $form.find(".tc-load-draft").click(function(e) {
+            $(this).addClass("tc-disabled");
+            $(this).next().removeClass("tc-disabled");
+            e.preventDefault();
+        });
+        // save bind
+        // save cancel bind
+        // save accept bind
+        // load bind
+        // load cancel
+        // load accept
 
         // form auto-resize
         $form.find('textarea').each(function () {

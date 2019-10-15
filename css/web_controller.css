@@ -160,7 +160,7 @@
 }
 
 .text-template .tc-disabled {
-    display: none;
+    display: none !important;
 }
 
 .text-template .newpost {
@@ -171,4 +171,33 @@
 
 .text-template .ql-editor {
     font-size: 14px !important;
+}
+
+.text-template .tc-narrow-button {
+    padding: 10px 10px !important;
+    display: block;
+    width: 207px;
+    text-align: center;
+}
+
+.text-template .tc-draft-column {
+    display: inline-block;
+}
+
+.text-template .tc-drafts {
+    margin-top: 10px;
+}
+
+.text-template .tc-text-button {
+    transition: color 0.25s ease-out, background 0.25s ease-out;
+}
+
+.text-template .tc-text-button:hover {
+    background-color: #6c2 !important;
+    color: #111;
+}
+
+.text-template .tc-save-draft-complete {
+    background-color: #4f4 !important;
+    color: #000 !important;
 }
