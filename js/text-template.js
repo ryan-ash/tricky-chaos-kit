@@ -9,6 +9,7 @@ $(document).ready(function() {
 
     var save = "trickychaos";
     var auto_save = "tc-auto-save";
+    var drafts_save = "tc-drafts";
     var feature_name = "text-template";
 
     var overlay_markup = `
@@ -36,7 +37,10 @@ $(document).ready(function() {
             <input type="text" class="tc-preview-link-input" placeholder="Preview Link">
             <div class="tc-reset tc-button">×</div>
         </div>
-        <textarea class="tc-text" placeholder"Text..."></textarea><br/>
+        <div class="tc-text-wrapper">
+            <textarea class="tc-text" placeholder"Text..."></textarea>
+            <div class="tc-reset tc-button">×</div>
+        </div>
         <div class="tc-bottom-link-wrapper"></div>
         <div class="tc-add tc-button tc-add-bottom-link">+</div><br/>
         <div class="tc-ps-text tc-wide-input">
@@ -52,8 +56,10 @@ $(document).ready(function() {
             <div class="tc-draft-right tc-draft-column">
                 <a href="#" class="tc-load-draft tc-narrow-button tc-text-button">Load Draft</a>
                 <div class="tc-load-draft-form tc-disabled">
-                    <select class="tc-draft-list">
-                    </select>
+                    <div class="tc-select-wrapper">
+                        <select class="tc-draft-list">
+                        </select>
+                    </div>
                     <div class="tc-accept tc-button">v</div>
                     <div class="tc-cancel tc-button">×</div>                
                 </div>
@@ -146,6 +152,10 @@ $(document).ready(function() {
             current_post = copy_json(data);
         }
 
+        if ($.cookie(drafts_save)) {
+            saved_drafts = JSON.parse($.cookie(drafts_save));
+        }
+
         build_form();
         build_drafts();
         add_handlers();
@@ -167,8 +177,7 @@ $(document).ready(function() {
         $titles_wrapper = $form.find(".tc-title-wrapper");
         $bottom_links_wrapper = $form.find(".tc-bottom-link-wrapper");
 
-        for (var i in current_post.titles)
-        {
+        for (var i in current_post.titles) {
             title = current_post.titles[i];
             add_title();
             set_title(i, title);
@@ -178,8 +187,7 @@ $(document).ready(function() {
         update_preview_link(current_post.preview_link);
         update_text(current_post.text);
 
-        for (var i in current_post.bottom_links)
-        {
+        for (var i in current_post.bottom_links) {
             bottom_link = current_post.bottom_links[i];
             add_bottom_link()
             set_bottom_link(i, bottom_link);
@@ -189,9 +197,15 @@ $(document).ready(function() {
     }
 
     function build_drafts() {
-        // read cookie
-        // clear dropdown
-        // build dropdown from cookie
+        $select = $form.find(".tc-draft-list");
+        $select.empty();
+        for (var i in saved_drafts) {
+            draft = saved_drafts[i];
+            title_amount = draft.titles.length;
+            draft_name = title_amount > 0 ? draft.titles[title_amount-1] : draft.text.substring(0, 30) + "...";
+            draft_option = "<option>" + draft_name + "</option>";
+            $select.append(draft_option);
+        }
     }
 
     function add_handlers() {
@@ -216,6 +230,13 @@ $(document).ready(function() {
             parse_post(true);
             e.preventDefault();
         });
+        $form.find(".tc-text-wrapper .tc-reset").click(function(e) {
+            $text = $form.find(".tc-text");
+            $text.val("");
+            resize_textarea($text[0]);
+            parse_post(true);
+            e.preventDefault();
+        });
         $form.find(".tc-add-bottom-link").click(function(e) {
             add_bottom_link();
             e.preventDefault();
@@ -227,6 +248,9 @@ $(document).ready(function() {
         $form.find(".tc-save-draft").click(function(e) {
             $(this).addClass("tc-disabled");
             $(this).next().removeClass("tc-disabled");
+            parse_post(true);
+            save_draft(current_post);
+            build_drafts();
             e.preventDefault();
         });
         $form.find(".tc-load-draft").click(function(e) {
@@ -234,19 +258,19 @@ $(document).ready(function() {
             $(this).next().removeClass("tc-disabled");
             e.preventDefault();
         });
-        // save bind
-        // save cancel bind
-        // save accept bind
-        // load bind
-        // load cancel
+        $form.find(".tc-load-draft-form .tc-cancel").click(function(e) {
+            $form.find(".tc-load-draft").removeClass("tc-disabled");
+            $form.find(".tc-load-draft-form").addClass("tc-disabled");
+        });
         // load accept
+        // delete draft
+        // clear form
 
-        // form auto-resize
+        // textarea auto-resize
         $form.find('textarea').each(function () {
             this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
         }).on('input', function () {
-            this.style.height = 'auto';
-            this.style.height = (this.scrollHeight) + 'px';
+            resize_textarea(this);
         });
 
         $tags = $(".tc-tag-selector");
@@ -266,6 +290,11 @@ $(document).ready(function() {
         // - hide tags
         // - show textarea with hint
         // - show accept / reject buttons
+    }
+
+    function resize_textarea(target) {
+        target.style.height = 'auto';
+        target.style.height = (target.scrollHeight) + 'px';
     }
 
     function get_overlay_class() {
@@ -314,6 +343,11 @@ $(document).ready(function() {
         $form.find(".tc-ps-text-input").val(ps);
     }
 
+    function reset_save_draft_button() {
+        $form.find(".tc-save-draft-complete").addClass("tc-disabled");
+        $form.find(".tc-save-draft").removeClass("tc-disabled");
+    }
+
     function add_bottom_link() {
         $bottom_links_wrapper.append(bottom_link_markup);
         $bottom_links = $bottom_links_wrapper.find(".tc-bottom-link");
@@ -342,6 +376,7 @@ $(document).ready(function() {
             if (!handlers_active)
                 return;
             post = copy_json(data);
+            reset_save_draft_button();
         } else {
             post = "";
         }
@@ -439,7 +474,7 @@ $(document).ready(function() {
         }
 
         if (data_run) {
-            save_draft(post);
+            do_auto_save(post);
         } else {
             post = "<p>" + post.trim().replace(/\n/g, "</p><p>") + "</p>";
 
@@ -449,6 +484,12 @@ $(document).ready(function() {
     }
 
     function save_draft(post_data) {
+        current_post = post_data;
+        saved_drafts.push(current_post);
+        $.cookie(drafts_save, JSON.stringify(saved_drafts));
+    }
+
+    function do_auto_save(post_data) {
         current_post = post_data;
         $.cookie(auto_save, JSON.stringify(current_post));
     }
