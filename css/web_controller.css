@@ -140,12 +140,28 @@
     cursor: pointer;
 }
 
-.text-template .tc-parse {
-    background-color: #3e723e !important;
+.text-template .tc-wide-button {
     display: block;
     margin: 20px 0px;
     width: 430px !important;
     text-align: center;
+}
+
+.text-template .tc-parse {
+    background-color: #3e723e !important;
+}
+
+.text-template .tc-clear-form {
+    background-color: #cc3e3e !important;
+}
+
+.text-template .tc-text-button {
+    transition: color 0.25s ease-out, background 0.25s ease-out;
+}
+
+.text-template .tc-text-button:hover {
+    background-color: #6c2 !important;
+    color: #111;
 }
 
 .text-template .tc-form input[type=text]:focus, .text-template textarea:focus {
@@ -209,15 +225,6 @@
 .text-template .tc-draft-list {
     width: 150px !important;
     margin-right: 13px !important;
-}
-
-.text-template .tc-text-button {
-    transition: color 0.25s ease-out, background 0.25s ease-out;
-}
-
-.text-template .tc-text-button:hover {
-    background-color: #6c2 !important;
-    color: #111;
 }
 
 .text-template .tc-save-draft-complete {

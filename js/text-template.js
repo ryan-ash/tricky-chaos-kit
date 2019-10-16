@@ -48,6 +48,7 @@ $(document).ready(function() {
             <div class="tc-reset tc-button">×</div>
         </div>
         <a href="#" class="tc-parse tc-wide-button tc-text-button">Parse</a>
+        <a href="#" class="tc-clear-form tc-wide-button tc-text-button">Clear</a>
         <div class="tc-drafts">
             <div class="tc-draft-left tc-draft-column">
                 <a href="#" class="tc-save-draft tc-narrow-button tc-text-button">Save Draft</a>
@@ -262,9 +263,12 @@ $(document).ready(function() {
             $form.find(".tc-load-draft").removeClass("tc-disabled");
             $form.find(".tc-load-draft-form").addClass("tc-disabled");
         });
-        // load accept
+        // load now
         // delete draft
-        // clear form
+        $form.find(".tc-clear-form").click(function(e) {
+            clear_form();
+            e.preventDefault();
+        });
 
         // textarea auto-resize
         $form.find('textarea').each(function () {
@@ -292,13 +296,20 @@ $(document).ready(function() {
         // - show accept / reject buttons
     }
 
+    function get_overlay_class() {
+        return ".overlay-" + feature_name;
+    }
+
     function resize_textarea(target) {
         target.style.height = 'auto';
         target.style.height = (target.scrollHeight) + 'px';
     }
 
-    function get_overlay_class() {
-        return ".overlay-" + feature_name;
+    function clear_form() {
+        $form.find("textarea, input[type=text]").val("");
+        $form.find(".tc-title-wrapper, .tc-bottom-link-wrapper").empty();
+        resize_textarea($form.find("textarea")[0]);
+        parse_post(true);
     }
 
     // event code
