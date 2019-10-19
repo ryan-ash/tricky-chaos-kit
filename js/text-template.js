@@ -315,6 +315,11 @@ $(document).ready(function() {
         $(".tc-load-draft-form").removeClass("tc-disabled");
     }
 
+    function close_load_draft_form() {
+        $(".tc-load-draft").removeClass("tc-disabled");
+        $(".tc-load-draft-form").addClass("tc-disabled");
+    }
+
     function resize_textarea(target) {
         target.style.height = 'auto';
         target.style.height = (target.scrollHeight) + 'px';
@@ -402,7 +407,7 @@ $(document).ready(function() {
             if (!handlers_active)
                 return;
             post = copy_json(data);
-            reset_save_draft_button();
+            on_data_changed();
         } else {
             post = "";
         }
@@ -509,10 +514,6 @@ $(document).ready(function() {
         }
     }
 
-    function set_current_post(source) {
-
-    }
-
     function save_draft(post_data) {
         current_post = post_data;
         saved_drafts.push(current_post);
@@ -550,6 +551,11 @@ $(document).ready(function() {
     function do_auto_save(post_data) {
         current_post = post_data;
         $.cookie(auto_save, JSON.stringify(current_post));
+    }
+
+    function on_data_changed() {
+        close_load_draft_form();
+        reset_save_draft_button();
     }
     
     function copy_json(src) {

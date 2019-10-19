@@ -237,8 +237,12 @@
     margin-top: 10px;
 }
 
+.text-template .tc-load-draft-form .tc-select-wrapper {
+    padding: 10px 0 10px 10px;
+}
+
 .text-template .tc-draft-list {
-    width: 140px !important;
+    width: 130px !important;
     margin-right: 13px !important;
 }
 
