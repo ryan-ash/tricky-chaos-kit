@@ -149,6 +149,12 @@ $(document).ready(function() {
 
         if ($.cookie(auto_save)) {
             current_post = JSON.parse($.cookie(auto_save));
+
+            // temp fix to empty posts
+            if (!current_post.titles)
+            {
+                current_post = copy_json(data);
+            }
         } else {
             current_post = copy_json(data);
         }
@@ -204,7 +210,8 @@ $(document).ready(function() {
             draft = saved_drafts[i];
             title_amount = draft.titles.length;
             draft_name = title_amount > 0 ? draft.titles[title_amount-1] : draft.text.substring(0, 30) + "...";
-            draft_option = "<option>" + draft_name + "</option>";
+            draft_option = "<option value='" + i + "'>" + i + ": " + draft_name + "</option>";
+            $(draft_option).val(i);
             $select.append(draft_option);
         }
     }
@@ -255,12 +262,17 @@ $(document).ready(function() {
             e.preventDefault();
         });
         $form.find(".tc-load-draft").click(function(e) {
-            $(this).addClass("tc-disabled");
-            $(this).next().removeClass("tc-disabled");
+            open_load_draft_form();
             e.preventDefault();
         });
-        // load now
-        // delete draft
+        $form.find(".tc-load-draft-form .tc-load").click(function(e) {
+            e.preventDefault();
+            load_selected_draft();
+        });
+        $form.find(".tc-load-draft-form .tc-delete").click(function(e) {
+            e.preventDefault();
+            delete_selected_draft();
+        });
         $form.find(".tc-clear-form").click(function(e) {
             clear_form();
             e.preventDefault();
@@ -296,6 +308,11 @@ $(document).ready(function() {
         return ".overlay-" + feature_name;
     }
 
+    function open_load_draft_form() {
+        $(".tc-load-draft").addClass("tc-disabled");
+        $(".tc-load-draft-form").removeClass("tc-disabled");
+    }
+
     function resize_textarea(target) {
         target.style.height = 'auto';
         target.style.height = (target.scrollHeight) + 'px';
@@ -306,11 +323,6 @@ $(document).ready(function() {
         $form.find(".tc-title-wrapper, .tc-bottom-link-wrapper").empty();
         resize_textarea($form.find("textarea")[0]);
         parse_post(true);
-    }
-
-    function hide_load_form() {
-        $form.find(".tc-load-draft").removeClass("tc-disabled");
-        $form.find(".tc-load-draft-form").addClass("tc-disabled");
     }
 
     // event code
@@ -495,10 +507,41 @@ $(document).ready(function() {
         }
     }
 
+    function set_current_post(source) {
+
+    }
+
     function save_draft(post_data) {
         current_post = post_data;
         saved_drafts.push(current_post);
         $.cookie(drafts_save, JSON.stringify(saved_drafts));
+    }
+
+    function load_selected_draft() {
+        $selected_option = $form.find(".tc-draft-list option:selected");
+        if (!$selected_option.length)
+            return;
+        
+        selected_id = $selected_option.val();
+        clear_form();
+        current_post = saved_drafts[selected_id];
+        build_form();
+        build_drafts();
+        $form.find(".tc-draft-list option:selected").removeAttr('selected');
+        $form.find(".tc-draft-list option[value='" + selected_id + "']").attr('selected', true);
+        add_handlers();
+        open_load_draft_form();
+    }
+
+    function delete_selected_draft() {
+        $selected_option = $form.find(".tc-draft-list option:selected");
+        if (!$selected_option.length)
+            return;
+        
+        selected_id = $selected_option.val();
+        saved_drafts.splice(selected_id, 1);
+        $.cookie(drafts_save, JSON.stringify(saved_drafts));
+        build_drafts();
     }
 
     function do_auto_save(post_data) {
