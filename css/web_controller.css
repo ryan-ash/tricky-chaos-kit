@@ -138,6 +138,15 @@
 .text-template .tc-button.fa {
     padding-top: 8px !important;
     padding-left: 12px !important;
+    margin: 2px 0 !important;
+}
+
+.text-template .tc-form-footer:hover {
+    cursor: default;
+}
+
+.text-template .tc-button:hover, .text-template .tc-text-button:hover, .text-template select:hover {
+    cursor: pointer;
 }
 
 .text-template .el-button:not(.el-button--text):hover, .text-template .tc-button:hover {

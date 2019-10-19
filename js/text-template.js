@@ -47,22 +47,24 @@ $(document).ready(function() {
             <input type="text" class="tc-ps-text-input" placeholder="PS">
             <div class="tc-reset tc-button">×</div>
         </div>
-        <a href="#" class="tc-parse tc-wide-button tc-text-button">Parse</a>
-        <a href="#" class="tc-clear-form tc-wide-button tc-text-button">Clear</a>
-        <div class="tc-drafts">
-            <div class="tc-draft-left tc-draft-column">
-                <a href="#" class="tc-save-draft tc-narrow-button tc-text-button">Save Draft</a>
-                <a href="#" class="tc-save-draft-complete tc-narrow-button tc-text-button tc-disabled fa fa-check"></a>
-            </div>
-            <div class="tc-draft-right tc-draft-column">
-                <a href="#" class="tc-load-draft tc-narrow-button tc-text-button">Load Draft</a>
-                <div class="tc-load-draft-form tc-disabled">
-                    <div class="tc-select-wrapper">
-                        <select class="tc-draft-list">
-                        </select>
+        <div class="tc-form-footer">
+            <a href="#" class="tc-parse tc-wide-button tc-text-button">Parse</a>
+            <a href="#" class="tc-clear-form tc-wide-button tc-text-button">Clear</a>
+            <div class="tc-drafts">
+                <div class="tc-draft-left tc-draft-column">
+                    <a href="#" class="tc-save-draft tc-narrow-button tc-text-button">Save Draft</a>
+                    <a href="#" class="tc-save-draft-complete tc-narrow-button tc-text-button tc-disabled fa fa-check"></a>
+                </div>
+                <div class="tc-draft-right tc-draft-column">
+                    <a href="#" class="tc-load-draft tc-narrow-button tc-text-button">Load Draft</a>
+                    <div class="tc-load-draft-form tc-disabled">
+                        <div class="tc-select-wrapper">
+                            <select class="tc-draft-list">
+                            </select>
+                        </div>
+                        <div class="tc-load tc-button fa fa-upload"></div>
+                        <div class="tc-delete tc-button fa fa-trash-o"></div>                
                     </div>
-                    <div class="tc-load tc-button fa fa-upload"></div>
-                    <div class="tc-delete tc-button fa fa-trash-o"></div>                
                 </div>
             </div>
         </div>
@@ -531,6 +533,7 @@ $(document).ready(function() {
         $form.find(".tc-draft-list option[value='" + selected_id + "']").attr('selected', true);
         add_handlers();
         open_load_draft_form();
+        parse_post(true);
     }
 
     function delete_selected_draft() {
