@@ -65,6 +65,7 @@
     overflow: hidden;
     border-radius: 30px 10px;
     border: 2px solid rgba(40, 35, 59, 0.801); /* 2px white border */
+    margin-right: 10px;
 }
 
 .text-template select {
@@ -237,8 +238,12 @@
 }
 
 .text-template .tc-draft-list {
-    width: 150px !important;
+    width: 140px !important;
     margin-right: 13px !important;
+}
+
+.text-template .tc-load-draft-form .tc-load {
+    margin-right: -2px !important;
 }
 
 .text-template .tc-save-draft-complete {

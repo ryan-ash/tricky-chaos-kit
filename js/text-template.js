@@ -28,24 +28,24 @@ $(document).ready(function() {
 
     var form_content = `
         <div class="tc-title-wrapper"></div>
-        <div class="tc-add tc-button tc-add-title">+</div><br/>
+        <div class="tc-add tc-button tc-add-title fa fa-plus"></div><br/>
         <div class="tc-tag-selector tc-wide-input">
             <input type="text" class="tc-tag-selector-input" placeholder="#tags">
-            <div class="tc-reset tc-button">×</div>
+            <div class="tc-reset tc-button fa fa-minus"></div>
         </div>
         <div class="tc-preview-link tc-wide-input">
             <input type="text" class="tc-preview-link-input" placeholder="Preview Link">
-            <div class="tc-reset tc-button">×</div>
+            <div class="tc-reset tc-button fa fa-minus"></div>
         </div>
         <div class="tc-text-wrapper">
             <textarea class="tc-text" placeholder"Text..."></textarea>
-            <div class="tc-reset tc-button">×</div>
+            <div class="tc-reset tc-button fa fa-minus"></div>
         </div>
         <div class="tc-bottom-link-wrapper"></div>
-        <div class="tc-add tc-button tc-add-bottom-link">+</div><br/>
+        <div class="tc-add tc-button tc-add-bottom-link fa fa-plus"></div><br/>
         <div class="tc-ps-text tc-wide-input">
             <input type="text" class="tc-ps-text-input" placeholder="PS">
-            <div class="tc-reset tc-button">×</div>
+            <div class="tc-reset tc-button fa fa-minus"></div>
         </div>
         <div class="tc-form-footer">
             <a href="#" class="tc-parse tc-wide-button tc-text-button">Parse</a>
@@ -73,7 +73,7 @@ $(document).ready(function() {
     var title_markup = `
         <div class="tc-title tc-wide-input">
             <input type="text" class="tc-title-input" placeholder="Title">
-            <div class="tc-remove tc-button">-</div>
+            <div class="tc-remove tc-button fa fa-minus"></div>
         </div>
     `;
 
@@ -81,7 +81,7 @@ $(document).ready(function() {
         <div class="tc-bottom-link">
             <input type="text" placeholder="http://" class="tc-bottom-link-input tc-link">
             <input type="text" placeholder="Link Text" class="tc-bottom-link-input tc-link-text">
-            <div class="tc-remove tc-button">-</div>
+            <div class="tc-remove tc-button fa fa-minus"></div>
         </div>
     `;
 
@@ -256,11 +256,11 @@ $(document).ready(function() {
             e.preventDefault();
         });
         $form.find(".tc-save-draft").click(function(e) {
-            $(this).addClass("tc-disabled");
-            $(this).next().removeClass("tc-disabled");
             parse_post(true);
             save_draft(current_post);
             build_drafts();
+            $(this).addClass("tc-disabled");
+            $(this).next().removeClass("tc-disabled");
             e.preventDefault();
         });
         $form.find(".tc-load-draft").click(function(e) {
