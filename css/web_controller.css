@@ -135,6 +135,11 @@
     padding-top: 5px !important;
 }
 
+.text-template .tc-button.fa {
+    padding-top: 8px !important;
+    padding-left: 12px !important;
+}
+
 .text-template .el-button:not(.el-button--text):hover, .text-template .tc-button:hover {
     border: 2px solid rgba(81, 71, 119, 0.801);
     cursor: pointer;

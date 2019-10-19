@@ -52,7 +52,7 @@ $(document).ready(function() {
         <div class="tc-drafts">
             <div class="tc-draft-left tc-draft-column">
                 <a href="#" class="tc-save-draft tc-narrow-button tc-text-button">Save Draft</a>
-                <a href="#" class="tc-save-draft-complete tc-narrow-button tc-text-button tc-disabled">v</a>
+                <a href="#" class="tc-save-draft-complete tc-narrow-button tc-text-button tc-disabled fa fa-check"></a>
             </div>
             <div class="tc-draft-right tc-draft-column">
                 <a href="#" class="tc-load-draft tc-narrow-button tc-text-button">Load Draft</a>
@@ -61,8 +61,8 @@ $(document).ready(function() {
                         <select class="tc-draft-list">
                         </select>
                     </div>
-                    <div class="tc-accept tc-button">v</div>
-                    <div class="tc-cancel tc-button">×</div>                
+                    <div class="tc-load tc-button fa fa-upload"></div>
+                    <div class="tc-delete tc-button fa fa-trash-o"></div>                
                 </div>
             </div>
         </div>
@@ -259,10 +259,6 @@ $(document).ready(function() {
             $(this).next().removeClass("tc-disabled");
             e.preventDefault();
         });
-        $form.find(".tc-load-draft-form .tc-cancel").click(function(e) {
-            $form.find(".tc-load-draft").removeClass("tc-disabled");
-            $form.find(".tc-load-draft-form").addClass("tc-disabled");
-        });
         // load now
         // delete draft
         $form.find(".tc-clear-form").click(function(e) {
@@ -310,6 +306,11 @@ $(document).ready(function() {
         $form.find(".tc-title-wrapper, .tc-bottom-link-wrapper").empty();
         resize_textarea($form.find("textarea")[0]);
         parse_post(true);
+    }
+
+    function hide_load_form() {
+        $form.find(".tc-load-draft").removeClass("tc-disabled");
+        $form.find(".tc-load-draft-form").addClass("tc-disabled");
     }
 
     // event code
