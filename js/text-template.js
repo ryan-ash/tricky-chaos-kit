@@ -33,6 +33,9 @@ $(document).ready(function() {
         <div class="tc-tag-selector tc-wide-input">
             <input type="text" class="tc-tag-selector-input" placeholder="#tags">
             <div class="tc-reset tc-button fa fa-minus"></div>
+            <div class="tc-tag-helper">
+                <div class="tc-tag-view"></div>
+            </div>
         </div>
         <div class="tc-preview-link tc-wide-input">
             <input type="text" class="tc-preview-link-input" placeholder="Preview Link">
@@ -116,6 +119,45 @@ $(document).ready(function() {
     var current_post = "";
     var saved_drafts = []
 
+    var tag_selector_help = `
+        // first layer
+        #assets - ресурсы с контентом разной степени свободы
+        #books - книги про разработку и соседние темы
+        #buybomb - реклама на канале, be advised
+        #cloud - тег-клауды для поиска новых мыслей
+        #dev_diary - дневники разработчиков
+        #dev_games - игры для дева и о деве
+        #dev_stream - дев-стримеры
+        #events - джемы \ конфы \ ивенты
+        #focus - клёвые штуки, сделанные нашим коммьюнити
+        #interactive - интерактивы \ опросы
+        #interview - интервью разработчиков
+        #jam - джемы и прочие хакатоны
+        #map - подборки геймдев каналов и чатов
+        #mind_mixer - не (совсем) геймдев, вброс в голову
+        #narrator - аудиологи; привет
+        #patch - патчноуты самого GDP
+        #platforms - игровые движки и платформы
+        #playable - игры, в которые можно играть
+        #postmortem - девы об уже вышедших играх
+        #podcast - подкасты о разработке
+        #preprod - диздоки и похожие на них штуки
+        #recap - подбивки игровых \ геймдев конф
+        #search - о поиске работы
+        #social - социальные сборища
+        #studio - истории студий
+        #tools - полезные инструменты
+        #topics - общие подбивки / посты по темам
+        #worth_reading - чтиво на дев и около-дев темы
+        #worth_watching - видео (эссе) о дизайне, разработке,..
+        
+        // second layer
+        #3d #ai #analytics #animation #art #business #code #feel #game_design #level_design #marketing #modding #music #net #rendering #qa #story #ui #vr
+        
+        // third layer
+        #_modern_animation
+    `;
+
 
 
     // === main ===
@@ -152,6 +194,10 @@ $(document).ready(function() {
             return;
         }
         $newpost.prepend(overlay_markup);
+
+        $footer = $body.find("footer");
+        $footer_name_span = $body.find("footer > span:first-child");
+        $footer.css("max-width", $footer_name_span.width());
 
         $body.addClass(feature_name);
         $.cookie(save, true);
@@ -211,6 +257,23 @@ $(document).ready(function() {
         }
 
         update_ps(current_post.ps);
+
+        build_tag_help();
+    }
+
+    function build_tag_help() {
+        $tag_helper = $form.find(".tc-tag-helper");
+        $tag_view = $form.find(".tc-tag-view");
+        $tag_view.html(tag_selector_help.trim().split("\n").join("<br />"));
+
+        // todo: tag hint build
+        // - each tag is a toggle button
+        // - comments are visible
+        // - edit button on top
+        // - show recent tags scroll
+
+        // read current value from cookie
+        // fill it into class
     }
 
     function build_drafts() {
@@ -337,13 +400,16 @@ $(document).ready(function() {
             parse_post(true);
         });
 
-        // todo: smart tag picker
+        $form.find("input[type=text], textarea").focus(function(e) {
+            if ($(this).hasClass("tc-tag-selector-input")) {
+                tag_view_height = $form.find(".tc-tag-view").height();
+                $form.find(".tc-tag-helper").css("height", tag_view_height);    
+            } else {
+                $form.find(".tc-tag-helper").css("height", 0);
+            }
+        });
+        // todo: handlers
         // on tags focus: show tag hint
-        // tag hint:
-        // - each tag is a toggle button
-        // - comments are visible
-        // - edit button on top
-        // - show recent tags scroll
         // on edit button:
         // - hide tags
         // - show textarea with hint

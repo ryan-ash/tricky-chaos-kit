@@ -20,6 +20,25 @@
     background: none !important;
 }
 
+.purge footer {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    display: block !important;
+    padding: 0 !important;
+    transition: max-width 1s ease-in-out;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+.purge footer:hover {
+    max-width: 100% !important;
+}
+
+.purge footer span {
+    color: #666 !important;
+}
+
 .text-template .overlay-text-template {
     position: absolute;
     left: -540px;
@@ -254,4 +273,14 @@
 .text-template .tc-save-draft-complete {
     background-color: #4f4 !important;
     color: #000 !important;
+}
+
+.text-template .tc-tag-helper {
+    overflow: hidden;
+    height: 0;
+    max-width: 410px;
+    padding: 0 10px 0 20px;
+    margin: 10px 0;
+    font-size: 14px;
+    transition: height 0.5s ease-out;
 }
