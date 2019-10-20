@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var $body = $("body");
+    var $newpost = "";
     var $overlay = "";
     var $form = "";
     var $titles_wrapper = "";
@@ -85,6 +86,12 @@ $(document).ready(function() {
         </div>
     `;
 
+    var link_preview_markup = `
+        <div class="tc-link-preview">
+            <iframe src="LINK" width="560" height="315" frameborder="0"></iframe>
+        </div>
+    `;
+
     var last_title_id = 0;
     var last_bottom_link_id = 0;
 
@@ -167,6 +174,7 @@ $(document).ready(function() {
 
         build_form();
         build_drafts();
+        generate_preview();
         add_handlers();
     }
 
@@ -216,6 +224,42 @@ $(document).ready(function() {
             $(draft_option).val(i);
             $select.append(draft_option);
         }
+    }
+
+    function generate_preview() {
+        embed_link = get_embed_link(current_post.preview_link);
+        $wc_form = $newpost.find('.el-form');
+        $sibling = $wc_form.find(".cb-textarea-wrapper");
+
+        $wc_form.find('.tc-link-preview').remove();
+        $wc_form.append(link_preview_markup);
+
+        $instance = $wc_form.find(".tc-link-preview");
+        $instance.insertAfter($sibling);
+
+        if (embed_link == "") {
+            $instance.addClass("tc-disabled");
+        } else {
+            $instance.removeClass("tc-disabled");
+        }
+
+        $iframe_instance = $wc_form.find(".tc-link-preview iframe");
+        $iframe_instance.attr("src", embed_link);
+    }
+
+    function get_embed_link(source) {
+        is_long_yt = source.search("youtube.com") != -1;
+        is_short_yt = source.search("youtu.be") != -1;
+        if (!is_long_yt && !is_short_yt)
+            return "";
+
+        key = "";
+        if (is_long_yt) {
+            key = source.substr(source.search("v=") + 2);
+        } else if (is_short_yt) {
+            key = source.substr(source.search(".be/") + 4);
+        }
+        return "https://youtube.com/embed/" + key;
     }
 
     function add_handlers() {
@@ -407,7 +451,6 @@ $(document).ready(function() {
             if (!handlers_active)
                 return;
             post = copy_json(data);
-            on_data_changed();
         } else {
             post = "";
         }
@@ -506,6 +549,7 @@ $(document).ready(function() {
 
         if (data_run) {
             do_auto_save(post);
+            on_data_changed();
         } else {
             post = "<p>" + post.trim().replace(/\n/g, "</p><p>") + "</p>";
 
@@ -556,6 +600,7 @@ $(document).ready(function() {
     function on_data_changed() {
         close_load_draft_form();
         reset_save_draft_button();
+        generate_preview();
     }
     
     function copy_json(src) {

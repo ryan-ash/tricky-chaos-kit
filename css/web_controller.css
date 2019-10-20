@@ -138,7 +138,7 @@
 
 .text-template .tc-button.fa {
     padding-top: 8px !important;
-    padding-left: 12px !important;
+    padding-left: 13px !important;
     margin: 2px 0 !important;
 }
 
@@ -248,6 +248,7 @@
 
 .text-template .tc-load-draft-form .tc-load {
     margin-right: -2px !important;
+    padding-left: 11px !important;
 }
 
 .text-template .tc-save-draft-complete {
