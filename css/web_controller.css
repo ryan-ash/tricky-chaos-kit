@@ -55,7 +55,6 @@
 .text-template .tc-form input[type=time], .text-template .tc-form input[type=url],
 .text-template .tc-form input[type=week], .text-template .tc-form select, .text-template .tc-form textarea {
     background-color: transparent; /* Remove background fill */
-    /* text-transform: uppercase; Make text all uppercase */
     border: 2px solid rgba(40, 35, 59, 0.801); /* 2px white border */
     color: #fff; /* White text */
     height: 35px; /* Increase input height */
@@ -66,6 +65,15 @@
     margin-right: 0;
     transition: border 0.25s ease-out;
     font-size: 14px;
+}
+
+.text-template .tc-form input[type=text]:hover, .text-template textarea:hover {
+    border: 2px solid rgba(60, 49, 90, 0.85); /* 2px white border */
+}
+
+.text-template .tc-form input[type=text]:focus, .text-template textarea:focus {
+    outline: 0;
+    border: 2px solid rgba(80, 69, 121, 0.901); /* 2px white border */
 }
 
 .text-template textarea {
@@ -196,11 +204,6 @@
 .text-template .tc-text-button:hover {
     background-color: #6c2 !important;
     color: #111;
-}
-
-.text-template .tc-form input[type=text]:focus, .text-template textarea:focus {
-    outline: 0;
-    border: 2px solid rgba(80, 69, 121, 0.901); /* 2px white border */
 }
 
 .text-template .tc-ex {

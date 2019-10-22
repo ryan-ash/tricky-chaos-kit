@@ -42,7 +42,7 @@ $(document).ready(function() {
             <div class="tc-reset tc-button fa fa-minus"></div>
         </div>
         <div class="tc-text-wrapper">
-            <textarea class="tc-text" placeholder"Text..."></textarea>
+            <textarea class="tc-text" placeholder="Text"></textarea>
             <div class="tc-reset tc-button fa fa-minus"></div>
         </div>
         <div class="tc-bottom-link-wrapper"></div>
@@ -401,12 +401,7 @@ $(document).ready(function() {
         });
 
         $form.find("input[type=text], textarea").focus(function(e) {
-            if ($(this).hasClass("tc-tag-selector-input")) {
-                tag_view_height = $form.find(".tc-tag-view").height();
-                $form.find(".tc-tag-helper").css("height", tag_view_height);    
-            } else {
-                $form.find(".tc-tag-helper").css("height", 0);
-            }
+            check_tag_helper(this);
         });
         // todo: handlers
         // on tags focus: show tag hint
@@ -442,7 +437,6 @@ $(document).ready(function() {
         parse_post(true);
     }
 
-    // event code
     function add_title() {
         $titles_wrapper.append(title_markup);
         $titles = $titles_wrapper.find(".tc-title");
@@ -457,12 +451,24 @@ $(document).ready(function() {
         $title_instance.find(".tc-title-input").change(function() {
             parse_post(true);
         });
+        $title_instance.find(".tc-title-input").focus(function() {
+            check_tag_helper(this);
+        });
         last_title_id += 1;
     }
 
     function set_title(id, title) {
         $title = $($titles[id]);
         $title.find(".tc-title-input").val(title);
+    }
+
+    function check_tag_helper(source) {
+        if ($(source).hasClass("tc-tag-selector-input")) {
+            tag_view_height = $form.find(".tc-tag-view").height();
+            $form.find(".tc-tag-helper").css("height", tag_view_height);    
+        } else {
+            $form.find(".tc-tag-helper").css("height", 0);
+        }
     }
 
     function update_tags(tags) {
@@ -502,6 +508,9 @@ $(document).ready(function() {
         });
         $bottom_link_instance.find(".tc-bottom-link-input").change(function() {
             parse_post(true);
+        });
+        $bottom_link_instance.find(".tc-bottom-link-input").focus(function() {
+            check_tag_helper(this);
         });
         last_bottom_link_id += 1;
     }
