@@ -403,8 +403,8 @@ $(document).ready(function() {
         $form.find("input[type=text], textarea").focus(function(e) {
             check_tag_helper(this);
         });
+
         // todo: handlers
-        // on tags focus: show tag hint
         // on edit button:
         // - hide tags
         // - show textarea with hint
@@ -465,9 +465,15 @@ $(document).ready(function() {
     function check_tag_helper(source) {
         if ($(source).hasClass("tc-tag-selector-input")) {
             tag_view_height = $form.find(".tc-tag-view").height();
-            $form.find(".tc-tag-helper").css("height", tag_view_height);    
+            $form.find(".tc-tag-helper").css({
+                height: tag_view_height + 30,
+                padding: "10px 0 20px"
+            });    
         } else {
-            $form.find(".tc-tag-helper").css("height", 0);
+            $form.find(".tc-tag-helper").css({
+                height: 0,
+                padding: 0
+            });    
         }
     }
 
