@@ -39,6 +39,10 @@
     color: #666 !important;
 }
 
+.purge footer > span:first-child {
+    margin-right: 10px;
+}
+
 .text-template .overlay-text-template {
     position: absolute;
     left: -540px;
