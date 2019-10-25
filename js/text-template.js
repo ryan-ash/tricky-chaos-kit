@@ -427,7 +427,8 @@ $(document).ready(function() {
 
     function resize_textarea(target) {
         target.style.height = 'auto';
-        target.style.height = (target.scrollHeight) + 'px';
+        newHeight = (target.scrollHeight) + 'px';
+        target.style.height = newHeight;
     }
 
     function clear_form() {

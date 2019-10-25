@@ -81,7 +81,9 @@
 }
 
 .text-template textarea {
-    min-height: 100px !important;
+    padding: 8px 15px 15px !important;
+    line-height: 17px;
+    min-height: 57px !important;
     min-width: 429px !important;
 }
 
@@ -163,14 +165,30 @@
     display: inline-block;
 }
 
-.text-template .tc-button {
-    padding-top: 5px !important;
-}
-
 .text-template .tc-button.fa {
     padding-top: 8px !important;
-    padding-left: 13px !important;
     margin: 2px 0 !important;
+}
+
+.text-template .tc-text-wrapper {
+    position: relative;
+}
+
+.text-template .tc-text-wrapper .tc-button {
+    position: absolute;
+    right: 1px;
+    top: 0;
+}
+
+.tc-wide-input .tc-button.fa, .tc-bottom-link .tc-button.fa, .tc-text-wrapper .tc-button.fa {
+    opacity: 0;
+    transition: opacity 0.25s ease-out, padding 0.25s ease-out;
+    padding-left: 23px !important;
+}
+
+.tc-wide-input:hover .tc-button.fa, .tc-bottom-link:hover .tc-button.fa, .tc-text-wrapper:hover .tc-button.fa {
+    opacity: 1;
+    padding-left: 13px !important;
 }
 
 .text-template .tc-form-footer:hover {
