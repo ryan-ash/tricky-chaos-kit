@@ -29,27 +29,27 @@ $(document).ready(function() {
 
     var form_content = `
         <div class="tc-title-wrapper"></div>
-        <div class="tc-add tc-button tc-add-title fa fa-plus"></div><br/>
+        <div tabindex="0" class="tc-add tc-button tc-add-title fa fa-plus"></div><br/>
         <div class="tc-tag-selector tc-wide-input">
             <input type="text" class="tc-tag-selector-input" placeholder="#tags">
-            <div class="tc-reset tc-button fa fa-minus"></div>
+            <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
             <div class="tc-tag-helper">
                 <div class="tc-tag-view"></div>
             </div>
         </div>
         <div class="tc-preview-link tc-wide-input">
             <input type="text" class="tc-preview-link-input" placeholder="Preview Link">
-            <div class="tc-reset tc-button fa fa-minus"></div>
+            <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
         </div>
         <div class="tc-text-wrapper">
             <textarea class="tc-text" placeholder="Text"></textarea>
-            <div class="tc-reset tc-button fa fa-minus"></div>
+            <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
         </div>
         <div class="tc-bottom-link-wrapper"></div>
-        <div class="tc-add tc-button tc-add-bottom-link fa fa-plus"></div><br/>
+        <div tabindex="0" class="tc-add tc-button tc-add-bottom-link fa fa-plus"></div><br/>
         <div class="tc-ps-text tc-wide-input">
             <input type="text" class="tc-ps-text-input" placeholder="PS">
-            <div class="tc-reset tc-button fa fa-minus"></div>
+            <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
         </div>
         <div class="tc-form-footer">
             <a href="#" class="tc-parse tc-wide-button tc-text-button">Parse</a>
@@ -66,8 +66,8 @@ $(document).ready(function() {
                             <select class="tc-draft-list">
                             </select>
                         </div>
-                        <div class="tc-load tc-button fa fa-upload"></div>
-                        <div class="tc-delete tc-button fa fa-trash-o"></div>                
+                        <div tabindex="0" class="tc-load tc-button fa fa-upload"></div>
+                        <div tabindex="0" class="tc-delete tc-button fa fa-trash-o"></div>                
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@ $(document).ready(function() {
     var title_markup = `
         <div class="tc-title tc-wide-input">
             <input type="text" class="tc-title-input" placeholder="Title">
-            <div class="tc-remove tc-button fa fa-minus"></div>
+            <div tabindex="0" class="tc-remove tc-button fa fa-minus"></div>
         </div>
     `;
 
@@ -85,7 +85,7 @@ $(document).ready(function() {
         <div class="tc-bottom-link">
             <input type="text" placeholder="http://" class="tc-bottom-link-input tc-link">
             <input type="text" placeholder="Link Text" class="tc-bottom-link-input tc-link-text">
-            <div class="tc-remove tc-button fa fa-minus"></div>
+            <div tabindex="0" class="tc-remove tc-button fa fa-minus"></div>
         </div>
     `;
 
@@ -264,7 +264,12 @@ $(document).ready(function() {
     function build_tag_help() {
         $tag_helper = $form.find(".tc-tag-helper");
         $tag_view = $form.find(".tc-tag-view");
-        $tag_view.html(tag_selector_help.trim().split("\n").join("<br />"));
+
+        tag_filter = /#[0-9a-zA-Z_]+/g;
+        tag_selector_help_html = tag_selector_help.trim().split("\n").join("<br />");
+        tag_selector_help_html = tag_selector_help_html.replace(tag_filter, "<div class='tc-tag tc-text-button tc-dynamic-width' tabindex='0'>$&</div>")
+
+        $tag_view.html(tag_selector_help_html);
 
         // todo: tag hint build
         // - each tag is a toggle button

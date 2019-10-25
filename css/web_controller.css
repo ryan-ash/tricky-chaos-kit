@@ -80,6 +80,10 @@
     border: 2px solid rgba(80, 69, 121, 0.901); /* 2px white border */
 }
 
+.text-template div[tabindex="0"]:focus, .text-template .tc-text-button:focus {
+    outline: 0;
+}
+
 .text-template textarea {
     padding: 8px 15px 15px !important;
     line-height: 17px;
@@ -186,8 +190,12 @@
     padding-left: 23px !important;
 }
 
-.tc-wide-input:hover .tc-button.fa, .tc-bottom-link:hover .tc-button.fa, .tc-text-wrapper:hover .tc-button.fa {
+.tc-wide-input:hover .tc-button.fa, .tc-bottom-link:hover .tc-button.fa, .tc-text-wrapper:hover .tc-button.fa, .text-template .tc-button[tabindex="0"]:focus {
     opacity: 1;
+    padding-left: 13px !important;
+}
+
+.text-template .tc-add {
     padding-left: 13px !important;
 }
 
@@ -223,7 +231,7 @@
     transition: color 0.25s ease-out, background 0.25s ease-out;
 }
 
-.text-template .tc-text-button:hover {
+.text-template .tc-text-button:hover, .text-template .tc-text-button:focus {
     background-color: #6c2 !important;
     color: #111;
 }
@@ -308,4 +316,29 @@
     padding: 0;
     font-size: 14px;
     transition: height 0.5s ease-out, padding 0.5s ease-out, margin 0.5s ease-out;
+}
+
+.text-template .tc-tag {
+    display: inline-block;
+    border-radius: 30px 10px;
+    color: rgb(173, 173, 241);
+    padding-right: 2px;
+    transition: padding 0.25s ease-out;
+    padding-left: 0;
+}
+
+.text-template .tc-tag:hover, .text-template .tc-tag:focus {
+    padding-left: 3px !important;
+    padding-right: 5px !important;
+}
+
+.text-template .tc-text-button.tc-selected {
+    padding-left: 2px;
+    padding-right: 4px;
+    background-color: rgb(104, 233, 18);
+    color: #111;
+}
+
+.text-template .tc-text-button.tc-dynamic-width {
+    width: auto !important;
 }
