@@ -190,7 +190,8 @@
     padding-left: 23px !important;
 }
 
-.tc-wide-input:hover .tc-button.fa, .tc-bottom-link:hover .tc-button.fa, .tc-text-wrapper:hover .tc-button.fa, .text-template .tc-button[tabindex="0"]:focus {
+.tc-wide-input:hover .tc-button.fa, .tc-bottom-link:hover .tc-button.fa, .tc-text-wrapper:hover .tc-button.fa,
+.text-template form > div input[type="text"]:focus ~ .tc-button.fa, .tc-text-wrapper textarea:focus ~ .tc-button.fa, .tc-button.fa:focus {
     opacity: 1;
     padding-left: 13px !important;
 }
@@ -203,13 +204,12 @@
     cursor: default;
 }
 
-.text-template .tc-button:hover, .text-template .tc-text-button:hover, .text-template select:hover {
+.text-template .tc-button:hover, .text-template .tc-text-button:hover, .text-template select:hover, .text-template .el-button:not(.el-button--text):hover {
     cursor: pointer;
 }
 
-.text-template .el-button:not(.el-button--text):hover, .text-template .tc-button:hover {
+.text-template .el-button:not(.el-button--text):hover, .text-template .tc-button:hover, .text-template .tc-button:focus {
     border: 2px solid rgba(81, 71, 119, 0.801);
-    cursor: pointer;
 }
 
 .text-template .tc-wide-button {
@@ -315,7 +315,8 @@
     margin: 0 10px;
     padding: 0;
     font-size: 14px;
-    transition: height 0.5s ease-out, padding 0.5s ease-out, margin 0.5s ease-out;
+    transition: height 0.25s ease-out, padding 0.25s ease-out, margin 0.25s ease-out;
+    color: #666;
 }
 
 .text-template .tc-tag {

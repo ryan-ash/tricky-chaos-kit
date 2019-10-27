@@ -2,6 +2,7 @@ $(document).ready(function() {
     var $body = $("body");
     var $newpost = "";
     var $overlay = "";
+    var $tags_buttons = "";
     var $form = "";
     var $titles_wrapper = "";
     var $titles = [];
@@ -246,7 +247,15 @@ $(document).ready(function() {
             set_title(i, title);
         }
 
-        update_tags(current_post.tags);
+        build_tag_help();
+        $tags_buttons.each(function() {
+            $tag = $(this);
+            current_tag = $tag.html();
+            if (current_post.tags.includes(current_tag)) {
+                set_tag($tag, true, true);
+            }
+        });
+
         update_preview_link(current_post.preview_link);
         update_text(current_post.text);
 
@@ -257,8 +266,6 @@ $(document).ready(function() {
         }
 
         update_ps(current_post.ps);
-
-        build_tag_help();
     }
 
     function build_tag_help() {
@@ -267,19 +274,53 @@ $(document).ready(function() {
 
         tag_filter = /#[0-9a-zA-Z_]+/g;
         tag_selector_help_html = tag_selector_help.trim().split("\n").join("<br />");
-        tag_selector_help_html = tag_selector_help_html.replace(tag_filter, "<div class='tc-tag tc-text-button tc-dynamic-width' tabindex='0'>$&</div>")
+        tag_selector_help_html = tag_selector_help_html.replace(tag_filter, "<div class='tc-tag tc-text-button tc-dynamic-width'>$&</div>")
 
         $tag_view.html(tag_selector_help_html);
 
+        $tags_buttons = $tag_view.find(".tc-tag");
+
+        $tags_buttons.click(function(e) {
+            toggle_tag($(this));
+        });
+
+        update_tags(current_post.tags);
+
         // todo: tag hint build
         // - each tag is a toggle button
-        // - comments are visible
         // - edit button on top
         // - show recent tags scroll
-
-        // read current value from cookie
-        // fill it into class
+        // - get value from cookie
     }
+
+    function toggle_tag($tag) {
+        set_tag($tag, !$tag.hasClass("tc-selected"));
+    }
+
+    function set_tag($tag, enable, skip_save = false) {
+        if (enable) {
+            $tag.addClass("tc-selected");
+            if (!skip_save) {
+                current_post.tags.push($tag.html());
+                update_tags(current_post.tags);    
+            }
+        } else {
+            $tag.removeClass("tc-selected");
+            if (!skip_save) {
+                index = current_post.tags.indexOf($tag.html());
+                if (index != -1) {
+                    current_post.tags.splice(index, 1);
+                }
+                update_tags(current_post.tags);
+            }
+        }
+    }
+
+    function arrayRemove(arr, value) {
+        return arr.filter(function(ele){
+            return ele != value;
+        });
+     }
 
     function build_drafts() {
         $select = $form.find(".tc-draft-list");
@@ -339,6 +380,7 @@ $(document).ready(function() {
         });
         $form.find(".tc-tag-selector .tc-reset").click(function(e) {
             $form.find(".tc-tag-selector-input").val("");
+            update_tags([]);
             parse_post(true);
             e.preventDefault();
         });
@@ -484,10 +526,12 @@ $(document).ready(function() {
     }
 
     function update_tags(tags) {
-        if (!tags)
-            return;
+        tags.sort();
         tags_string = tags.join(" ");
         $form.find(".tc-tag-selector-input").val(tags_string);
+        if ($tags_buttons == "")
+            return;
+        parse_post(true);
     }
 
     function update_preview_link(link) {
