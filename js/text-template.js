@@ -248,13 +248,7 @@ $(document).ready(function() {
         }
 
         build_tag_help();
-        $tags_buttons.each(function() {
-            $tag = $(this);
-            current_tag = $tag.html();
-            if (current_post.tags.includes(current_tag)) {
-                set_tag($tag, true, true);
-            }
-        });
+        refresh_tags_view();
 
         update_preview_link(current_post.preview_link);
         update_text(current_post.text);
@@ -314,6 +308,14 @@ $(document).ready(function() {
                 update_tags(current_post.tags);
             }
         }
+    }
+
+    function refresh_tags_view() {
+        $tags_buttons.each(function() {
+            $tag = $(this);
+            current_tag = $tag.html();
+            set_tag($tag, current_post.tags.includes(current_tag), true);
+        });
     }
 
     function arrayRemove(arr, value) {
@@ -381,6 +383,7 @@ $(document).ready(function() {
         $form.find(".tc-tag-selector .tc-reset").click(function(e) {
             $form.find(".tc-tag-selector-input").val("");
             update_tags([]);
+            refresh_tags_view();
             parse_post(true);
             e.preventDefault();
         });
