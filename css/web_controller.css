@@ -47,6 +47,7 @@
     position: absolute;
     left: -540px;
     top: 33px;
+    max-width: 483px;
 }
 
 /* Fields */
@@ -311,12 +312,19 @@
 .text-template .tc-tag-helper {
     overflow: hidden;
     height: 0;
-    max-width: 410px;
+    /* max-width: 410px; */
     margin: 0 10px;
     padding: 0;
     font-size: 14px;
     transition: height 0.25s ease-out, padding 0.25s ease-out, margin 0.25s ease-out;
     color: #666;
+    position: relative;
+}
+
+.tc-tag-helper .tc-edit {
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .text-template .tc-tag {

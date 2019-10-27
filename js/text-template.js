@@ -36,6 +36,7 @@ $(document).ready(function() {
             <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
             <div class="tc-tag-helper">
                 <div class="tc-tag-view"></div>
+                <div tabindex="0" class="tc-edit tc-button fa fa-pencil"></div>
             </div>
         </div>
         <div class="tc-preview-link tc-wide-input">
