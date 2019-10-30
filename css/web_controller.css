@@ -312,19 +312,26 @@
 .text-template .tc-tag-helper {
     overflow: hidden;
     height: 0;
-    /* max-width: 410px; */
-    margin: 0 10px;
     padding: 0;
     font-size: 14px;
     transition: height 0.25s ease-out, padding 0.25s ease-out, margin 0.25s ease-out;
     color: #666;
     position: relative;
+    width: 475px;
 }
 
-.tc-tag-helper .tc-edit {
+.text-template .tc-tag-view {
+    margin: 0 10px;
+}
+
+.tc-tag-helper .tc-button {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 10px;
+}
+
+.tc-tag-helper .tc-cancel {
+    top: 42px;
 }
 
 .text-template .tc-tag {

@@ -1,6 +1,7 @@
 $(document).ready(function() {
     var $body = $("body");
 
+    var cookie_lifetime = 365 * 5;
     var save = "trickychaos";
     var feature_name = "purge";
 
@@ -23,7 +24,7 @@ $(document).ready(function() {
 
     function enable() {
         $body.addClass(feature_name);
-        $.cookie(save, true);
+        $.cookie(save, true, { expires: cookie_lifetime });
     }
 
     function disable() {

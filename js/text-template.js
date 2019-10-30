@@ -9,9 +9,11 @@ $(document).ready(function() {
     var $bottom_links_wrapper = "";
     var $bottom_links = [];
 
+    var cookie_lifetime = 365 * 5;
     var save = "trickychaos";
     var auto_save = "tc-auto-save";
     var drafts_save = "tc-drafts";
+    var tag_save = "tc-tag-helper";
     var feature_name = "text-template";
 
     var overlay_markup = `
@@ -36,7 +38,10 @@ $(document).ready(function() {
             <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
             <div class="tc-tag-helper">
                 <div class="tc-tag-view"></div>
+                <textarea class="tc-tag-helper-edit tc-disabled" placeholder="Your #tag #map could be here..."></textarea>
                 <div tabindex="0" class="tc-edit tc-button fa fa-pencil"></div>
+                <div tabindex="0" class="tc-accept tc-disabled tc-button fa fa-floppy-o"></div>
+                <div tabindex="0" class="tc-cancel tc-disabled tc-button fa fa-times"></div>
             </div>
         </div>
         <div class="tc-preview-link tc-wide-input">
@@ -121,44 +126,7 @@ $(document).ready(function() {
     var current_post = "";
     var saved_drafts = []
 
-    var tag_selector_help = `
-        // first layer
-        #assets - ресурсы с контентом разной степени свободы
-        #books - книги про разработку и соседние темы
-        #buybomb - реклама на канале, be advised
-        #cloud - тег-клауды для поиска новых мыслей
-        #dev_diary - дневники разработчиков
-        #dev_games - игры для дева и о деве
-        #dev_stream - дев-стримеры
-        #events - джемы \ конфы \ ивенты
-        #focus - клёвые штуки, сделанные нашим коммьюнити
-        #interactive - интерактивы \ опросы
-        #interview - интервью разработчиков
-        #jam - джемы и прочие хакатоны
-        #map - подборки геймдев каналов и чатов
-        #mind_mixer - не (совсем) геймдев, вброс в голову
-        #narrator - аудиологи; привет
-        #patch - патчноуты самого GDP
-        #platforms - игровые движки и платформы
-        #playable - игры, в которые можно играть
-        #postmortem - девы об уже вышедших играх
-        #podcast - подкасты о разработке
-        #preprod - диздоки и похожие на них штуки
-        #recap - подбивки игровых \ геймдев конф
-        #search - о поиске работы
-        #social - социальные сборища
-        #studio - истории студий
-        #tools - полезные инструменты
-        #topics - общие подбивки / посты по темам
-        #worth_reading - чтиво на дев и около-дев темы
-        #worth_watching - видео (эссе) о дизайне, разработке,..
-        
-        // second layer
-        #3d #ai #analytics #animation #art #business #code #feel #game_design #level_design #marketing #modding #music #net #rendering #qa #story #ui #vr
-        
-        // third layer
-        #_modern_animation
-    `;
+    var tag_selector_help = "Your #tag #map could be here...";
 
 
 
@@ -202,7 +170,7 @@ $(document).ready(function() {
         $footer.css("max-width", $footer_name_span.width());
 
         $body.addClass(feature_name);
-        $.cookie(save, true);
+        $.cookie(save, true, { expires: cookie_lifetime });
 
         if ($.cookie(auto_save)) {
             current_post = JSON.parse($.cookie(auto_save));
@@ -218,6 +186,10 @@ $(document).ready(function() {
 
         if ($.cookie(drafts_save)) {
             saved_drafts = JSON.parse($.cookie(drafts_save));
+        }
+
+        if ($.cookie(tag_save) && JSON.parse($.cookie(tag_save)) != "") {
+            tag_selector_help = JSON.parse($.cookie(tag_save));
         }
 
         build_form();
@@ -266,12 +238,15 @@ $(document).ready(function() {
     function build_tag_help() {
         $tag_helper = $form.find(".tc-tag-helper");
         $tag_view = $form.find(".tc-tag-view");
+        $tag_helper_edit = $form.find(".tc-tag-helper-edit");
 
         tag_filter = /#[0-9a-zA-Z_]+/g;
         tag_selector_help_html = tag_selector_help.trim().split("\n").join("<br />");
         tag_selector_help_html = tag_selector_help_html.replace(tag_filter, "<div class='tc-tag tc-text-button tc-dynamic-width'>$&</div>")
 
         $tag_view.html(tag_selector_help_html);
+        $tag_helper_edit.val(tag_selector_help.trim());
+        resize_textarea($tag_helper_edit[0]);
 
         $tags_buttons = $tag_view.find(".tc-tag");
 
@@ -282,10 +257,7 @@ $(document).ready(function() {
         update_tags(current_post.tags);
 
         // todo: tag hint build
-        // - each tag is a toggle button
-        // - edit button on top
         // - show recent tags scroll
-        // - get value from cookie
     }
 
     function toggle_tag($tag) {
@@ -443,6 +415,9 @@ $(document).ready(function() {
             this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
         }).on('input', function () {
             resize_textarea(this);
+            if ($(this).hasClass("tc-tag-helper-edit")) {
+                resize_tag_helper();
+            };
         });
 
         $tags = $(".tc-tag-selector");
@@ -451,19 +426,56 @@ $(document).ready(function() {
             parse_post(true);
         });
 
-        $form.find("input[type=text], textarea").focus(function(e) {
+        $form.find("input[type=text], textarea:not(.tc-tag-helper-edit)").focus(function(e) {
             check_tag_helper(this);
         });
 
-        // todo: handlers
-        // on edit button:
-        // - hide tags
-        // - show textarea with hint
-        // - show accept / reject buttons
+        $form.find(".tc-tag-helper .tc-edit").click(function(e) {
+            switch_tag_helper_edit(true);
+        });
+
+        $form.find(".tc-tag-helper .tc-accept").click(function(e) {
+            switch_tag_helper_edit(false, true);
+        });
+
+        $form.find(".tc-tag-helper .tc-cancel").click(function(e) {
+            switch_tag_helper_edit(false, false);
+        });
     }
 
     function get_overlay_class() {
         return ".overlay-" + feature_name;
+    }
+
+    function switch_tag_helper_edit(enable, save = false) {
+        $tag_helper_edit = $form.find(".tc-tag-helper-edit");
+        if (enable) {
+            $tag_helper_edit.removeClass("tc-disabled");
+            $form.find(".tc-tag-helper .tc-accept").removeClass("tc-disabled");
+            $form.find(".tc-tag-helper .tc-cancel").removeClass("tc-disabled");
+            $form.find(".tc-tag-helper .tc-edit").addClass("tc-disabled");
+            $form.find(".tc-tag-helper .tc-tag-view").addClass("tc-disabled");
+            $tag_helper_edit.val(tag_selector_help.trim());
+            resize_textarea($tag_helper_edit[0]);
+        } else {
+            $tag_helper_edit.addClass("tc-disabled");
+            $form.find(".tc-tag-helper .tc-accept").addClass("tc-disabled");
+            $form.find(".tc-tag-helper .tc-cancel").addClass("tc-disabled");
+            $form.find(".tc-tag-helper .tc-edit").removeClass("tc-disabled");
+            $form.find(".tc-tag-helper .tc-tag-view").removeClass("tc-disabled");
+
+            if (save) {
+                tag_selector_help = $tag_helper_edit.val();
+                $.cookie(tag_save, JSON.stringify(tag_selector_help), { expires: cookie_lifetime });
+
+                build_tag_help();
+                refresh_tags_view();
+
+                console.log("save...");
+                console.log(tag_selector_help);
+            }
+        }
+        resize_tag_helper();        
     }
 
     function open_load_draft_form() {
@@ -515,18 +527,27 @@ $(document).ready(function() {
     }
 
     function check_tag_helper(source) {
-        if ($(source).hasClass("tc-tag-selector-input")) {
-            tag_view_height = $form.find(".tc-tag-view").height();
-            $form.find(".tc-tag-helper").css({
-                height: tag_view_height + 30,
-                padding: "10px 0 20px"
-            });    
+        if ($(source).hasClass("tc-tag-selector-input") ) {
+            resize_tag_helper();
         } else {
             $form.find(".tc-tag-helper").css({
                 height: 0,
                 padding: 0
             });    
         }
+    }
+
+    function resize_tag_helper() {
+        if ($form.find(".tc-tag-view").hasClass("tc-disabled")) {
+            tag_helper_height = $form.find(".tc-tag-helper-edit").outerHeight();
+        } else {
+            tag_helper_height = $form.find(".tc-tag-view").outerHeight();
+        }
+        $form.find(".tc-tag-helper").css({
+            height: tag_helper_height + 30,
+            padding: "10px 0 20px"
+        });
+        $form.find(".tc-tag-helper")[0].scrollTop = 0;
     }
 
     function update_tags(tags) {
@@ -696,7 +717,7 @@ $(document).ready(function() {
     function save_draft(post_data) {
         current_post = post_data;
         saved_drafts.push(current_post);
-        $.cookie(drafts_save, JSON.stringify(saved_drafts));
+        $.cookie(drafts_save, JSON.stringify(saved_drafts), { expires: cookie_lifetime });
     }
 
     function load_selected_draft() {
@@ -723,13 +744,13 @@ $(document).ready(function() {
         
         selected_id = $selected_option.val();
         saved_drafts.splice(selected_id, 1);
-        $.cookie(drafts_save, JSON.stringify(saved_drafts));
+        $.cookie(drafts_save, JSON.stringify(saved_drafts), { expires: cookie_lifetime });
         build_drafts();
     }
 
     function do_auto_save(post_data) {
         current_post = post_data;
-        $.cookie(auto_save, JSON.stringify(current_post));
+        $.cookie(auto_save, JSON.stringify(current_post), { expires: cookie_lifetime });
     }
 
     function on_data_changed() {

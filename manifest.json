@@ -2,7 +2,7 @@
   "manifest_version": 2,
   
   "name": "Tricky Chaos Kit",
-  "description": "A solution for times when you want to get rid of everything distracting along with some features to make it all faster. Activate at Trello, Youtube, Google Keep or Web Controller by pressing F2. IDDQD",
+  "description": "A way to make certain web apps less distracting and add some quality of life stuff. Activate at Trello, Youtube, Google Keep or Web Controller by pressing F2. IDDQD.",
   "version": "1.5",
   "author": "Ryan Ash",  
   "browser_action": {
@@ -22,22 +22,22 @@
     {
       "matches": ["https://trello.com/*"],
       "css": ["css/trello.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/jquery.cookie-1.4.1.min.js", "js/purge.js", "js/trello-addons.js"]
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js", "js/trello-addons.js"]
     },
     {
       "matches": ["https://youtube.com/*", "https://www.youtube.com/*"],
       "css": ["css/youtube.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/jquery.cookie-1.4.1.min.js", "js/purge.js"]
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js"]
     },
     {
       "matches": ["https://keep.google.com/*"],
       "css": ["css/keep.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/jquery.cookie-1.4.1.min.js", "js/purge.js"]
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js"]
     },
     {
       "matches": ["https://web.controller.bot/*"],
       "css": ["css/font-awesome.min.css", "css/web_controller.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/jquery.cookie-1.4.1.min.js", "js/purge.js", "js/text-template.js"]
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js", "js/text-template.js"]
     }
   ],
   "web_accessible_resources": [
