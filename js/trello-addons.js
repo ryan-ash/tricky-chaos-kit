@@ -45,7 +45,7 @@ $(document).ready(function() {
     function disable() {
         enabled = false;
         $body.removeClass(feature_name);
-        $.removeCookie(save);
+        $.cookie(save, null);
 
         $(".tc-add-checklist").remove();
     }

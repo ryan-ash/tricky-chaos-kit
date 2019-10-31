@@ -37,7 +37,7 @@
     {
       "matches": ["https://web.controller.bot/*"],
       "css": ["css/font-awesome.min.css", "css/web_controller.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js", "js/text-template.js"]
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js", "js/text-template-markup.js", "js/text-template.js"]
     }
   ],
   "web_accessible_resources": [

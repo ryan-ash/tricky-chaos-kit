@@ -29,6 +29,6 @@ $(document).ready(function() {
 
     function disable() {
         $body.removeClass(feature_name);
-        $.removeCookie(save);
+        $.cookie(save, null);
     }
 });
