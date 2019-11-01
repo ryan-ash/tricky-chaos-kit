@@ -43,6 +43,7 @@ $(document).ready(function() {
     var last_preview = "";
 
     var tag_selector_help = "Your #tag #map could be here...";
+    var initial_tag_selector_help = tag_selector_help;
 
 
 
@@ -125,7 +126,6 @@ $(document).ready(function() {
     }
 
     function build_form() {
-        console.log(current_post);
         auto_save_inactive = true;
         $overlay = $body.find(get_overlay_class());
         $form = $overlay.find(".tc-form");
@@ -142,7 +142,6 @@ $(document).ready(function() {
         build_tag_help();
         refresh_tags_view();
 
-        console.log(current_post);
         update_preview_link(current_post.preview_link);
         update_text(current_post.text);
 
@@ -378,7 +377,11 @@ $(document).ready(function() {
             $form.find(".tc-tag-helper .tc-cancel").removeClass("tc-disabled");
             $form.find(".tc-tag-helper .tc-edit").addClass("tc-disabled");
             $form.find(".tc-tag-helper .tc-tag-view").addClass("tc-disabled");
-            $tag_helper_edit.val(tag_selector_help.trim());
+            if (tag_selector_help != initial_tag_selector_help) {
+                $tag_helper_edit.val(tag_selector_help.trim());
+            } else {
+                $tag_helper_edit.val("");
+            }
             resize_textarea($tag_helper_edit[0]);
         } else {
             $tag_helper_edit.addClass("tc-disabled");
@@ -388,14 +391,13 @@ $(document).ready(function() {
             $form.find(".tc-tag-helper .tc-tag-view").removeClass("tc-disabled");
 
             if (save) {
-                tag_selector_help = $tag_helper_edit.val();
+                tag_selector_help = $tag_helper_edit.val().trim();
+                if (tag_selector_help == "")
+                    tag_selector_help = initial_tag_selector_help;
                 $.cookie(tag_save, JSON.stringify(tag_selector_help), { expires: cookie_lifetime });
 
                 build_tag_help();
                 refresh_tags_view();
-
-                console.log("save...");
-                console.log(tag_selector_help);
             }
         }
         resize_tag_helper();        
