@@ -420,10 +420,12 @@ $(document).ready(function() {
     }
 
     function clear_form() {
-        $form.find("textarea, input[type=text]").val("");
+        $form.find(".tc-text-wrapper textarea, input[type=text]").val("");
         $form.find(".tc-title-wrapper, .tc-bottom-link-wrapper").empty();
         resize_textarea($form.find("textarea")[0]);
         parse_post(true);
+        refresh_tags_view();
+        generate_preview();
     }
 
     function add_title() {
