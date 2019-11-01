@@ -20,6 +20,7 @@ $(document).ready(function() {
     var last_bottom_link_id = 0;
 
     var handlers_active = false;
+    var auto_save_inactive = false;
 
     // === data ===
 
@@ -39,6 +40,7 @@ $(document).ready(function() {
     };
     var current_post = "";
     var saved_drafts = []
+    var last_preview = "";
 
     var tag_selector_help = "Your #tag #map could be here...";
 
@@ -123,6 +125,8 @@ $(document).ready(function() {
     }
 
     function build_form() {
+        console.log(current_post);
+        auto_save_inactive = true;
         $overlay = $body.find(get_overlay_class());
         $form = $overlay.find(".tc-form");
         $form.html(form_content);
@@ -138,6 +142,7 @@ $(document).ready(function() {
         build_tag_help();
         refresh_tags_view();
 
+        console.log(current_post);
         update_preview_link(current_post.preview_link);
         update_text(current_post.text);
 
@@ -148,6 +153,9 @@ $(document).ready(function() {
         }
 
         update_ps(current_post.ps);
+
+        auto_save_inactive = false;
+        parse_post(true);
     }
 
     function build_tag_help() {
@@ -574,7 +582,7 @@ $(document).ready(function() {
                 post += preview_link_string;
             }
         }
-        
+
         if (tags_present && !data_run) {
             post += "\n";
         }
@@ -621,6 +629,10 @@ $(document).ready(function() {
         if (data_run) {
             do_auto_save(post);
             on_data_changed();
+            if (last_preview != preview) {
+                generate_preview();
+                last_preview = preview;
+            }
         } else {
             post = "<p>" + post.trim().replace(/\n/g, "</p><p>") + "</p>";
 
@@ -664,6 +676,8 @@ $(document).ready(function() {
     }
 
     function do_auto_save(post_data) {
+        if (auto_save_inactive)
+            return;
         current_post = post_data;
         $.cookie(auto_save, JSON.stringify(current_post), { expires: cookie_lifetime });
     }
@@ -671,7 +685,6 @@ $(document).ready(function() {
     function on_data_changed() {
         close_load_draft_form();
         reset_save_draft_button();
-        generate_preview();
     }
     
     function copy_json(src) {
