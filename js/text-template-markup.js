@@ -45,7 +45,10 @@ var form_content = `
         <a href="#" class="tc-clear-form tc-wide-button tc-text-button">Clear</a>
         <div class="tc-drafts">
             <div class="tc-draft-left tc-draft-column">
-                <a href="#" class="tc-save-draft tc-narrow-button tc-text-button">Save Draft</a>
+                <a href="#" class="tc-save-draft tc-narrow-button tc-text-button">
+                    <span class="tc-save-draft-text">Save Draft</span>
+                    <span class="tc-save-draft-icon fa fa-floppy-o"></span>
+                </a>
                 <a href="#" class="tc-save-draft-complete tc-narrow-button tc-text-button tc-disabled fa fa-check"></a>
             </div>
             <div class="tc-draft-right tc-draft-column">

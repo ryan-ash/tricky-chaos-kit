@@ -406,11 +406,15 @@ $(document).ready(function() {
     function open_load_draft_form() {
         $(".tc-load-draft").addClass("tc-disabled");
         $(".tc-load-draft-form").removeClass("tc-disabled");
+        $(".tc-draft-left a").addClass("tc-small");
+        $(".tc-draft-right").addClass("tc-big");
     }
 
     function close_load_draft_form() {
         $(".tc-load-draft").removeClass("tc-disabled");
         $(".tc-load-draft-form").addClass("tc-disabled");
+        $(".tc-draft-left a").removeClass("tc-small");
+        $(".tc-draft-right").removeClass("tc-big");
     }
 
     function resize_textarea(target) {
@@ -422,7 +426,7 @@ $(document).ready(function() {
     function clear_form() {
         $form.find(".tc-text-wrapper textarea, input[type=text]").val("");
         $form.find(".tc-title-wrapper, .tc-bottom-link-wrapper").empty();
-        resize_textarea($form.find("textarea")[0]);
+        resize_textarea($form.find(".tc-text-wrapper textarea")[0]);
         parse_post(true);
         refresh_tags_view();
         generate_preview();
