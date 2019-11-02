@@ -308,7 +308,6 @@ $(document).ready(function() {
             e.preventDefault();
         });
         $form.find(".tc-save-draft").click(function(e) {
-            parse_post(true);
             save_draft(current_post);
             build_drafts();
             $(this).addClass("tc-disabled");
