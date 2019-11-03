@@ -259,6 +259,7 @@
 
 .text-template .keyboard-button-wrapper > button {
     margin: 0 !important;
+    text-transform: none !important;
 }
 
 .text-template .tc-wide-input input {
