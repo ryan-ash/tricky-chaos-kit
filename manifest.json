@@ -2,7 +2,7 @@
   "manifest_version": 2,
   
   "name": "Tricky Chaos Kit",
-  "description": "A way to make certain web apps less distracting and add some quality of life stuff. Activate at Trello, Youtube, Google Keep or Web Controller by pressing F2. IDDQD.",
+  "description": "Make web less distracting and more powerful. Press F2 at Trello, YT, Google Keep or Web Controller. IDDQD.",
   "version": "1.5",
   "author": "Ryan Ash",  
   "browser_action": {
