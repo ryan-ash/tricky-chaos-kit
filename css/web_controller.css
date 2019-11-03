@@ -215,7 +215,7 @@
 
 .text-template .tc-wide-button {
     display: block;
-    margin: 20px 0px;
+    margin: 10px 0px;
     width: 430px !important;
     text-align: center;
 }
@@ -291,7 +291,7 @@
 }
 
 .text-template .tc-drafts {
-    margin-top: 5px;
+    margin-top: -5px;
     max-width: 477px;
     white-space: nowrap;
     overflow-x: hidden;
