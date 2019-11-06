@@ -271,6 +271,12 @@ $(document).ready(function() {
     function add_handlers() {
         handlers_active = true;
 
+        $form.find(".tc-button").keypress(function(e) {
+            if (e.which == 13 || e.which == 32) {
+                $(this).click();
+            }
+        });
+
         $form.find(".tc-add-title").click(function(e) {
             add_title();
             e.preventDefault();
@@ -438,6 +444,11 @@ $(document).ready(function() {
         id = "tc-title-" + last_title_id;
         $title_instance.attr("id", id);
 
+        $title_instance.find(".tc-remove").keypress(function(e) {
+            if (e.which == 13 || e.which == 32) {
+                $(this).click();
+            }
+        })
         $title_instance.find(".tc-remove").click(function(e) {
             $(this).parent().remove();
             parse_post(true);
@@ -513,6 +524,11 @@ $(document).ready(function() {
         id = "tc-bottom-link-" + last_bottom_link_id;
         $bottom_link_instance.attr("id", id);
 
+        $bottom_link_instance.find(".tc-remove").keypress(function(e) {
+            if (e.which == 13 || e.which == 32) {
+                $(this).click();
+            }
+        });
         $bottom_link_instance.find(".tc-remove").click(function(e){
             $(this).parent().remove();
             parse_post(true);
