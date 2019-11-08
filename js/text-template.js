@@ -353,6 +353,10 @@ $(document).ready(function() {
             parse_post(true);
         });
 
+        $form.find(".tc-tag-selector-input").change(function() {
+            refresh_tags_view();
+        })
+
         $form.find("input[type=text], textarea:not(.tc-tag-helper-edit)").focus(function(e) {
             check_tag_helper(this);
         });
