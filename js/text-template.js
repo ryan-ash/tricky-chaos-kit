@@ -21,6 +21,7 @@ $(document).ready(function() {
 
     var handlers_active = false;
     var auto_save_inactive = false;
+    var tag_hotkeys = false;
 
     // === data ===
 
@@ -56,6 +57,9 @@ $(document).ready(function() {
     }
 
     $(document).keydown(function(e) {
+        if (tag_hotkeys && (e.which >= 37 && e.which <= 40)) {
+            handle_tag_hotkey(e.which > 38, e);
+        }
         if (e.which != 113)
             return;
         toggle_display_mode();
@@ -271,7 +275,7 @@ $(document).ready(function() {
     function add_handlers() {
         handlers_active = true;
 
-        $form.find(".tc-button").keypress(function(e) {
+        $form.find(".tc-button, .tc-tag").keypress(function(e) {
             if (e.which == 13 || e.which == 32) {
                 $(this).click();
             }
@@ -474,12 +478,66 @@ $(document).ready(function() {
     function check_tag_helper(source) {
         if ($(source).hasClass("tc-tag-selector-input") ) {
             resize_tag_helper();
+            enable_tag_hotkeys();
+            $form.find(".tc-tag-helper .tc-button").attr("tabindex", 0);
         } else {
             $form.find(".tc-tag-helper").css({
                 height: 0,
                 padding: 0
-            });    
+            });
+            disable_tag_hotkeys();
+            $form.find(".tc-tag-helper .tc-button").attr("tabindex", "");
         }
+    }
+
+    function enable_tag_hotkeys() {
+        tag_hotkeys = true;
+    }
+
+    function disable_tag_hotkeys() {
+        tag_hotkeys = false;
+        clear_current_tag_focus();
+    }
+
+    function handle_tag_hotkey(next, event) {
+        $current_focus = $(':focus');
+        first_tag_selector = ".tc-tag-selector .tc-tag-view .tc-tag:first-of-type";
+        last_tag_selector = ".tc-tag-selector .tc-tag-view .tc-tag:last-of-type";
+        $next_target = "";
+        if ($current_focus.hasClass("tc-tag-selector-input") || $current_focus.hasClass("tc-button")) {
+            if (next) {
+                $next_target = $form.find(first_tag_selector);
+            } else {
+                $next_target = $form.find(last_tag_selector);
+            }
+        } else if ($current_focus.hasClass("tc-tag")) {
+            if (next) {
+                $all_next = $current_focus.nextAll(".tc-tag");
+                if ($all_next.length) {
+                    $next_target = $($all_next[0]);
+                } else {
+                    $next_target = $form.find(first_tag_selector);
+                }
+            } else {
+                $all_prev = $current_focus.prevAll(".tc-tag");
+                if ($all_prev.length) {
+                    $next_target = $($all_prev[0]);
+                } else {
+                    $next_target = $form.find(last_tag_selector);
+                }
+            }
+        }
+
+        if ($next_target != "" && $next_target.length) {
+            clear_current_tag_focus();
+            $next_target.attr("tabindex", 0);
+            $next_target.focus();
+            event.preventDefault();
+        }
+    }
+
+    function clear_current_tag_focus() {
+        $form.find(".tc-tag-view .tc-tag[tabindex=0]").attr("tabindex", "");
     }
 
     function resize_tag_helper() {

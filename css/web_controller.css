@@ -432,8 +432,12 @@
 .text-template .tc-text-button.tc-selected {
     padding-left: 2px;
     padding-right: 4px;
-    background-color: rgb(104, 233, 18);
+    background-color: rgb(18, 104, 233) !important;
     color: #111;
+}
+
+.text-template .tc-text-button.tc-selected:focus, .text-template .tc-text-button.tc-selected:hover {
+    background-color: rgb(18, 233, 233) !important;
 }
 
 .text-template .tc-text-button.tc-dynamic-width {
