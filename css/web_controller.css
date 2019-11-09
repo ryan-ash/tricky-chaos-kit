@@ -196,7 +196,8 @@
 }
 
 .tc-wide-input:hover .tc-button.fa, .tc-bottom-link:hover .tc-button.fa, .tc-text-wrapper:hover .tc-button.fa,
-.text-template form > div input[type="text"]:focus ~ .tc-button.fa, .tc-text-wrapper textarea:focus ~ .tc-button.fa, .tc-button.fa:focus {
+.text-template form > div input[type="text"]:focus ~ .tc-button.fa, .tc-text-wrapper textarea:focus ~ .tc-button.fa, .tc-button.fa:focus,
+.text-template form > div input[type="text"]:focus ~ div .tc-button.fa, .text-template form > div .tc-button.fa:focus ~ div .tc-button.fa {
     opacity: 1;
     padding-left: 13px !important;
 }
