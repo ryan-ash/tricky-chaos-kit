@@ -198,6 +198,7 @@ $(document).ready(function() {
             theme: 'bubble',
             placeholder: 'Text...'
         });
+        delete post_textarea.getModule('keyboard').bindings["9"];
         update_text(current_post.text);
     }
 
