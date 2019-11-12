@@ -36,8 +36,15 @@
     },
     {
       "matches": ["https://web.controller.bot/*"],
-      "css": ["css/font-awesome.min.css", "css/web_controller.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js", "js/text-template-markup.js", "js/text-template.js"]
+      "css": ["css/font-awesome.min.css", "css/quill.bubble.css", "css/web_controller.css"],
+      "js": [
+        "js/jquery-3.2.1.min.js",
+        "js/jquery.enhanced.cookie.js",
+        "js/quill.min.js",
+        "js/purge.js",
+        "js/text-template-markup.js",
+        "js/text-template.js"
+      ]
     }
   ],
   "web_accessible_resources": [

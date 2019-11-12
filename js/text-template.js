@@ -23,6 +23,8 @@ $(document).ready(function() {
     var auto_save_inactive = false;
     var tag_hotkeys = false;
 
+    var post_textarea = "";
+
     // === data ===
 
     var data = {
@@ -115,6 +117,7 @@ $(document).ready(function() {
 
         build_form();
         build_drafts();
+        setup_textarea();
         generate_preview();
         add_handlers();
     }
@@ -184,6 +187,18 @@ $(document).ready(function() {
 
         // todo: tag hint build
         // - show recent tags scroll
+    }
+
+    function setup_textarea() {
+        var toolbarOptions = ['bold', 'italic', 'link', 'code'];
+        post_textarea = new Quill('#tc-text', {
+            modules: {
+                toolbar: toolbarOptions
+            },
+            theme: 'bubble',
+            placeholder: 'Text...'
+        });
+        update_text(current_post.text);
     }
 
     function toggle_tag($tag) {
@@ -303,9 +318,7 @@ $(document).ready(function() {
             e.preventDefault();
         });
         $form.find(".tc-text-wrapper .tc-reset").click(function(e) {
-            $text = $form.find(".tc-text");
-            $text.val("");
-            resize_textarea($text[0]);
+            update_text("\n");
             parse_post(true);
             e.preventDefault();
         });
@@ -567,7 +580,11 @@ $(document).ready(function() {
     }
 
     function update_text(text) {
-        $form.find(".tc-text").val(text);
+        $editor = $form.find(".tc-text .ql-editor");
+        if (!$editor.length)
+            return;
+        text = "<p>" + text.trim().replace(/\n/g, "</p><p>") + "</p>";
+        $editor.html(text);
     }
 
     function update_ps(ps) {
@@ -622,13 +639,13 @@ $(document).ready(function() {
         $titles = $titles_wrapper.find(".tc-title");
         $tags = $form.find(".tc-tag-selector-input");
         $preview = $form.find(".tc-preview-link-input");
-        $text = $form.find(".tc-text");
+        $text = $form.find(".tc-text .ql-editor");
         $bottom_links = $bottom_links_wrapper.find(".tc-bottom-link");
         $ps = $form.find(".tc-ps-text-input");
 
         tags = $tags.val().trim();
         preview = $preview.val().trim();
-        text = $text.val().trim();
+        text = $text.html().replace(/<\/p>/g, "\n").replace(/<p>/g, "").replace(/<br>/g, "").trim();
         ps = $ps.val().trim();
 
         title_present = false;
@@ -721,7 +738,7 @@ $(document).ready(function() {
         } else {
             post = "<p>" + post.trim().replace(/\n/g, "</p><p>") + "</p>";
 
-            $message_box = $(".ql-editor");
+            $message_box = $(".el-form .ql-editor");
             $message_box.html(post);
         }
     }

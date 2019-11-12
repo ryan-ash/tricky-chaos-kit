@@ -16,7 +16,7 @@ var form_content = `
     <div class="tc-title-wrapper"></div>
     <div tabindex="0" class="tc-add tc-button tc-add-title fa fa-plus"></div><br/>
     <div class="tc-tag-selector tc-wide-input">
-        <input type="text" class="tc-tag-selector-input" placeholder="#tags">
+        <input type="text" class="tc-text-input tc-tag-selector-input" placeholder="#tags">
         <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
         <div class="tc-tag-helper">
             <div class="tc-tag-view"></div>
@@ -27,17 +27,17 @@ var form_content = `
         </div>
     </div>
     <div class="tc-preview-link tc-wide-input">
-        <input type="text" class="tc-preview-link-input" placeholder="Preview Link">
+        <input type="text" class="tc-text-input tc-preview-link-input" placeholder="Preview Link">
         <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
     </div>
     <div class="tc-text-wrapper">
-        <textarea class="tc-text" placeholder="Text"></textarea>
+        <div id="tc-text" class="tc-text"></div>
         <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
     </div>
     <div class="tc-bottom-link-wrapper"></div>
     <div tabindex="0" class="tc-add tc-button tc-add-bottom-link fa fa-plus"></div><br/>
     <div class="tc-ps-text tc-wide-input">
-        <input type="text" class="tc-ps-text-input" placeholder="PS">
+        <input type="text" class="tc-text-input tc-ps-text-input" placeholder="PS">
         <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
     </div>
     <div class="tc-form-footer">
@@ -68,15 +68,15 @@ var form_content = `
 
 var title_markup = `
     <div class="tc-title tc-wide-input">
-        <input type="text" class="tc-title-input" placeholder="Title">
+        <input type="text" class="tc-text-input tc-title-input" placeholder="Title">
         <div tabindex="0" class="tc-remove tc-button fa fa-minus"></div>
     </div>
 `;
 
 var bottom_link_markup = `
     <div class="tc-bottom-link">
-        <input type="text" placeholder="http://" class="tc-bottom-link-input tc-link">
-        <input type="text" placeholder="Link Text" class="tc-bottom-link-input tc-link-text">
+        <input type="text" placeholder="http://" class="tc-text-input tc-bottom-link-input tc-link">
+        <input type="text" placeholder="Link Text" class="tc-text-input tc-bottom-link-input tc-link-text">
         <div tabindex="0" class="tc-remove tc-button fa fa-minus"></div>
     </div>
 `;

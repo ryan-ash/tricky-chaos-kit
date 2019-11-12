@@ -56,9 +56,10 @@
 .text-template .tc-form input[type=email], .text-template .tc-form input[type=month],
 .text-template .tc-form input[type=number], .text-template .tc-form input[type=password],
 .text-template .tc-form input[type=range], .text-template .tc-form input[type=search],
-.text-template .tc-form input[type=tel], .text-template .tc-form input[type=text],
+.text-template .tc-form input[type=tel], .text-template .tc-form .tc-text-input,
 .text-template .tc-form input[type=time], .text-template .tc-form input[type=url],
-.text-template .tc-form input[type=week], .text-template .tc-form select, .text-template .tc-form textarea {
+.text-template .tc-form input[type=week], .text-template .tc-form select, 
+.text-template .tc-form textarea {
     background-color: transparent; /* Remove background fill */
     border: 2px solid rgba(40, 35, 59, 0.801); /* 2px white border */
     color: #fff; /* White text */
@@ -72,11 +73,11 @@
     font-size: 14px;
 }
 
-.text-template .tc-form input[type=text]:hover, .text-template textarea:hover {
+.text-template .tc-form .tc-text-input:hover, .text-template textarea:hover {
     border: 2px solid rgba(60, 49, 90, 0.85); /* 2px white border */
 }
 
-.text-template .tc-form input[type=text]:focus, .text-template textarea:focus {
+.text-template .tc-form .tc-text-input:focus, .text-template textarea:focus {
     outline: 0;
     border: 2px solid rgba(80, 69, 121, 0.901); /* 2px white border */
 }
@@ -85,11 +86,16 @@
     outline: 0;
 }
 
-.text-template textarea {
+.text-template textarea, .text-template .tc-text {
     padding: 8px 15px 15px !important;
     line-height: 17px;
     min-height: 57px !important;
     min-width: 429px !important;
+}
+
+.text-template .tc-text .ql-editor::before {
+    left: 20px !important;
+    padding-left: 0 !important;
 }
 
 .text-template .el-select {
@@ -112,15 +118,24 @@
 }
 
 /* Buttons */
-.text-template .tc-footer a, .text-template .tc-form a, .text-template .el-button:not(.el-button--text), .text-template .tc-form input[type=submit], 
+.text-template .tc-footer a, .text-template .tc-form a:not(.ql-close), .text-template .el-button:not(.el-button--text), .text-template .tc-form input[type=submit], 
 .text-template .tc-form button[type=submit], .text-template .tc-form .wpforms-page-button {
-   text-transform: uppercase;
-   padding: 10px 75px;
-   margin-right: 10px;
-   border-radius: 30px 10px;
-   color: white;
-   background: #444;
-   font-weight: normal;
+    text-transform: uppercase;
+    padding: 10px 75px;
+    margin-right: 10px;
+    border-radius: 30px 10px;
+    color: white;
+    background: #444;
+    font-weight: normal;
+}
+
+.text-template .tc-form .tc-text a {
+    text-transform: none;
+    padding: 0;
+    margin-right: 0;
+    border-radius: 0;
+    color: #409eff;
+    background: none;
 }
 
 .text-template .el-button:not(.el-button--text) {
@@ -181,6 +196,11 @@
 
 .text-template .tc-text-wrapper {
     position: relative;
+}
+
+.text-template .tc-text .ql-editor {
+    overflow: visible;
+    margin-left: 5px;
 }
 
 .text-template .tc-text-wrapper .tc-button {
