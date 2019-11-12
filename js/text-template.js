@@ -318,7 +318,7 @@ $(document).ready(function() {
             e.preventDefault();
         });
         $form.find(".tc-text-wrapper .tc-reset").click(function(e) {
-            update_text("\n");
+            update_text("");
             parse_post(true);
             e.preventDefault();
         });
@@ -455,9 +455,9 @@ $(document).ready(function() {
     }
 
     function clear_form() {
-        $form.find(".tc-text-wrapper textarea, input[type=text]").val("");
+        $form.find("input[type=text]").val("");
         $form.find(".tc-title-wrapper, .tc-bottom-link-wrapper").empty();
-        resize_textarea($form.find(".tc-text-wrapper textarea")[0]);
+        update_text("");
         parse_post(true);
         refresh_tags_view();
         generate_preview();
@@ -585,6 +585,9 @@ $(document).ready(function() {
     }
 
     function update_text(text) {
+        if (text.trim() == "") {
+            text = "\n";
+        }
         $editor = $form.find(".tc-text .ql-editor");
         if (!$editor.length)
             return;
@@ -760,14 +763,18 @@ $(document).ready(function() {
             return;
         
         selected_id = $selected_option.val();
-        clear_form();
         current_post = saved_drafts[selected_id];
+        handlers_active = false;
+
+        clear_form();
         build_form();
+        setup_textarea();
         build_drafts();
         $form.find(".tc-draft-list option:selected").removeAttr('selected');
         $form.find(".tc-draft-list option[value='" + selected_id + "']").attr('selected', true);
         add_handlers();
         open_load_draft_form();
+
         parse_post(true);
     }
 
