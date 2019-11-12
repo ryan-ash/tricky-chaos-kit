@@ -366,9 +366,14 @@ $(document).ready(function() {
 
         $tags = $(".tc-tag-selector");
 
-        $form.find(".tc-tag-selector-input, .tc-preview-link-input, .tc-text, .tc-ps-text").change(function() {
+        // autosave handling
+        $form.find(".tc-text-input").change(function() {
             parse_post(true);
         });
+        post_textarea.on('text-change', function(delta, oldDelta, source) {
+            parse_post(true);
+        });
+        // autosave end
 
         $form.find(".tc-tag-selector-input").change(function() {
             refresh_tags_view();
