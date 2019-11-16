@@ -654,8 +654,8 @@ $(document).ready(function() {
 
         tags = $tags.val().trim();
         preview = $preview.val().trim();
-        text = $text.html().replace(/<\/p>/g, "\n").replace(/<p>/g, "").replace(/<br>/g, "").trim();
-        ps = $ps.val().trim();
+        text = prepare_string($text.html());
+        ps = prepare_string($ps.val());
 
         title_present = false;
         tags_present = tags != "";
@@ -665,7 +665,7 @@ $(document).ready(function() {
 
         $.each($titles, function(index, value) {
             $title = $(value).find(".tc-title-input");
-            title = $title.val().trim();
+            title = prepare_string($title.val());
             if (title == "")
                 return;
                 
@@ -712,7 +712,7 @@ $(document).ready(function() {
         $.each($bottom_links, function(index, value) {
             $link = $(value);
             link_url = $link.find(".tc-link").val().trim();
-            link_text = $link.find(".tc-link-text").val().trim();
+            link_text = prepare_string($link.find(".tc-link-text").val());
             if (link_url == "" && link_text == "")
                 return;
                 
@@ -750,6 +750,10 @@ $(document).ready(function() {
             $message_box = $(".el-form .ql-editor");
             $message_box.html(post);
         }
+    }
+
+    function prepare_string(str) {
+        return str.replace(/<\/p>/g, "\n").replace(/<p>/g, "").replace(/<br>/g, "").trim();
     }
 
     function save_draft(post_data) {
