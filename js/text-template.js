@@ -125,6 +125,7 @@ $(document).ready(function() {
     function disable() {
         $body.find(get_overlay_class()).remove();
         $body.find(".tc-link-preview").remove();
+        $footer.css("max-width", "");
 
         $body.removeClass(feature_name);
         $.cookie(save, null);
