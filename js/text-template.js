@@ -192,11 +192,15 @@ $(document).ready(function() {
     function setup_textarea() {
         var toolbarOptions = ['bold', 'italic', 'link', 'code'];
         post_textarea = new Quill('#tc-text', {
+            formats: toolbarOptions,
             modules: {
                 toolbar: toolbarOptions
             },
             theme: 'bubble',
-            placeholder: 'Text...'
+            placeholder: 'Text...',
+            clipboard: {
+                matchVisual: false
+            }
         });
         delete post_textarea.getModule('keyboard').bindings["9"];
         update_text(current_post.text);
