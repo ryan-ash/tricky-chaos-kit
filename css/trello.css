@@ -27,6 +27,16 @@
     right: 14px;
 }
 
+.purge .list-card-details {
+    height: 22px;
+    padding-top: 2px;
+}
+
+.purge .list-card-operation {
+    background: none !important;
+    top: -2px !important;
+}
+
 .trello-addons .tc-add-checklist {
     color: #42526e;
     border-radius: 50%;
