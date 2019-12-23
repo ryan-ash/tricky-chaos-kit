@@ -93,6 +93,10 @@
     min-width: 429px !important;
 }
 
+.text-template .tc-text {
+    width: 429px;
+}
+
 .text-template .tc-text .ql-editor::before {
     left: 20px !important;
     padding-left: 0 !important;

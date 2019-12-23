@@ -125,6 +125,7 @@ $(document).ready(function() {
     function disable() {
         $body.find(get_overlay_class()).remove();
         $body.find(".tc-link-preview").remove();
+        $footer.css("max-width", "");
 
         $body.removeClass(feature_name);
         $.cookie(save, null);
@@ -192,12 +193,17 @@ $(document).ready(function() {
     function setup_textarea() {
         var toolbarOptions = ['bold', 'italic', 'link', 'code'];
         post_textarea = new Quill('#tc-text', {
+            formats: toolbarOptions,
             modules: {
                 toolbar: toolbarOptions
             },
             theme: 'bubble',
-            placeholder: 'Text...'
+            placeholder: 'Text...',
+            clipboard: {
+                matchVisual: false
+            }
         });
+        delete post_textarea.getModule('keyboard').bindings["9"];
         update_text(current_post.text);
     }
 
@@ -318,7 +324,7 @@ $(document).ready(function() {
             e.preventDefault();
         });
         $form.find(".tc-text-wrapper .tc-reset").click(function(e) {
-            update_text("\n");
+            update_text("");
             parse_post(true);
             e.preventDefault();
         });
@@ -366,9 +372,14 @@ $(document).ready(function() {
 
         $tags = $(".tc-tag-selector");
 
-        $form.find(".tc-tag-selector-input, .tc-preview-link-input, .tc-text, .tc-ps-text").change(function() {
+        // autosave handling
+        $form.find(".tc-text-input").change(function() {
             parse_post(true);
         });
+        post_textarea.on('text-change', function(delta, oldDelta, source) {
+            parse_post(true);
+        });
+        // autosave end
 
         $form.find(".tc-tag-selector-input").change(function() {
             refresh_tags_view();
@@ -450,9 +461,9 @@ $(document).ready(function() {
     }
 
     function clear_form() {
-        $form.find(".tc-text-wrapper textarea, input[type=text]").val("");
+        $form.find("input[type=text]").val("");
         $form.find(".tc-title-wrapper, .tc-bottom-link-wrapper").empty();
-        resize_textarea($form.find(".tc-text-wrapper textarea")[0]);
+        update_text("");
         parse_post(true);
         refresh_tags_view();
         generate_preview();
@@ -580,6 +591,9 @@ $(document).ready(function() {
     }
 
     function update_text(text) {
+        if (text.trim() == "") {
+            text = "\n";
+        }
         $editor = $form.find(".tc-text .ql-editor");
         if (!$editor.length)
             return;
@@ -645,8 +659,8 @@ $(document).ready(function() {
 
         tags = $tags.val().trim();
         preview = $preview.val().trim();
-        text = $text.html().replace(/<\/p>/g, "\n").replace(/<p>/g, "").replace(/<br>/g, "").trim();
-        ps = $ps.val().trim();
+        text = prepare_string($text.html());
+        ps = prepare_string($ps.val());
 
         title_present = false;
         tags_present = tags != "";
@@ -656,7 +670,7 @@ $(document).ready(function() {
 
         $.each($titles, function(index, value) {
             $title = $(value).find(".tc-title-input");
-            title = $title.val().trim();
+            title = prepare_string($title.val());
             if (title == "")
                 return;
                 
@@ -703,7 +717,7 @@ $(document).ready(function() {
         $.each($bottom_links, function(index, value) {
             $link = $(value);
             link_url = $link.find(".tc-link").val().trim();
-            link_text = $link.find(".tc-link-text").val().trim();
+            link_text = prepare_string($link.find(".tc-link-text").val());
             if (link_url == "" && link_text == "")
                 return;
                 
@@ -743,6 +757,10 @@ $(document).ready(function() {
         }
     }
 
+    function prepare_string(str) {
+        return str.replace(/<\/p>/g, "\n").replace(/<p>/g, "").replace(/<br>/g, "").trim();
+    }
+
     function save_draft(post_data) {
         current_post = post_data;
         saved_drafts.push(current_post);
@@ -755,14 +773,18 @@ $(document).ready(function() {
             return;
         
         selected_id = $selected_option.val();
-        clear_form();
         current_post = saved_drafts[selected_id];
+        handlers_active = false;
+
+        clear_form();
         build_form();
+        setup_textarea();
         build_drafts();
         $form.find(".tc-draft-list option:selected").removeAttr('selected');
         $form.find(".tc-draft-list option[value='" + selected_id + "']").attr('selected', true);
         add_handlers();
         open_load_draft_form();
+
         parse_post(true);
     }
 
