@@ -38,6 +38,23 @@
     top: -2px !important;
 }
 
+.purge .js-add-list.is-idle {
+    width: 30px !important;
+    overflow: hidden;
+}
+
+.purge .js-add-list {
+    transition: width 0.5s ease-out;
+}
+
+.purge .js-add-list.is-idle .placeholder {
+    padding-left: 2px;
+}
+
+.purge .js-add-list.is-idle .placeholder .icon-add {
+    margin-right: 5px;
+}
+
 .trello-addons .tc-add-checklist {
     color: #42526e;
     border-radius: 50%;
