@@ -1,6 +1,6 @@
 var overlay_markup = `
     <div class="OUTER_CLASS_NAME">
-        <form class="tc-form"></form>
+        <div class="tc-form"></div>
 
         <div class="tc-ex">
             <textarea class="tc-post-data"></textarea>
@@ -41,7 +41,7 @@ var form_content = `
         <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
     </div>
     <div class="tc-form-footer">
-        <a href="#" class="tc-parse tc-wide-button tc-text-button">Parse</a>
+        <!--a href="#" class="tc-parse tc-wide-button tc-text-button">Parse</a-->
         <a href="#" class="tc-clear-form tc-wide-button tc-text-button">Clear</a>
         <div class="tc-drafts">
             <div class="tc-draft-left tc-draft-column">

@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var $body = $("body");
-    var $newpost = "";
+    var $root = "";
     var $overlay = "";
     var $tags_buttons = "";
     var $form = "";
@@ -79,14 +79,14 @@ $(document).ready(function() {
     }
 
     function enable() {
-        $newpost = $body.find(".newpost");
-        if (!$newpost.length) {
+        $root = $body.find(".el-form");
+        if (!$root.length) {
             setTimeout(function() {
                 enable();
             }, 100);
             return;
         }
-        $newpost.prepend(overlay_markup);
+        $root.prepend(overlay_markup);
 
         $footer = $body.find("footer");
         $footer_name_span = $body.find("footer > span:first-child");
@@ -162,7 +162,7 @@ $(document).ready(function() {
         update_ps(current_post.ps);
 
         auto_save_inactive = false;
-        parse_post(true);
+        parse_post();
     }
 
     function build_tag_help() {
@@ -259,7 +259,7 @@ $(document).ready(function() {
 
     function generate_preview() {
         embed_link = get_embed_link(current_post.preview_link);
-        $wc_form = $newpost.find('.el-form');
+        $wc_form = $root.find('.el-form');
         $sibling = $wc_form.find(".cb-textarea-wrapper");
 
         $wc_form.find('.tc-link-preview').remove();
@@ -304,59 +304,73 @@ $(document).ready(function() {
 
         $form.find(".tc-add-title").click(function(e) {
             add_title();
+            check_tag_helper(this);
             e.preventDefault();
         });
         $form.find(".tc-tag-selector .tc-reset").click(function(e) {
             $form.find(".tc-tag-selector-input").val("");
             update_tags([]);
             refresh_tags_view();
-            parse_post(true);
+            parse_post();
             e.preventDefault();
         });
         $form.find(".tc-preview-link .tc-reset").click(function(e) {
             $form.find(".tc-preview-link-input").val("");
-            parse_post(true);
+            parse_post();
+            check_tag_helper(this);
             e.preventDefault();
         });
         $form.find(".tc-ps-text .tc-reset").click(function(e) {
             $form.find(".tc-ps-text-input").val("");
-            parse_post(true);
+            parse_post();
+            check_tag_helper(this);
             e.preventDefault();
         });
         $form.find(".tc-text-wrapper .tc-reset").click(function(e) {
             update_text("");
-            parse_post(true);
+            parse_post();
+            check_tag_helper(this);
             e.preventDefault();
         });
         $form.find(".tc-add-bottom-link").click(function(e) {
             add_bottom_link();
+            check_tag_helper(this);
             e.preventDefault();
         });
+
+        // delete?..
         $form.find(".tc-parse").click(function(e) {
             parse_post();
+            check_tag_helper(this);
             e.preventDefault();
         });
+
         $form.find(".tc-save-draft").click(function(e) {
             save_draft(current_post);
             build_drafts();
             $(this).addClass("tc-disabled");
             $(this).next().removeClass("tc-disabled");
+            check_tag_helper(this);
             e.preventDefault();
         });
         $form.find(".tc-load-draft").click(function(e) {
             open_load_draft_form();
+            check_tag_helper(this);
             e.preventDefault();
         });
         $form.find(".tc-load-draft-form .tc-load").click(function(e) {
             e.preventDefault();
+            check_tag_helper(this);
             load_selected_draft();
         });
         $form.find(".tc-load-draft-form .tc-delete").click(function(e) {
             e.preventDefault();
+            check_tag_helper(this);
             delete_selected_draft();
         });
         $form.find(".tc-clear-form").click(function(e) {
             clear_form();
+            check_tag_helper(this);
             e.preventDefault();
         });
 
@@ -374,10 +388,10 @@ $(document).ready(function() {
 
         // autosave handling
         $form.find(".tc-text-input").change(function() {
-            parse_post(true);
+            parse_post();
         });
         post_textarea.on('text-change', function(delta, oldDelta, source) {
-            parse_post(true);
+            parse_post();
         });
         // autosave end
 
@@ -464,7 +478,7 @@ $(document).ready(function() {
         $form.find("input[type=text]").val("");
         $form.find(".tc-title-wrapper, .tc-bottom-link-wrapper").empty();
         update_text("");
-        parse_post(true);
+        parse_post();
         refresh_tags_view();
         generate_preview();
     }
@@ -483,10 +497,11 @@ $(document).ready(function() {
         })
         $title_instance.find(".tc-remove").click(function(e) {
             $(this).parent().remove();
-            parse_post(true);
+            check_tag_helper(this);
+            parse_post();
         });
         $title_instance.find(".tc-title-input").change(function() {
-            parse_post(true);
+            parse_post();
         });
         $title_instance.find(".tc-title-input").focus(function() {
             check_tag_helper(this);
@@ -583,7 +598,7 @@ $(document).ready(function() {
         $form.find(".tc-tag-selector-input").val(tags_string);
         if ($tags_buttons == "")
             return;
-        parse_post(true);
+        parse_post();
     }
 
     function update_preview_link(link) {
@@ -624,10 +639,11 @@ $(document).ready(function() {
         });
         $bottom_link_instance.find(".tc-remove").click(function(e){
             $(this).parent().remove();
-            parse_post(true);
+            check_tag_helper(this);
+            parse_post();
         });
         $bottom_link_instance.find(".tc-bottom-link-input").change(function() {
-            parse_post(true);
+            parse_post();
         });
         $bottom_link_instance.find(".tc-bottom-link-input").focus(function() {
             check_tag_helper(this);
@@ -641,14 +657,11 @@ $(document).ready(function() {
         $bottom_link.find(".tc-link-text").val(bottom_link.text);
     }
 
-    function parse_post(data_run = false) {
-        if (data_run) {
-            if (!handlers_active)
-                return;
-            post = copy_json(data);
-        } else {
-            post = "";
-        }
+    function parse_post() {
+        if (!handlers_active)
+            return;
+        post = copy_json(data);
+        post_string = "";
         
         $titles = $titles_wrapper.find(".tc-title");
         $tags = $form.find(".tc-tag-selector-input");
@@ -675,43 +688,34 @@ $(document).ready(function() {
                 return;
                 
             title_present = true;
-            if (data_run) {
-                post.titles.push(title);
-            } else {
-                post += "[<b>" + title + "</b>]\n";
-            }
+            post.titles.push(title);
+
+            post_string += "[<b>" + title + "</b>]\n";
         });
         
         if (tags_present) {
-            if (data_run) {
-                post.tags = tags.split(" ");
-            } else {
-                post += "[" + tags + "]";
-            }
+            post.tags = tags.split(" ");
+            post_string += "[" + tags + "]";
         }
 
         if (preview_present) {
-            if (data_run) {
-                post.preview_link = preview;
-            } else {
-                preview_link_string = "<a href=\"" + preview + "\">&#8291;</a>";
-                post += preview_link_string;
-            }
+            post.preview_link = preview;
+
+            preview_link_string = "<a href=\"" + preview + "\">&#8291;</a>";
+            post_string += preview_link_string;
         }
 
-        if (tags_present && !data_run) {
-            post += "\n";
+        if (tags_present) {
+            post_string += "\n";
         }
 
         if (text_present) {
-            if (data_run) {
-                post.text = text;
-            } else {
-                if (title_present || tags_present) {
-                    post += "\n";
-                }
-                post += text;
+            post.text = text;
+
+            if (title_present || tags_present) {
+                post_string += "\n";
             }
+            post_string += text;
         }
 
         $.each($bottom_links, function(index, value) {
@@ -721,40 +725,33 @@ $(document).ready(function() {
             if (link_url == "" && link_text == "")
                 return;
                 
-            if (data_run) {
-                post.bottom_links.push({link: link_url, text: link_text});
-            } else {
-                if (index == 0) {
-                    post += "\n\n";
-                } else if (index > 0) {
-                    post += " | ";
-                }
-                post += "<a href=\"" + link_url + "\">" + link_text + "</a>";
+            post.bottom_links.push({link: link_url, text: link_text});
+
+            if (index == 0) {
+                post_string += "\n\n";
+            } else if (index > 0) {
+                post_string += " | ";
             }
+            post_string += "<a href=\"" + link_url + "\">" + link_text + "</a>";
         });
 
         if (ps_present) {
-            if (data_run) {
-                post.ps = ps;
-            } else {
-                post += "\n\n";
-                post += "&gt; <code>" + ps + "</code>";
-            }
+            post.ps = ps;
+
+            post_string += "\n\n";
+            post_string += "&gt; <code>" + ps + "</code>";
         }
 
-        if (data_run) {
-            do_auto_save(post);
-            on_data_changed();
-            if (last_preview != preview) {
-                generate_preview();
-                last_preview = preview;
-            }
-        } else {
-            post = "<p>" + post.trim().replace(/\n/g, "</p><p>") + "</p>";
-
-            $message_box = $(".el-form .ql-editor");
-            $message_box.html(post);
+        do_auto_save(post);
+        on_data_changed();
+        if (last_preview != preview) {
+            generate_preview();
+            last_preview = preview;
         }
+
+        post_string = "<p>" + post_string.trim().replace(/\n/g, "</p><p>") + "</p>";
+        $message_box = $(".el-form .quill-editor .ql-editor");
+        $message_box.html(post_string);
     }
 
     function prepare_string(str) {
@@ -785,7 +782,7 @@ $(document).ready(function() {
         add_handlers();
         open_load_draft_form();
 
-        parse_post(true);
+        parse_post();
     }
 
     function delete_selected_draft() {
