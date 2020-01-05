@@ -9,6 +9,7 @@ var overlay_markup = `
             <a href="">Export</a>
             <a href="">Import</a>
         </div>
+        <!-- todo: add preview button -->
     </div>
 `;
 

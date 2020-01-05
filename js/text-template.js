@@ -118,7 +118,7 @@ $(document).ready(function() {
         build_form();
         build_drafts();
         setup_textarea();
-        generate_preview();
+        generate_link_preview();
         add_handlers();
     }
 
@@ -257,7 +257,7 @@ $(document).ready(function() {
         }
     }
 
-    function generate_preview() {
+    function generate_link_preview() {
         embed_link = get_embed_link(current_post.preview_link);
         $wc_form = $root.find('.el-form');
         $sibling = $wc_form.find(".cb-textarea-wrapper");
@@ -276,6 +276,10 @@ $(document).ready(function() {
 
         $iframe_instance = $wc_form.find(".tc-link-preview iframe");
         $iframe_instance.attr("src", embed_link);
+    }
+
+    function toggle_post_preview() {
+        // todo: add toggle post preview logic
     }
 
     function get_embed_link(source) {
@@ -338,7 +342,7 @@ $(document).ready(function() {
             e.preventDefault();
         });
 
-        // delete?..
+        // todo: delete?..
         $form.find(".tc-parse").click(function(e) {
             parse_post();
             check_tag_helper(this);
@@ -373,6 +377,8 @@ $(document).ready(function() {
             check_tag_helper(this);
             e.preventDefault();
         });
+
+        // todo: add preview button handling
 
         // textarea auto-resize
         $form.find('textarea').each(function () {
@@ -480,7 +486,7 @@ $(document).ready(function() {
         update_text("");
         parse_post();
         refresh_tags_view();
-        generate_preview();
+        generate_link_preview();
     }
 
     function add_title() {
@@ -745,7 +751,7 @@ $(document).ready(function() {
         do_auto_save(post);
         on_data_changed();
         if (last_preview != preview) {
-            generate_preview();
+            generate_link_preview();
             last_preview = preview;
         }
 
