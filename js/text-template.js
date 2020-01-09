@@ -358,7 +358,7 @@ $(document).ready(function() {
             e.preventDefault();
         });
         $form.find(".tc-load-draft").click(function(e) {
-            open_load_draft_form();
+            toggle_load_draft_form();
             check_tag_helper(this);
             e.preventDefault();
         });
@@ -460,18 +460,16 @@ $(document).ready(function() {
         resize_tag_helper();        
     }
 
+    function toggle_load_draft_form() {
+        $(".tc-load-draft-form").toggleClass("tc-disabled");
+    }
+
     function open_load_draft_form() {
-        $(".tc-load-draft").addClass("tc-disabled");
         $(".tc-load-draft-form").removeClass("tc-disabled");
-        $(".tc-draft-left a").addClass("tc-small");
-        $(".tc-draft-right").addClass("tc-big");
     }
 
     function close_load_draft_form() {
-        $(".tc-load-draft").removeClass("tc-disabled");
         $(".tc-load-draft-form").addClass("tc-disabled");
-        $(".tc-draft-left a").removeClass("tc-small");
-        $(".tc-draft-right").removeClass("tc-big");
     }
 
     function resize_textarea(target) {
