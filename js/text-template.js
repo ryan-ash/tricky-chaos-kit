@@ -461,15 +461,15 @@ $(document).ready(function() {
     }
 
     function toggle_load_draft_form() {
-        $(".tc-load-draft-form").toggleClass("tc-disabled");
+        $(".tc-drafts").toggleClass("tc-disabled");
     }
 
     function open_load_draft_form() {
-        $(".tc-load-draft-form").removeClass("tc-disabled");
+        $(".tc-drafts").removeClass("tc-disabled");
     }
 
     function close_load_draft_form() {
-        $(".tc-load-draft-form").addClass("tc-disabled");
+        $(".tc-drafts").addClass("tc-disabled");
     }
 
     function resize_textarea(target) {

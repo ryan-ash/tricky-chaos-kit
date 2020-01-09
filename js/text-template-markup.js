@@ -22,17 +22,12 @@ var form_content = `
             <div tabindex="0" class="tc-save-draft-complete tc-button tc-disabled fa fa-check"></div>
             <div tabindex="0" class="tc-load-draft tc-button fa fa-arrow-down"></div>
         </div>
-        <div class="tc-drafts">
-            <div class="tc-draft-right tc-draft-column">
-                <div class="tc-load-draft-form tc-disabled">
-                    <div class="tc-select-wrapper">
-                        <select class="tc-draft-list">
-                        </select>
-                    </div>
-                    <div tabindex="0" class="tc-load tc-button fa fa-upload"></div>
-                    <div tabindex="0" class="tc-delete tc-button fa fa-trash-o"></div>
-                </div>
+        <div class="tc-drafts tc-disabled">
+            <div class="tc-select-wrapper">
+                <select class="tc-draft-list"></select>
             </div>
+            <div tabindex="0" class="tc-load tc-button fa fa-upload"></div>
+            <div tabindex="0" class="tc-delete tc-button fa fa-trash-o"></div>
         </div>
     </div>
     <div class="tc-title-wrapper"></div>
