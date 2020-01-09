@@ -37,6 +37,7 @@
 
 .purge footer span {
     color: #666 !important;
+    padding-bottom: 0 !important;
 }
 
 .purge footer > span:first-child {
@@ -44,10 +45,17 @@
 }
 
 .text-template .overlay-text-template {
-    /* position: absolute;
-    left: -540px;
-    top: 33px; */
-    max-width: 483px;
+    max-width: 560px;
+}
+
+.text-template .tc-wrapper {
+    position: relative;
+}
+
+.text-template .tc-wrapper .tc-button {
+    position: absolute;
+    right: -42px;
+    top: 0;
 }
 
 /* Fields */
@@ -66,7 +74,6 @@
     height: 35px; /* Increase input height */
     border-radius: 30px 10px;
     padding: 15px;
-    width: 208px;
     margin: 2px;
     margin-right: 0;
     transition: border 0.25s ease-out;
@@ -90,11 +97,7 @@
     padding: 8px 15px 15px !important;
     line-height: 17px;
     min-height: 57px !important;
-    min-width: 429px !important;
-}
-
-.text-template .tc-text {
-    width: 429px;
+    width: 100%;
 }
 
 .text-template .tc-text .ql-editor::before {
@@ -177,15 +180,26 @@
 
 .text-template .control-buttons .el-button {
     text-transform: uppercase;
-    width: 40% !important;
+    margin-right: 0;
+    display: flex !important;
+    flex: 1;
+}
+
+.text-template .control-buttons .el-button span {
+    margin: auto;
 }
 
 .text-template .control-buttons .el-form-item__content {
     margin-left: 0 !important;
+    display: flex;
 }
 
 .text-template .el-button:not(.el-button--text) {
     padding-top: 10px !important;
+}
+
+.text-template .cb-newpost-options label {
+    width: 166px !important;
 }
 
 .text-template .el-button:not(.el-button--text), .text-template .tc-button {
@@ -205,12 +219,6 @@
 .text-template .tc-text .ql-editor {
     overflow: visible;
     margin-left: 5px;
-}
-
-.text-template .tc-text-wrapper .tc-button {
-    position: absolute;
-    right: 1px;
-    top: 0;
 }
 
 .tc-wide-input .tc-button.fa, .tc-bottom-link .tc-button.fa, .tc-text-wrapper .tc-button.fa {
@@ -235,8 +243,40 @@
     padding-left: 13px !important;
 }
 
-.text-template .tc-form-footer:hover {
-    cursor: default;
+.text-template .tc-form-controls .tc-button-container {
+    display: flex;
+}
+
+.text-template .tc-button-container .tc-button {
+    display: flex;
+    flex: 1;
+}
+
+.text-template .tc-button-container .tc-button::before {
+    margin: auto;
+    color: #111;
+    font-weight: bold;
+}
+
+.text-template .tc-toggle-preview {
+    background-color: #6B5E3E !important;
+}
+
+.text-template .tc-clear-form {
+    background-color: #6A3D3F !important;
+}
+
+.text-template .tc-save-draft {
+    background-color: #365833 !important;
+}
+
+.text-template .tc-save-draft-complete {
+    background-color: #4f4 !important;
+    color: #000 !important;
+}
+
+.text-template .tc-load-draft {
+    background-color: #2E3349 !important;
 }
 
 .text-template .tc-button:hover, .text-template .tc-text-button:hover, .text-template select:hover, .text-template .el-button:not(.el-button--text):hover {
@@ -258,10 +298,7 @@
     background-color: #3e723e !important;
 }
 
-.text-template .tc-clear-form {
-    background-color: #cc3e3e !important;
-}
-
+/* todo: delete?.. */
 .text-template .tc-text-button {
     transition: color 0.25s ease-out, background 0.25s ease-out;
 }
@@ -288,20 +325,27 @@
 }
 
 .text-template .keyboard-button-wrapper {
-    margin-right: 0 !important;
+    flex: 1;
+    display: flex;
 }
 
 .text-template .keyboard-button-wrapper > button {
     margin: 0 !important;
     text-transform: none !important;
+    width: 100%;
 }
 
 .text-template .tc-wide-input input {
-    width: 429px !important;
+    width: 560px !important;
+}
+
+.text-template .tc-bottom-link {
+    display: flex;
 }
 
 .text-template .tc-bottom-link-input {
-    width: 212px !important;
+    display: flex;
+    flex: 1;
 }
 
 .text-template .tc-disabled {
@@ -414,11 +458,6 @@
     padding-left: 11px !important;
 }
 
-.text-template .tc-save-draft-complete {
-    background-color: #4f4 !important;
-    color: #000 !important;
-}
-
 .text-template .tc-tag-helper {
     overflow: hidden;
     height: 0;
@@ -432,12 +471,6 @@
 
 .text-template .tc-tag-view {
     margin: 0 10px;
-}
-
-.tc-tag-helper .tc-button {
-    position: absolute;
-    right: 0;
-    top: 10px;
 }
 
 .tc-tag-helper .tc-cancel {
