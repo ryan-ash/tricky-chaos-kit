@@ -230,24 +230,38 @@
     padding-left: 13px !important;
 }
 
+.text-template .newpost {
+    padding-top: 5px !important;
+}
+
+.text-template .tc-form-controls {
+    margin-bottom: 20px;
+}
+
 .text-template .tc-form-controls .tc-button-container {
     display: flex;
 }
 
-.text-template .tc-button-container .tc-button {
+.text-template .tc-top-button {
     display: flex;
     flex: 1;
     outline: 0;
+    border-radius: 30px 10px;
+    padding: 5px;
+    margin: 2px;
+    transition: background 0.25s ease-out;
+    font-size: 14px;
 }
 
-.text-template .tc-button-container .tc-button:focus {
-    border: 2px solid rgba(40, 35, 59, 0);
-}
-
-.text-template .tc-button-container .tc-button::before {
+.text-template .tc-top-button::before {
     margin: auto;
     color: #111;
     font-weight: bold;
+}
+
+.text-template .tc-top-button:hover {
+    cursor: pointer;
+    background-color: #777 !important;
 }
 
 .text-template .tc-toggle-preview {
@@ -263,7 +277,7 @@
 }
 
 .text-template .tc-save-draft-complete {
-    background-color: #4f4 !important;
+    background-color: #44FF44 !important;
     color: #000 !important;
 }
 
@@ -342,12 +356,6 @@
 
 .text-template .tc-disabled {
     display: none !important;
-}
-
-.text-template .newpost {
-    /* position: relative; */
-    /* overflow: visible; */
-    /* margin-right: -700px; */
 }
 
 .text-template .ql-editor {

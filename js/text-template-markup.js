@@ -16,11 +16,11 @@ var overlay_markup = `
 var form_content = `
     <div class="tc-form-controls">
         <div class="tc-button-container">
-            <div tabindex="0" class="tc-toggle-preview tc-button fa fa-eye"></div>
-            <div tabindex="0" class="tc-clear-form tc-button fa fa-trash-o"></div>
-            <div tabindex="0" class="tc-save-draft tc-button fa fa-floppy-o"></div>
-            <div tabindex="0" class="tc-save-draft-complete tc-button tc-disabled fa fa-check"></div>
-            <div tabindex="0" class="tc-load-draft tc-button fa fa-arrow-down"></div>
+            <div tabindex="0" class="tc-toggle-preview tc-top-button fa fa-eye"></div>
+            <div tabindex="0" class="tc-clear-form tc-top-button fa fa-trash-o"></div>
+            <div tabindex="0" class="tc-save-draft tc-top-button fa fa-floppy-o"></div>
+            <div tabindex="0" class="tc-save-draft-complete tc-top-button tc-disabled fa fa-check"></div>
+            <div tabindex="0" class="tc-load-draft tc-top-button fa fa-arrow-down"></div>
         </div>
         <div class="tc-drafts tc-disabled">
             <div class="tc-select-wrapper">
