@@ -530,6 +530,9 @@ $(document).ready(function() {
             resize_tag_helper();
             enable_tag_hotkeys();
             $form.find(".tc-tag-helper .tc-button").attr("tabindex", 0);
+            setTimeout(function() {
+                $(".tc-tag-helper").css("overflow", "visible");
+            }, 250);
         } else {
             $form.find(".tc-tag-helper").css({
                 height: 0,
@@ -537,6 +540,7 @@ $(document).ready(function() {
             });
             disable_tag_hotkeys();
             $form.find(".tc-tag-helper .tc-button").attr("tabindex", "");
+            $(".tc-tag-helper").css("overflow", "hidden");
         }
     }
 

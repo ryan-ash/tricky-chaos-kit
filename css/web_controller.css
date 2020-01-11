@@ -268,6 +268,8 @@
     font-weight: bold;
 }
 
+/* menu color scheme: https://paletton.com/#uid=75B150kdvdv98oPcfjTjTcfoP98 */
+
 .text-template .tc-top-button:hover {
     cursor: pointer;
     background-color: #777 !important;
@@ -436,15 +438,22 @@
     transition: height 0.25s ease-out, padding 0.25s ease-out, margin 0.25s ease-out;
     color: #666;
     position: relative;
-    width: 475px;
+}
+
+.text-template .tc-tag-helper-edit {
+    width: calc(100% - 2px);
 }
 
 .text-template .tc-tag-view {
     margin: 0 10px;
 }
 
+.tc-tag-helper .tc-accept, .tc-tag-helper .tc-edit {    
+    top: 10px !important;
+}
+
 .tc-tag-helper .tc-cancel {
-    top: 42px;
+    top: 42px !important;
 }
 
 .text-template .tc-tag {
