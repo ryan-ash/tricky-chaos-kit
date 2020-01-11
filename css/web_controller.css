@@ -448,12 +448,12 @@
     margin: 0 10px;
 }
 
-.tc-tag-helper .tc-accept, .tc-tag-helper .tc-edit {    
+.tc-tag-helper .tc-button {    
     top: 10px !important;
 }
 
 .tc-tag-helper .tc-cancel {
-    top: 42px !important;
+    right: -80px !important;
 }
 
 .text-template .tc-tag {
