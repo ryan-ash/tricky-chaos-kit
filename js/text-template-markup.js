@@ -22,7 +22,7 @@ var form_content = `
             <div tabindex="0" class="tc-save-draft-complete tc-top-button tc-disabled fa fa-check"></div>
             <div tabindex="0" class="tc-load-draft tc-top-button fa fa-arrow-down"></div>
         </div>
-        <div class="tc-drafts tc-disabled tc-wrapper">
+        <div class="tc-drafts tc-hidden tc-wrapper">
             <div class="tc-select-wrapper">
                 <select class="tc-draft-list"></select>
             </div>

@@ -247,6 +247,7 @@ $(document).ready(function() {
     function build_drafts() {
         $select = $form.find(".tc-draft-list");
         $select.empty();
+        default_draft_option = "<option value='no'>[no drafts]</option>";
         for (var i in saved_drafts) {
             draft = saved_drafts[i];
             title_amount = draft.titles.length;
@@ -254,6 +255,9 @@ $(document).ready(function() {
             draft_option = "<option value='" + i + "'>" + i + ": " + draft_name + "</option>";
             $(draft_option).val(i);
             $select.append(draft_option);
+        }
+        if (saved_drafts.length == 0) {
+            $select.append(default_draft_option);
         }
     }
 
@@ -362,12 +366,12 @@ $(document).ready(function() {
             check_tag_helper(this);
             e.preventDefault();
         });
-        $form.find(".tc-load-draft-form .tc-load").click(function(e) {
+        $form.find(".tc-drafts .tc-load").click(function(e) {
             e.preventDefault();
             check_tag_helper(this);
             load_selected_draft();
         });
-        $form.find(".tc-load-draft-form .tc-delete").click(function(e) {
+        $form.find(".tc-drafts .tc-delete").click(function(e) {
             e.preventDefault();
             check_tag_helper(this);
             delete_selected_draft();
@@ -461,15 +465,18 @@ $(document).ready(function() {
     }
 
     function toggle_load_draft_form() {
-        $(".tc-drafts").toggleClass("tc-disabled");
-    }
+        $(".tc-drafts").toggleClass("tc-visible");
 
-    function open_load_draft_form() {
-        $(".tc-drafts").removeClass("tc-disabled");
-    }
-
-    function close_load_draft_form() {
-        $(".tc-drafts").addClass("tc-disabled");
+        // a temporary clutch
+        if ($(".tc-drafts").hasClass("tc-visible")) {
+            setTimeout(function() {
+                $(".tc-drafts").css("overflow", "visible");
+            }, 250);
+            $(".tc-load-draft").addClass("tc-active");
+        } else {
+            $(".tc-drafts").css("overflow", "hidden");
+            $(".tc-load-draft").removeClass("tc-active");
+        }
     }
 
     function resize_textarea(target) {
@@ -770,7 +777,7 @@ $(document).ready(function() {
 
     function load_selected_draft() {
         $selected_option = $form.find(".tc-draft-list option:selected");
-        if (!$selected_option.length)
+        if (!$selected_option.length || $selected_option.val() == "no")
             return;
         
         selected_id = $selected_option.val();
@@ -784,7 +791,6 @@ $(document).ready(function() {
         $form.find(".tc-draft-list option:selected").removeAttr('selected');
         $form.find(".tc-draft-list option[value='" + selected_id + "']").attr('selected', true);
         add_handlers();
-        open_load_draft_form();
 
         parse_post();
     }
@@ -808,7 +814,6 @@ $(document).ready(function() {
     }
 
     function on_data_changed() {
-        close_load_draft_form();
         reset_save_draft_button();
     }
     
