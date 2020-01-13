@@ -345,13 +345,6 @@ $(document).ready(function() {
             e.preventDefault();
         });
 
-        // todo: delete?..
-        $form.find(".tc-parse").click(function(e) {
-            parse_post();
-            check_tag_helper(this);
-            e.preventDefault();
-        });
-
         $form.find(".tc-toggle-preview").click(function(e) {
             toggle_preview();
             check_tag_helper(this);
@@ -426,6 +419,20 @@ $(document).ready(function() {
         $form.find(".tc-tag-helper .tc-cancel").click(function(e) {
             switch_tag_helper_edit(false, false);
         });
+
+        // todo: fix broken handles after reenabling
+        $buttons_headers = $(".cb-buttons > .form-item-like .label");
+        $reactions_button = $($buttons_headers[0]);
+        $urls_button = $($buttons_headers[1]);
+
+        $reactions_button.click(function(e) {
+            toggle_reactions();
+        });
+        $urls_button.click(function(e) {
+            toggle_url_buttons();
+        });
+
+        // todo: settings handle
     }
 
     function get_overlay_class() {
@@ -624,15 +631,18 @@ $(document).ready(function() {
     function toggle_reactions() {
         $reactions = $($(".cb-buttons > .form-item-like .keyboard")[0]);
         $reactions.toggleClass("tc-disabled");
+        // todo: change reactions button
     }
 
     function toggle_url_buttons() {
         $reactions = $($(".cb-buttons > .form-item-like .keyboard")[1]);
         $reactions.toggleClass("tc-disabled");
+        // todo: change urls button
     }
 
     function toggle_switches() {
         $switchers = $(".cb-switchers").toggleClass("tc-disabled");
+        // todo: change switches button
     }
 
     function update_tags(tags) {

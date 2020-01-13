@@ -490,3 +490,23 @@
 }
 
 /* todo: add preview style */
+
+/* todo: add form buttons style */
+
+/* todo: move form style here */
+/* =========== FORM CHANGES ============ */
+
+.text-template .cb-newpost-options .cb-buttons .form-item-like {
+    padding-bottom: 0 !important;
+}
+
+.text-template .cb-newpost-options .cb-buttons .label {
+    transition: opacity 0.25s ease-out;
+    opacity: 0.8;
+    margin: auto;
+}
+
+.text-template .cb-newpost-options .cb-buttons .label:hover {
+    cursor: pointer;
+    opacity: 1;
+}
