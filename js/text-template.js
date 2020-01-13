@@ -432,7 +432,12 @@ $(document).ready(function() {
             toggle_url_buttons();
         });
 
-        // todo: settings handle
+        // todo: better settings handle, add separate element
+        $body.find(".cb-newpost-options .cb-switchers").click(function(e) {
+            if (e.offsetY < 16) {
+                toggle_switches();
+            }
+        });
     }
 
     function get_overlay_class() {
@@ -641,7 +646,7 @@ $(document).ready(function() {
     }
 
     function toggle_switches() {
-        $switchers = $(".cb-switchers").toggleClass("tc-disabled");
+        $switchers = $(".cb-switchers").toggleClass("tc-hidden");
         // todo: change switches button
     }
 
