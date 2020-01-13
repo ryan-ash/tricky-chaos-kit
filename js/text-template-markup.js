@@ -1,5 +1,5 @@
 var overlay_markup = `
-    <div class="OUTER_CLASS_NAME">
+    <div class="overlay-text-template">
         <div class="tc-form"></div>
 
         <div class="tc-ex">
@@ -9,7 +9,6 @@ var overlay_markup = `
             <a href="">Export</a>
             <a href="">Import</a>
         </div>
-        <!-- todo: add preview button -->
     </div>
 `;
 
@@ -30,32 +29,34 @@ var form_content = `
             <div tabindex="0" class="tc-delete tc-button fa fa-trash-o"></div>
         </div>
     </div>
-    <div class="tc-title-wrapper"></div>
-    <div tabindex="0" class="tc-add tc-button tc-add-title fa fa-plus"></div><br/>
-    <div class="tc-tag-selector tc-wide-input tc-wrapper">
-        <input type="text" class="tc-text-input tc-tag-selector-input" placeholder="#tags">
-        <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
-        <div class="tc-tag-helper">
-            <div class="tc-tag-view"></div>
-            <textarea class="tc-tag-helper-edit tc-disabled" placeholder="Your #tag #map could be here..."></textarea>
-            <div tabindex="0" class="tc-edit tc-button fa fa-pencil"></div>
-            <div tabindex="0" class="tc-accept tc-disabled tc-button fa fa-floppy-o"></div>
-            <div tabindex="0" class="tc-cancel tc-disabled tc-button fa fa-times"></div>
+    <div class="tc-form-inputs">
+        <div class="tc-title-wrapper"></div>
+        <div tabindex="0" class="tc-add tc-button tc-add-title fa fa-plus"></div><br/>
+        <div class="tc-tag-selector tc-wide-input tc-wrapper">
+            <input type="text" class="tc-text-input tc-tag-selector-input" placeholder="#tags">
+            <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
+            <div class="tc-tag-helper">
+                <div class="tc-tag-view"></div>
+                <textarea class="tc-tag-helper-edit tc-disabled" placeholder="Your #tag #map could be here..."></textarea>
+                <div tabindex="0" class="tc-edit tc-button fa fa-pencil"></div>
+                <div tabindex="0" class="tc-accept tc-disabled tc-button fa fa-floppy-o"></div>
+                <div tabindex="0" class="tc-cancel tc-disabled tc-button fa fa-times"></div>
+            </div>
         </div>
-    </div>
-    <div class="tc-preview-link tc-wide-input tc-wrapper">
-        <input type="text" class="tc-text-input tc-preview-link-input" placeholder="Preview Link">
-        <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
-    </div>
-    <div class="tc-text-wrapper tc-wrapper">
-        <div id="tc-text" class="tc-text"></div>
-        <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
-    </div>
-    <div class="tc-bottom-link-wrapper"></div>
-    <div tabindex="0" class="tc-add tc-button tc-add-bottom-link fa fa-plus"></div><br/>
-    <div class="tc-ps-text tc-wide-input tc-wrapper">
-        <input type="text" class="tc-text-input tc-ps-text-input" placeholder="PS">
-        <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
+        <div class="tc-preview-link tc-wide-input tc-wrapper">
+            <input type="text" class="tc-text-input tc-preview-link-input" placeholder="Preview Link">
+            <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
+        </div>
+        <div class="tc-text-wrapper tc-wrapper">
+            <div id="tc-text" class="tc-text"></div>
+            <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
+        </div>
+        <div class="tc-bottom-link-wrapper"></div>
+        <div tabindex="0" class="tc-add tc-button tc-add-bottom-link fa fa-plus"></div><br/>
+        <div class="tc-ps-text tc-wide-input tc-wrapper">
+            <input type="text" class="tc-text-input tc-ps-text-input" placeholder="PS">
+            <div tabindex="0" class="tc-reset tc-button fa fa-minus"></div>
+        </div>
     </div>
 `;
 

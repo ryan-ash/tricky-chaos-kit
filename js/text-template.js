@@ -52,8 +52,6 @@ $(document).ready(function() {
 
     // === main ===
 
-    overlay_markup = overlay_markup.replace('OUTER_CLASS_NAME', get_overlay_class().substring(1));
-
     if ($.cookie(save)) {
         enable();
     }
@@ -120,12 +118,17 @@ $(document).ready(function() {
         setup_textarea();
         generate_link_preview();
         add_handlers();
+        toggle_preview();
+        toggle_reactions();
+        toggle_url_buttons();
+        toggle_switches();
     }
 
     function disable() {
         $body.find(get_overlay_class()).remove();
         $body.find(".tc-link-preview").remove();
         $footer.css("max-width", "");
+        $body.find(".tc-disabled").removeClass("tc-disabled");
 
         $body.removeClass(feature_name);
         $.cookie(save, null);
@@ -282,10 +285,6 @@ $(document).ready(function() {
         $iframe_instance.attr("src", embed_link);
     }
 
-    function toggle_post_preview() {
-        // todo: add toggle post preview logic
-    }
-
     function get_embed_link(source) {
         is_long_yt = source.search("youtube.com") != -1;
         is_short_yt = source.search("youtu.be") != -1;
@@ -353,6 +352,11 @@ $(document).ready(function() {
             e.preventDefault();
         });
 
+        $form.find(".tc-toggle-preview").click(function(e) {
+            toggle_preview();
+            check_tag_helper(this);
+            e.preventDefault();
+        });
         $form.find(".tc-save-draft").click(function(e) {
             save_draft(current_post);
             build_drafts();
@@ -381,8 +385,6 @@ $(document).ready(function() {
             check_tag_helper(this);
             e.preventDefault();
         });
-
-        // todo: add preview button handling
 
         // textarea auto-resize
         $form.find('textarea').each(function () {
@@ -607,6 +609,32 @@ $(document).ready(function() {
         $form.find(".tc-tag-helper")[0].scrollTop = 0;
     }
 
+    function toggle_preview() {
+        $post = $(".cb-textarea-wrapper");
+        $post.toggleClass("tc-disabled");
+        if ($post.hasClass("tc-disabled")) {
+            $(".tc-toggle-preview").removeClass("tc-active");
+            $(".tc-form-inputs").removeClass("tc-disabled");
+        } else {
+            $(".tc-toggle-preview").addClass("tc-active");
+            $(".tc-form-inputs").addClass("tc-disabled");
+        }
+    }
+
+    function toggle_reactions() {
+        $reactions = $($(".cb-buttons > .form-item-like .keyboard")[0]);
+        $reactions.toggleClass("tc-disabled");
+    }
+
+    function toggle_url_buttons() {
+        $reactions = $($(".cb-buttons > .form-item-like .keyboard")[1]);
+        $reactions.toggleClass("tc-disabled");
+    }
+
+    function toggle_switches() {
+        $switchers = $(".cb-switchers").toggleClass("tc-disabled");
+    }
+
     function update_tags(tags) {
         tags.sort();
         tags_string = tags.join(" ");
@@ -792,9 +820,11 @@ $(document).ready(function() {
         build_form();
         setup_textarea();
         build_drafts();
+        add_handlers();
+
+        $(".cb-textarea-wrapper").addClass("tc-disabled");
         $form.find(".tc-draft-list option:selected").removeAttr('selected');
         $form.find(".tc-draft-list option[value='" + selected_id + "']").attr('selected', true);
-        add_handlers();
 
         parse_post();
     }

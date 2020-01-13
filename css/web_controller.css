@@ -279,6 +279,10 @@
     background-color: #6B5E3E !important;
 }
 
+.text-template .tc-toggle-preview.tc-active {
+    background-color: #78A274 !important;
+}
+
 .text-template .tc-clear-form {
     background-color: #6A3D3F !important;
 }
