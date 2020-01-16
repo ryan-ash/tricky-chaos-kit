@@ -117,6 +117,7 @@ $(document).ready(function() {
         build_drafts();
         setup_textarea();
         generate_link_preview();
+        generate_options_button();
         add_handlers();
         toggle_preview();
         toggle_reactions();
@@ -175,7 +176,7 @@ $(document).ready(function() {
 
         tag_filter = /#[0-9a-zA-Z_]+/g;
         tag_selector_help_html = tag_selector_help.trim().split("\n").join("<br />");
-        tag_selector_help_html = tag_selector_help_html.replace(tag_filter, "<div class='tc-tag tc-text-button tc-dynamic-width'>$&</div>")
+        tag_selector_help_html = tag_selector_help_html.replace(tag_filter, "<div class='tc-tag tc-dynamic-width'>$&</div>")
 
         $tag_view.html(tag_selector_help_html);
         $tag_helper_edit.val(tag_selector_help.trim());
@@ -266,13 +267,12 @@ $(document).ready(function() {
 
     function generate_link_preview() {
         embed_link = get_embed_link(current_post.preview_link);
-        $wc_form = $root.find('.el-form');
-        $sibling = $wc_form.find(".cb-textarea-wrapper");
+        $sibling = $root.find(".cb-textarea-wrapper");
 
-        $wc_form.find('.tc-link-preview').remove();
-        $wc_form.append(link_preview_markup);
+        $root.find('.tc-link-preview').remove();
+        $root.append(link_preview_markup);
 
-        $instance = $wc_form.find(".tc-link-preview");
+        $instance = $root.find(".tc-link-preview");
         $instance.insertAfter($sibling);
 
         if (embed_link == "") {
@@ -281,7 +281,7 @@ $(document).ready(function() {
             $instance.removeClass("tc-disabled");
         }
 
-        $iframe_instance = $wc_form.find(".tc-link-preview iframe");
+        $iframe_instance = $root.find(".tc-link-preview iframe");
         $iframe_instance.attr("src", embed_link);
     }
 
@@ -298,6 +298,15 @@ $(document).ready(function() {
             key = source.substr(source.search(".be/") + 4);
         }
         return "https://youtube.com/embed/" + key;
+    }
+
+    function generate_options_button() {
+        $options = $body.find(".cb-newpost-options .cb-switchers");
+        $root.append(options_button_markup);
+
+        $instance = $body.find(".tc-options-button");
+        console.log($instance);
+        $instance.insertBefore($options);
     }
 
     function add_handlers() {
@@ -432,11 +441,8 @@ $(document).ready(function() {
             toggle_url_buttons();
         });
 
-        // todo: better settings handle, add separate element
-        $body.find(".cb-newpost-options .cb-switchers").click(function(e) {
-            if (e.offsetY < 16) {
-                toggle_switches();
-            }
+        $body.find(".tc-options-button").click(function(e) {
+            toggle_switches();
         });
     }
 
@@ -647,6 +653,8 @@ $(document).ready(function() {
 
     function toggle_switches() {
         $switchers = $(".cb-switchers").toggleClass("tc-hidden");
+        $option_on = $(".tc-options-button .on").toggleClass("tc-disabled");
+        $option_off = $(".tc-options-button .off").toggleClass("tc-disabled");
         // todo: change switches button
     }
 

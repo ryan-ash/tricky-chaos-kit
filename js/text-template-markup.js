@@ -80,3 +80,10 @@ var link_preview_markup = `
         <iframe src="LINK" width="560" height="315" frameborder="0"></iframe>
     </div>
 `;
+
+var options_button_markup = `
+    <div class="tc-options-button">
+        <span class="label on fa fa-caret-down tc-disabled"></span>
+        <span class="label off fa fa-caret-up"></span>
+    </div>
+`;

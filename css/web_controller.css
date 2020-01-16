@@ -99,7 +99,7 @@
     border: 2px solid rgba(80, 69, 121, 0.901); /* 2px white border */
 }
 
-.text-template div[tabindex="0"]:focus, .text-template .tc-text-button:focus {
+.text-template div[tabindex="0"]:focus, .text-template .tc-tag:focus {
     outline: 0;
 }
 
@@ -304,7 +304,7 @@
     background-color: #656B87 !important;
 }
 
-.text-template .tc-button:hover, .text-template .tc-text-button:hover, .text-template select:hover, .text-template .el-button:not(.el-button--text):hover {
+.text-template .tc-button:hover, .text-template .tc-tag:hover, .text-template select:hover, .text-template .el-button:not(.el-button--text):hover {
     cursor: pointer;
 }
 
@@ -324,11 +324,11 @@
 }
 
 /* todo: delete?.. */
-.text-template .tc-text-button {
+.text-template .tc-tag {
     transition: color 0.25s ease-out, background 0.25s ease-out;
 }
 
-.text-template .tc-text-button:hover, .text-template .tc-text-button:focus {
+.text-template .tc-tag:hover, .text-template .tc-tag:focus {
     background-color: #6c2 !important;
     color: #111;
 }
@@ -474,18 +474,18 @@
     padding-right: 5px !important;
 }
 
-.text-template .tc-text-button.tc-selected {
+.text-template .tc-tag.tc-selected {
     padding-left: 2px;
     padding-right: 4px;
     background-color: rgb(18, 104, 233) !important;
     color: #111;
 }
 
-.text-template .tc-text-button.tc-selected:focus, .text-template .tc-text-button.tc-selected:hover {
+.text-template .tc-tag.tc-selected:focus, .text-template .tc-tag.tc-selected:hover {
     background-color: rgb(18, 233, 233) !important;
 }
 
-.text-template .tc-text-button.tc-dynamic-width {
+.text-template .tc-tag.tc-dynamic-width {
     width: auto !important;
 }
 
@@ -497,52 +497,52 @@
 /* =========== FORM CHANGES ============ */
 
 .text-template .cb-newpost-options .cb-buttons .form-item-like {
-    padding-bottom: 0 !important;
+    padding-bottom: 5px !important;
 }
 
-.text-template .cb-newpost-options .cb-buttons .label, .text-template .cb-newpost-options .cb-switchers:before {
+.text-template .cb-newpost-options .cb-buttons .label, .text-template .tc-options-button {
     transition: opacity 0.25s ease-out;
     opacity: 0.8;
     margin: auto;
 }
 
-.text-template .cb-newpost-options .cb-buttons .label:hover, .text-template .cb-newpost-options .cb-switchers:hover:before {
+.text-template .tc-options-button {
+    text-align: center;
+}
+
+.text-template .cb-newpost-options .cb-buttons .label:hover, .text-template .tc-options-button {
     cursor: pointer;
     opacity: 1;
     color: #4e7e4d !important;
 }
 
-.text-template .cb-newpost-options > .el-form-item:nth-of-type(3) {
+.text-template .cb-newpost-options > .el-form-item:nth-of-type(4) {
     display: flex;
     padding-left: 20px;
 }
 
-.text-template .cb-newpost-options > .el-form-item:nth-of-type(3) > * {
+.text-template .cb-newpost-options > .el-form-item:nth-of-type(4) > * {
     display: flex;
     flex: 1;
 }
 
-.text-template .cb-newpost-options > .el-form-item:nth-of-type(3) .el-form-item__content {
+.text-template .cb-newpost-options > .el-form-item:nth-of-type(4) .el-form-item__content {
     margin-left: 0 !important;
 }
 
-.text-template .cb-newpost-options > .el-form-item:nth-of-type(3) .el-select {
+.text-template .cb-newpost-options > .el-form-item:nth-of-type(4) .el-select {
     width: 100%;
+}
+
+.text-template .cb-newpost-options .cb-buttons .keyboard-row:last-child .el-button {
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .text-template .cb-newpost-options .cb-switchers {
     margin-bottom: 20px !important;
     padding-left: 20px;
-}
-
-.text-template .cb-newpost-options .cb-switchers:before {
-    content: "Options";
-    text-align: center;
-    display: block !important;
-    font-size: 14px;
-    font-weight: 500;
-    color: #6f7276;
-    padding-right: 20px;
+    transition: height 0.25s ease-out;
 }
 
 .text-template .cb-newpost-options .cb-switchers.tc-hidden {
