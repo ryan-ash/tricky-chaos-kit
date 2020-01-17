@@ -128,8 +128,10 @@ $(document).ready(function() {
     function disable() {
         $body.find(get_overlay_class()).remove();
         $body.find(".tc-link-preview").remove();
+        $body.find(".tc-options-button").remove();
         $footer.css("max-width", "");
         $body.find(".tc-disabled").removeClass("tc-disabled");
+        $body.find(".tc-hidden").removeClass("tc-hidden");
 
         $body.removeClass(feature_name);
         $.cookie(save, null);
@@ -429,8 +431,8 @@ $(document).ready(function() {
             switch_tag_helper_edit(false, false);
         });
 
-        // todo: fix broken handles after reenabling
         $buttons_headers = $(".cb-buttons > .form-item-like .label");
+        $buttons_headers.unbind("click");
         $reactions_button = $($buttons_headers[0]);
         $urls_button = $($buttons_headers[1]);
 
@@ -441,6 +443,7 @@ $(document).ready(function() {
             toggle_url_buttons();
         });
 
+        $body.find(".tc-options-button").unbind("click");
         $body.find(".tc-options-button").click(function(e) {
             toggle_switches();
         });
