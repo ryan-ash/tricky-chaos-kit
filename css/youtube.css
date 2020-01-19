@@ -1,8 +1,9 @@
-.purge #content #masthead, .purge #guide-spacer, .purge #info, .purge #meta, .purge #comments, .purge #related, .purge #playlist {
+.purge ytd-app[is-watch-page] #content #masthead, .purge ytd-app[is-watch-page] #guide-spacer, .purge ytd-app[is-watch-page] #info,
+.purge ytd-app[is-watch-page] #meta, .purge ytd-app[is-watch-page] #comments, .purge ytd-app[is-watch-page] #related, .purge ytd-app[is-watch-page] #playlist {
     display: none;
 }
 
-.purge #page-manager.ytd-app {
+.purge ytd-app[is-watch-page] #page-manager.ytd-app {
     --ytd-toolbar-offset: 0;
     margin-top: 0;
 }
