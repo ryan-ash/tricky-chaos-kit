@@ -1,6 +1,6 @@
 .purge #content #masthead div#buttons > .ytd-masthead:not(ytd-notification-topbar-button-renderer), .purge #content #masthead #logo #country-code,
-.purge ytd-app[is-watch-page] #guide-spacer, .purge ytd-app[is-watch-page] #info, .purge ytd-app[is-watch-page] #meta, 
-.purge ytd-app[is-watch-page] #comments, .purge ytd-app[is-watch-page] #related, .purge ytd-app[is-watch-page] #playlist {
+.purge ytd-app[is-watch-page] #guide-spacer, .purge ytd-app[is-watch-page] #info .super-title, .purge ytd-app[is-watch-page] #info #info, 
+.purge ytd-app[is-watch-page] #meta, .purge ytd-app[is-watch-page] #comments, .purge ytd-app[is-watch-page] #related, .purge ytd-app[is-watch-page] #playlist {
     display: none;
 }
 
