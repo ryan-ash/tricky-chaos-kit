@@ -63,6 +63,9 @@ $(document).ready(function() {
     }
 
     function apply_windows_addons() {
+        if ($("ytd-app[is-watch-page]").length > 0) {
+            return;
+        }
         $mini_guide = $("ytd-mini-guide-renderer");
         currently_hidden = $mini_guide.attr("hidden");
         if (!currently_hidden) {

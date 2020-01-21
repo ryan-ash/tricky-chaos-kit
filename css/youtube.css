@@ -4,6 +4,15 @@
     display: none;
 }
 
+.purge ytd-app[is-watch-page] {
+    display: flex;
+    align-items: center;
+}
+
+.purge ytd-app[is-watch-page] #content {
+    flex: 1;
+}
+
 .purge #content #masthead #logo {
     width: 27px;
     overflow: hidden;
@@ -11,4 +20,16 @@
 
 .purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block {
     display: none;
+}
+
+.purge #end.ytd-masthead {
+    min-width: auto;
+}
+
+.purge #search-form.ytd-searchbox {
+    max-width: none;
+}
+
+.purge ytd-searchbox.ytd-masthead {
+    margin: 0 12px 0 24px;
 }
