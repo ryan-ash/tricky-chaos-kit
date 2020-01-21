@@ -47,6 +47,9 @@ $(document).ready(function() {
 
     function check_window_addons() {
         if (enabled) {
+            if (guide_collapsed) {
+                return;
+            }
             setTimeout(function() {
                 check_window_addons();
             }, 100);
@@ -60,9 +63,14 @@ $(document).ready(function() {
     }
 
     function apply_windows_addons() {
-        if (!$("ytd-mini-guide-renderer").attr("mini-guide-visible") && !guide_collapsed) {
+        $mini_guide = $("ytd-mini-guide-renderer");
+        currently_hidden = $mini_guide.attr("hidden");
+        if (!currently_hidden) {
             guide_collapsed = true;
+        }
+        if (!guide_collapsed) {
             $("#guide-button").click();
+            guide_collapsed = true;
         }
     }
 });
