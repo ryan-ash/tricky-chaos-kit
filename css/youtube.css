@@ -1,5 +1,6 @@
 .purge #content #masthead div#buttons > .ytd-masthead:not(ytd-notification-topbar-button-renderer), .purge #content #masthead #logo #country-code,
-.purge ytd-app[is-watch-page] #guide-spacer, .purge ytd-app[is-watch-page] #info .super-title, .purge ytd-app[is-watch-page] #info #info, 
+.purge ytd-app[is-watch-page] #guide-spacer, .purge ytd-app[is-watch-page] #info .super-title, .purge ytd-app[is-watch-page] #info #info-text, 
+.purge ytd-app[is-watch-page] #info #menu a #text, .purge ytd-app[is-watch-page] #info #menu ytd-menu-renderer > #button,
 .purge ytd-app[is-watch-page] #meta, .purge ytd-app[is-watch-page] #comments, .purge ytd-app[is-watch-page] #related, .purge ytd-app[is-watch-page] #playlist,
 .purge ytd-app[is-watch-page] #columns #secondary, .purge [page-subtype="home"] ytd-rich-section-renderer {
     display: none;
@@ -34,4 +35,21 @@
 .purge ytd-searchbox.ytd-masthead {
     margin-left: 24px;
     margin-right: 12px;
+}
+
+.purge ytd-app[is-watch-page] #info #menu-container {
+    margin-top: -40px;
+}
+
+.purge ytd-app[is-watch-page] #info #menu-container #sentiment {
+    width: 100% !important;
+}
+
+.purge ytd-app[is-watch-page] #info #info {
+    height: 10px;
+    margin-bottom: -5px;
+}
+
+.purge ytd-app[is-watch-page] #content #page-manager {
+    overflow: visible;
 }
