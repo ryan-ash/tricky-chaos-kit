@@ -21,7 +21,26 @@
 }
 
 .purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block {
-    display: none;
+    display: block;
+    overflow: hidden;
+    text-shadow: 0 0 3px #111;
+    position: absolute;
+    top: 0;
+    left: 5px;
+    z-index: 9000;
+    height: 0;
+    transition: height 0.25s ease-out, opacity 0.25s ease-out, top 0.25s ease-out;
+    opacity: 0.9;
+}
+
+.purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block a, .purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block span {
+    color: #fff !important;
+}
+
+.purge ytd-app:not([is-watch-page]) ytd-rich-item-renderer:hover #meta ytd-video-meta-block {
+    height: 40px;
+    opacity: 1;
+    top: -40px;
 }
 
 .purge #end.ytd-masthead {
