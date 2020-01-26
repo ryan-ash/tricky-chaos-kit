@@ -87,7 +87,6 @@ $(document).ready(function() {
             e.preventDefault();
             $(".js-add-checklist-menu")[0].click();
             $(".pop-over").addClass("checklist");
-            console.log("attempting to add checklists...");
             setTimeout(function() {
                 check_overlay_shown();
             }, 200);
@@ -99,10 +98,8 @@ $(document).ready(function() {
             setTimeout(function() {
                 check_overlay_shown();
             }, 100);
-            console.log("overlay still open check...");
             return;
         }
-        console.log("overlay closed...");
         $(".pop-over").removeClass("checklist");
     }
 });
