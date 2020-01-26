@@ -87,6 +87,7 @@ $(document).ready(function() {
             e.preventDefault();
             $(".js-add-checklist-menu")[0].click();
             $(".pop-over").addClass("checklist");
+            $("#id-checklist").val("to do");
             setTimeout(function() {
                 check_overlay_shown();
             }, 200);
