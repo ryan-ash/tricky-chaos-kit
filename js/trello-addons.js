@@ -85,7 +85,24 @@ $(document).ready(function() {
     function add_button_events() {
         $(".tc-add-checklist").click(function(e){
             e.preventDefault();
-            result = $(".js-add-checklist-menu")[0].click();
+            $(".js-add-checklist-menu")[0].click();
+            $(".pop-over").addClass("checklist");
+            console.log("attempting to add checklists...");
+            setTimeout(function() {
+                check_overlay_shown();
+            }, 200);
         });
+    }
+
+    function check_overlay_shown() {
+        if ($(".pop-over").hasClass("is-shown")) {
+            setTimeout(function() {
+                check_overlay_shown();
+            }, 100);
+            console.log("overlay still open check...");
+            return;
+        }
+        console.log("overlay closed...");
+        $(".pop-over").removeClass("checklist");
     }
 });

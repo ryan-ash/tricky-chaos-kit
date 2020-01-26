@@ -97,10 +97,13 @@
 }
 
 .trello-addons .pop-over {
-    top: 105px !important;
     right: 50% !important;
     left: auto !important;
     margin-right: -378px;
+}
+
+.trello-addons .pop-over.checklist {
+    top: 105px !important;
 }
 
 .trello-addons .mod-card-back-title {
