@@ -109,3 +109,7 @@
 .trello-addons .mod-card-back-title {
     width: 90% !important;
 }
+
+.trello-addons .tc-important {
+    box-shadow: -3px 0 0 #f11;
+}

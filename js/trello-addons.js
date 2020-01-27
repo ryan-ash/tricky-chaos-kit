@@ -62,6 +62,20 @@ $(document).ready(function() {
             return;
         }
 
+        // todo: heavily optimize this and move to a proper place
+        $checklist_items = $(".checklist-item");
+        $checklist_items.each(function() {
+            if ($(this).find(".checklist-item-details-text").text()[0] == "!") {
+                if (!$(this).hasClass("tc-important")) {
+                    $(this).addClass("tc-important");
+                }
+            } else {
+                if ($(this).hasClass("tc-important")) {
+                    $(this).removeClass("tc-important");
+                }
+            }
+        });
+
         $addon = $(".tc-add-checklist");
         if ($addon.length) {
             return;
