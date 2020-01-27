@@ -9,6 +9,7 @@ $(document).ready(function() {
     `;
     var enabled = false;
     var checklist_count = 0;
+    var check_delta = 333;
 
 
     // === main ===
@@ -54,7 +55,7 @@ $(document).ready(function() {
         if (enabled) {
             setTimeout(function() {
                 check_window_addons();
-            }, 100);
+            }, check_delta);
         }
 
         $target = $(".window-wrapper");
@@ -62,19 +63,7 @@ $(document).ready(function() {
             return;
         }
 
-        // todo: heavily optimize this and move to a proper place
-        $checklist_items = $(".checklist-item");
-        $checklist_items.each(function() {
-            if ($(this).find(".checklist-item-details-text").text()[0] == "!") {
-                if (!$(this).hasClass("tc-important")) {
-                    $(this).addClass("tc-important");
-                }
-            } else {
-                if ($(this).hasClass("tc-important")) {
-                    $(this).removeClass("tc-important");
-                }
-            }
-        });
+        apply_checklist_lightup();
 
         $addon = $(".tc-add-checklist");
         if ($addon.length) {
@@ -82,6 +71,27 @@ $(document).ready(function() {
         }
 
         apply_windows_addons();
+    }
+    
+    function apply_checklist_lightup() {
+        // todo: optimize this
+        $checklist_items = $(".checklist-item");
+        $checklist_items.each(function() {
+            item = $(this).find(".checklist-item-details-text").text().replace(/\./g, "");
+            mark = item[item.length-1];
+            switch(mark) {
+                case "!":
+                    $(this).addClass("tc-important");
+                    break;
+                case "?":
+                    $(this).addClass("tc-unsure");
+                    break;
+                default:
+                    $(this).removeClass("tc-important");
+                    $(this).removeClass("tc-unsure");
+                    break;
+            }
+        });
     }
 
     function apply_windows_addons() {
