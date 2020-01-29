@@ -1,6 +1,7 @@
 .purge .window-sidebar, .purge .window-header-inline-content, .purge .card-detail-data, .purge .add-comment-section, .purge .window-module,
-.purge .js-react-root, .purge .js-plugin-header-btns, .purge .mod-show-menu .board-header-btn-text, .purge .js-star-board, 
-.purge .board-header-btn-org-wrapper, .purge .board-header-btns.mod-left, .purge .open-card-composer .js-add-another-card, .purge .open-card-composer .js-add-a-card {
+.purge #header > div > *:not(:first-child), 
+.purge .js-plugin-header-btns, .purge .mod-show-menu .board-header-btn-text, .purge .js-star-board, .purge .board-header-btn-org-wrapper,
+.purge .board-header-btns.mod-left, .purge .open-card-composer .js-add-another-card, .purge .open-card-composer .js-add-a-card {
     display: none;
 }
 
@@ -72,6 +73,11 @@
     text-align: center;
 }
 
+.purge .list .list-card-labels {
+    position: absolute;
+    top: -5px;
+}
+
 .trello-addons .tc-add-checklist {
     color: #42526e;
     border-radius: 50%;
@@ -96,13 +102,24 @@
     content: "\E901";
 }
 
-.trello-addons .pop-over {
-    top: 105px !important;
+.trello-addons.window-up .pop-over {
     right: 50% !important;
     left: auto !important;
     margin-right: -378px;
 }
 
+.trello-addons .pop-over.checklist {
+    top: 105px !important;
+}
+
 .trello-addons .mod-card-back-title {
     width: 90% !important;
+}
+
+.trello-addons .tc-important {
+    box-shadow: -3px 0 0 #f11;
+}
+
+.trello-addons .tc-unsure {
+    box-shadow: -3px 0 0 #16f;
 }

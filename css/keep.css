@@ -1,6 +1,6 @@
 body.purge > div:nth-of-type(6) {
     opacity: 1 !important;
-    background-color: #555 !important;
+    background-color: #111 !important;
 }
 
 body.purge header {

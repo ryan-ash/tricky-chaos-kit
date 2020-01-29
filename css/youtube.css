@@ -1,8 +1,74 @@
-.purge #content #masthead, .purge #guide-spacer, .purge #info, .purge #meta, .purge #comments, .purge #related, .purge #playlist {
+.purge #content #masthead div#buttons > .ytd-masthead:not(ytd-notification-topbar-button-renderer), .purge #content #masthead #logo #country-code,
+.purge ytd-app[is-watch-page] #guide-spacer, .purge ytd-app[is-watch-page] #info .super-title, .purge ytd-app[is-watch-page] #info #info-text, 
+.purge ytd-app[is-watch-page] #info #menu a #text, .purge ytd-app[is-watch-page] #info #menu ytd-menu-renderer > #button,
+.purge ytd-app[is-watch-page] #meta, .purge ytd-app[is-watch-page] #comments, .purge ytd-app[is-watch-page] #related, .purge ytd-app[is-watch-page] #playlist,
+.purge ytd-app[is-watch-page] #columns #secondary, .purge [page-subtype="home"] ytd-rich-section-renderer {
     display: none;
 }
 
-.purge #page-manager.ytd-app {
-    --ytd-toolbar-offset: 0;
-    margin-top: 0;
+.purge:not(.no-scroll) ytd-app[is-watch-page] {
+    display: flex;
+    align-items: center;
+}
+
+.purge:not(.no-scroll) ytd-app[is-watch-page] #content {
+    flex: 1;
+}
+
+.purge #content #masthead #logo {
+    width: 27px;
+    overflow: hidden;
+}
+
+.purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block {
+    display: block;
+    overflow: hidden;
+    text-shadow: 0 0 3px #111;
+    position: absolute;
+    top: 0;
+    left: 5px;
+    z-index: 9000;
+    height: 0;
+    transition: height 0.25s ease-out, opacity 0.25s ease-out, top 0.25s ease-out;
+    opacity: 0.9;
+}
+
+.purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block a, .purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block span {
+    color: #fff !important;
+}
+
+.purge ytd-app:not([is-watch-page]) ytd-rich-item-renderer:hover #meta ytd-video-meta-block {
+    height: 40px;
+    opacity: 1;
+    top: -40px;
+}
+
+.purge #end.ytd-masthead {
+    min-width: auto;
+}
+
+.purge #search-form.ytd-searchbox {
+    max-width: none;
+}
+
+.purge ytd-searchbox.ytd-masthead {
+    margin-left: 24px;
+    margin-right: 12px;
+}
+
+.purge ytd-app[is-watch-page] #info #menu-container {
+    margin-top: -40px;
+}
+
+.purge ytd-app[is-watch-page] #info #menu-container #sentiment {
+    width: 100% !important;
+}
+
+.purge ytd-app[is-watch-page] #info #info {
+    height: 10px;
+    margin-bottom: -5px;
+}
+
+.purge ytd-app[is-watch-page] #content #page-manager {
+    overflow: visible;
 }

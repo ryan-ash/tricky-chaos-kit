@@ -3,7 +3,7 @@
   
   "name": "Tricky Chaos Kit",
   "description": "Make web less distracting and more powerful. Press F2 at Trello, YT, Google Keep or Web Controller. IDDQD.",
-  "version": "1.7.1",
+  "version": "1.8.2",
   "author": "Ryan Ash",  
   "browser_action": {
     "default_icon": "icons/icon128.png",
@@ -27,7 +27,7 @@
     {
       "matches": ["https://youtube.com/*", "https://www.youtube.com/*"],
       "css": ["css/youtube.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js"]
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js", "js/youtube-addons.js"]
     },
     {
       "matches": ["https://keep.google.com/*"],
