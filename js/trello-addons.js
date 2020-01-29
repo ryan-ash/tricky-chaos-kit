@@ -74,21 +74,39 @@ $(document).ready(function() {
     }
     
     function apply_checklist_lightup() {
-        // todo: optimize this
         $checklist_items = $(".checklist-item");
         $checklist_items.each(function() {
-            item = $(this).find(".checklist-item-details-text").text().replace(/\./g, "");
-            mark = item[item.length-1];
+            $this = $(this);
+            $input = $this.find(".edit textarea");
+
+            item = $this.find(".checklist-item-details-text").text();
+            input_item = $input.val();
+
+            compare_item = item;
+            if (input_item == "") {
+                if ($this.hasClass("tc-checked")) {
+                    return;
+                }
+            } else {
+                $this.removeClass("tc-checked");
+                if (input_item != item) {
+                    compare_item = input_item;
+                }
+            }
+            $this.addClass("tc-checked");
+            compare_item = compare_item.replace(/\./g, "");
+
+            mark = compare_item[compare_item.length-1];
             switch(mark) {
                 case "!":
-                    $(this).addClass("tc-important");
+                    $this.addClass("tc-important");
                     break;
                 case "?":
-                    $(this).addClass("tc-unsure");
+                    $this.addClass("tc-unsure");
                     break;
                 default:
-                    $(this).removeClass("tc-important");
-                    $(this).removeClass("tc-unsure");
+                    $this.removeClass("tc-important");
+                    $this.removeClass("tc-unsure");
                     break;
             }
         });

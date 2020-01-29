@@ -73,6 +73,11 @@
     text-align: center;
 }
 
+.purge .list .list-card-labels {
+    position: absolute;
+    top: -5px;
+}
+
 .trello-addons .tc-add-checklist {
     color: #42526e;
     border-radius: 50%;
@@ -97,7 +102,7 @@
     content: "\E901";
 }
 
-.trello-addons .pop-over {
+.trello-addons.window-up .pop-over {
     right: 50% !important;
     left: auto !important;
     margin-right: -378px;
