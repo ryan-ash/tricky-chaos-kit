@@ -1,6 +1,7 @@
 .purge .window-sidebar, .purge .window-header-inline-content, .purge .card-detail-data, .purge .add-comment-section, .purge .window-module,
-.purge .js-react-root, .purge .js-plugin-header-btns, .purge .mod-show-menu .board-header-btn-text, .purge .js-star-board, 
-.purge .board-header-btn-org-wrapper, .purge .board-header-btns.mod-left, .purge .open-card-composer .js-add-another-card, .purge .open-card-composer .js-add-a-card {
+.purge #header > div > *:not(:first-child), 
+.purge .js-plugin-header-btns, .purge .mod-show-menu .board-header-btn-text, .purge .js-star-board, .purge .board-header-btn-org-wrapper,
+.purge .board-header-btns.mod-left, .purge .open-card-composer .js-add-another-card, .purge .open-card-composer .js-add-a-card {
     display: none;
 }
 
