@@ -93,6 +93,10 @@ $(document).ready(function() {
                     compare_item = input_item;
                 }
             }
+            if (compare_item == undefined) {
+                return;
+            }
+
             $this.addClass("tc-checked");
             compare_item = compare_item.replace(/\./g, "");
 
