@@ -1,6 +1,6 @@
 ![cover](https://user-images.githubusercontent.com/16063540/73413379-8d7ac500-431c-11ea-90f4-3b5fe3ad50e6.jpg)
 
-There a feeling of frustration I feel every time the service I use and love doesn't quite do what I want, clutters me with info I don't need most of the time or distracts me from what's important. One way to solve this is to write a browser extension that would enable a second view mode, clutter-free view mode on specific sites. That's what I did.
+There a feeling of frustration I get every time the service I use and love doesn't quite do what I want, clutters me with info I don't need most of the time or distracts me from what's important. One way to solve this is to write a browser extension that would enable a second view mode, clutter-free view mode on specific sites. That's what I did.
 
 [Chrome](https://chrome.google.com/webstore/detail/tricky-chaos-kit/poadpmgjfkflfgpaeklfiiolcgciilpf) | [Release Notes](https://github.com/ryan-ash/tricky-chaos-kit/releases)
 
