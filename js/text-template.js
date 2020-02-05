@@ -307,7 +307,6 @@ $(document).ready(function() {
         $root.append(options_button_markup);
 
         $instance = $body.find(".tc-options-button");
-        console.log($instance);
         $instance.insertBefore($options);
     }
 
@@ -524,13 +523,41 @@ $(document).ready(function() {
         id = "tc-title-" + last_title_id;
         $title_instance.attr("id", id);
 
-        $title_instance.find(".tc-remove").keypress(function(e) {
+        $title_instance.find(".tc-remove, .tc-up, .tc-bottom").keypress(function(e) {
             if (e.which == 13 || e.which == 32) {
                 $(this).click();
             }
         })
         $title_instance.find(".tc-remove").click(function(e) {
             $(this).parent().remove();
+            check_tag_helper(this);
+            parse_post();
+        });
+        $title_instance.find(".tc-up").click(function(e) {
+            $this_title = $(this).parent();
+            $other_title = $($this_title.prev());
+            if (!$other_title.length) {
+                return;
+            }
+            this_content = $this_title.find(".tc-text-input").val();
+            other_content = $other_title.find(".tc-text-input").val();
+            $other_title.find(".tc-text-input").val(this_content);
+            $this_title.find(".tc-text-input").val(other_content);    
+
+            check_tag_helper(this);
+            parse_post();
+        });
+        $title_instance.find(".tc-bottom").click(function(e) {
+            $this_title = $(this).parent();
+            $other_title = $($this_title.next());
+            if (!$other_title.length) {
+                return;
+            }
+            this_content = $this_title.find(".tc-text-input").val();
+            other_content = $other_title.find(".tc-text-input").val();
+            $other_title.find(".tc-text-input").val(this_content);
+            $this_title.find(".tc-text-input").val(other_content);    
+
             check_tag_helper(this);
             parse_post();
         });
@@ -701,13 +728,49 @@ $(document).ready(function() {
         id = "tc-bottom-link-" + last_bottom_link_id;
         $bottom_link_instance.attr("id", id);
 
-        $bottom_link_instance.find(".tc-remove").keypress(function(e) {
+        $bottom_link_instance.find(".tc-remove, .tc-up, .tc-bottom").keypress(function(e) {
             if (e.which == 13 || e.which == 32) {
                 $(this).click();
             }
         });
         $bottom_link_instance.find(".tc-remove").click(function(e){
             $(this).parent().remove();
+            check_tag_helper(this);
+            parse_post();
+        });
+        $bottom_link_instance.find(".tc-up").click(function(e){
+            $this_link = $(this).parent();
+            $other_link = $($this_link.prev());
+            if (!$other_link.length) {
+                return;
+            }
+            this_url = $this_link.find(".tc-link").val();
+            this_text = $this_link.find(".tc-link-text").val();
+            other_url = $other_link.find(".tc-link").val();
+            other_text = $other_link.find(".tc-link-text").val();
+            $other_link.find(".tc-link").val(this_url);
+            $other_link.find(".tc-link-text").val(this_text);
+            $this_link.find(".tc-link").val(other_url);
+            $this_link.find(".tc-link-text").val(other_text);
+
+            check_tag_helper(this);
+            parse_post();
+        });
+        $bottom_link_instance.find(".tc-bottom").click(function(e){
+            $this_link = $(this).parent();
+            $other_link = $($this_link.next());
+            if (!$other_link.length) {
+                return;
+            }
+            this_url = $this_link.find(".tc-link").val();
+            this_text = $this_link.find(".tc-link-text").val();
+            other_url = $other_link.find(".tc-link").val();
+            other_text = $other_link.find(".tc-link-text").val();
+            $other_link.find(".tc-link").val(this_url);
+            $other_link.find(".tc-link-text").val(this_text);
+            $this_link.find(".tc-link").val(other_url);
+            $this_link.find(".tc-link-text").val(other_text);
+
             check_tag_helper(this);
             parse_post();
         });

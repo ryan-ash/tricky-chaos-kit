@@ -64,6 +64,8 @@ var title_markup = `
     <div class="tc-title tc-wide-input tc-wrapper">
         <input type="text" class="tc-text-input tc-title-input" placeholder="Title">
         <div tabindex="0" class="tc-remove tc-button fa fa-minus"></div>
+        <div tabindex="0" class="tc-bottom tc-button fa fa-arrow-down"></div>
+        <div tabindex="0" class="tc-up tc-button fa fa-arrow-up"></div>
     </div>
 `;
 
@@ -72,6 +74,8 @@ var bottom_link_markup = `
         <input type="text" placeholder="http://" class="tc-text-input tc-bottom-link-input tc-link">
         <input type="text" placeholder="Link Text" class="tc-text-input tc-bottom-link-input tc-link-text">
         <div tabindex="0" class="tc-remove tc-button fa fa-minus"></div>
+        <div tabindex="0" class="tc-bottom tc-button fa fa-arrow-down"></div>
+        <div tabindex="0" class="tc-up tc-button fa fa-arrow-up"></div>
     </div>
 `;
 
