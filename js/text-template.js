@@ -542,7 +542,7 @@ $(document).ready(function() {
             this_content = $this_title.find(".tc-text-input").val();
             other_content = $other_title.find(".tc-text-input").val();
             $other_title.find(".tc-text-input").val(this_content);
-            $this_title.find(".tc-text-input").val(other_content);    
+            $this_title.find(".tc-text-input").val(other_content);
 
             check_tag_helper(this);
             parse_post();
@@ -556,7 +556,7 @@ $(document).ready(function() {
             this_content = $this_title.find(".tc-text-input").val();
             other_content = $other_title.find(".tc-text-input").val();
             $other_title.find(".tc-text-input").val(this_content);
-            $this_title.find(".tc-text-input").val(other_content);    
+            $this_title.find(".tc-text-input").val(other_content);
 
             check_tag_helper(this);
             parse_post();
