@@ -2,7 +2,7 @@
 .purge ytd-app[is-watch-page] #guide-spacer, .purge ytd-app[is-watch-page] #info .super-title, .purge ytd-app[is-watch-page] #info #info-text, 
 .purge ytd-app[is-watch-page] #info #menu a #text, .purge ytd-app[is-watch-page] #info #menu ytd-menu-renderer > #button,
 .purge ytd-app[is-watch-page] #meta, .purge ytd-app[is-watch-page] #comments, .purge ytd-app[is-watch-page] #related, .purge ytd-app[is-watch-page] #playlist,
-.purge ytd-app[is-watch-page] #columns #secondary, .purge [page-subtype="home"] ytd-rich-section-renderer {
+.purge ytd-app[is-watch-page] #columns #secondary, .purge [page-subtype="home"] ytd-rich-section-renderer, .purge [page-subtype="home"] .badge, .purge [page-subtype="channels"] #details #video-badges {
     display: none;
 }
 
@@ -42,6 +42,51 @@
     opacity: 1;
     top: -40px;
 }
+
+.purge ytd-app:not([is-watch-page]) #video-title, .purge ytd-app:not([is-watch-page]) #video-title-link {
+    max-height: none;
+    height: auto;
+    -webkit-line-clamp: unset;
+}
+
+.purge ytd-two-column-browse-results-renderer[page-subtype="channels"] {
+    width: 93% !important;
+}
+
+.purge [page-subtype="channels"] ytd-grid-video-renderer {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.purge [page-subtype="channels"] ytd-grid-video-renderer #video-title.yt-simple-endpoint.ytd-grid-video-renderer {
+    margin-top: 20px;
+}
+
+.purge [page-subtype="channels"] #menu button.yt-icon-button {
+    transform: rotate(90deg);
+    margin-top: -5px;
+}
+
+.purge [page-subtype="channels"] #meta {
+    padding-right: 0;
+}
+
+.purge [page-subtype="channels"] #metadata-container  {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+
+.purge [page-subtype="channels"] #metadata-line {
+    /* display: block; */
+    font-size: 1rem;
+}
+
+.purge [page-subtype="channels"] #metadata-line > span:first-of-type, .purge [page-subtype="channels"] #metadata #byline-container {
+    display: none;
+}
+
+/* .purge [page-subtype="channels"] #metadata-line > span:last-of-type {} */
 
 .purge #end.ytd-masthead {
     min-width: auto;
