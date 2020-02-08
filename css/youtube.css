@@ -139,8 +139,8 @@
     transition: margin 0.25s ease-out;
 }
 
-.purge [page-subtype="home"] ytd-rich-item-renderer:hover #metadata-line,
-.purge [page-subtype="subscriptions"] ytd-grid-video-renderer:hover #metadata-line {
+.purge [page-subtype="home"] ytd-rich-item-renderer > #content:hover #metadata-line,
+.purge [page-subtype="subscriptions"] ytd-grid-video-renderer > #content:hover #metadata-line {
     margin-right: 25px;
 }
 
