@@ -26,6 +26,10 @@
     box-shadow: 0 0 5px #000;
 }
 
+.purge ytd-thumbnail, .purge ytd-thumbnail::before {
+    background: none !important;
+}
+
 .purge .ytd-thumbnail:focus {
     outline: none !important;
 }
