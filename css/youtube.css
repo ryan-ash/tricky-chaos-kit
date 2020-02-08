@@ -2,8 +2,8 @@
 .purge ytd-app[is-watch-page] #guide-spacer, .purge ytd-app[is-watch-page] #info .super-title, .purge ytd-app[is-watch-page] #info #info-text, 
 .purge ytd-app[is-watch-page] #info #menu a #text, .purge ytd-app[is-watch-page] #info #menu ytd-menu-renderer > #button,
 .purge ytd-app[is-watch-page] #meta, .purge ytd-app[is-watch-page] #comments, .purge ytd-app[is-watch-page] #related, .purge ytd-app[is-watch-page] #playlist,
-.purge ytd-app[is-watch-page] #columns #secondary, .purge [page-subtype="home"] ytd-rich-section-renderer, .purge [page-subtype="home"] .badge, .purge [page-subtype="channels"] #details #video-badges {
-    display: none;
+.purge ytd-app[is-watch-page] #columns #secondary, .purge [page-subtype="home"] ytd-rich-section-renderer, .purge [page-subtype="home"] .badge, .purge .badge-style-type-verified {
+    display: none !important;
 }
 
 .purge:not(.no-scroll) ytd-app[is-watch-page] {
@@ -49,60 +49,78 @@
     -webkit-line-clamp: unset !important;
 }
 
-.purge ytd-two-column-browse-results-renderer[page-subtype="channels"] {
+.purge ytd-two-column-browse-results-renderer[page-subtype="channels"], 
+.purge ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] {
     width: 95% !important;
 }
 
-.purge [page-subtype="channels"] #items {
+.purge [page-subtype="channels"] #items,
+.purge [page-subtype="subscriptions"] #items {
     justify-content: center;
 }
 
-.purge [page-subtype="channels"] ytd-grid-video-renderer {
+.purge [page-subtype="channels"] ytd-grid-video-renderer,
+.purge [page-subtype="subscriptions"] ytd-grid-video-renderer {
     margin-right: 20px !important;
     margin-left: 20px !important;
     width: 300px !important;
 }
 
-.purge [page-subtype="channels"] ytd-thumbnail.ytd-grid-video-renderer {
-    /* height: 224px; */
-    /* width: 400px; */
+.purge [page-subtype="channels"] ytd-thumbnail.ytd-grid-video-renderer,
+.purge [page-subtype="subscriptions"] ytd-thumbnail.ytd-grid-video-renderer {
     height: 168px;
     width: 300px;
 }
 
-.purge [page-subtype="channels"] ytd-thumbnail.ytd-grid-video-renderer img.yt-img-shadow {
+.purge [page-subtype="channels"] ytd-thumbnail.ytd-grid-video-renderer img.yt-img-shadow,
+.purge [page-subtype="subscriptions"] ytd-thumbnail.ytd-grid-video-renderer img.yt-img-shadow {
     width: 100%;
 }
 
-.purge [page-subtype="channels"] ytd-grid-video-renderer #video-title.yt-simple-endpoint.ytd-grid-video-renderer {
+.purge [page-subtype="channels"] ytd-grid-video-renderer #video-title.yt-simple-endpoint.ytd-grid-video-renderer,
+.purge [page-subtype="subscriptions"] ytd-grid-video-renderer #video-title.yt-simple-endpoint.ytd-grid-video-renderer {
     margin-top: 20px;
 }
 
-.purge [page-subtype="channels"] #menu button.yt-icon-button {
+.purge [page-subtype="channels"] #menu button.yt-icon-button,
+.purge [page-subtype="subscriptions"] #menu button.yt-icon-button {
     transform: rotate(90deg);
     margin-top: -5px;
 }
 
-.purge [page-subtype="channels"] #meta {
+.purge [page-subtype="channels"] #meta,
+.purge [page-subtype="subscriptions"] #meta {
     padding-right: 0;
 }
 
-.purge [page-subtype="channels"] #metadata-container  {
+.purge [page-subtype="channels"] #metadata-container,
+.purge [page-subtype="subscriptions"] #metadata-container {
     position: absolute;
     top: 0px;
     width: 100%;
 }
 
-.purge [page-subtype="channels"] #metadata-line {
-    /* display: block; */
+.purge [page-subtype="channels"] #metadata-line,
+.purge [page-subtype="subscriptions"] #metadata-line {
     font-size: 1rem;
 }
 
-.purge [page-subtype="channels"] #metadata-line > span:first-of-type, .purge [page-subtype="channels"] #metadata #byline-container {
+.purge [page-subtype="channels"] #metadata-line > span:first-of-type, .purge [page-subtype="channels"] #metadata #byline-container, .purge [page-subtype="channels"] #details #video-badges,
+.purge [page-subtype="subscriptions"] #metadata-line > span:first-of-type, .purge [page-subtype="subscriptions"] #details #video-badges {
     display: none;
 }
 
-/* .purge [page-subtype="channels"] #metadata-line > span:last-of-type {} */
+.purge [page-subtype="subscriptions"] #metadata {
+    display: block !important;
+}
+
+.purge [page-subtype="subscriptions"] #metadata #byline-container {
+    float: left;
+}
+
+.purge [page-subtype="subscriptions"] #metadata-line{
+    float: right;
+}
 
 .purge #end.ytd-masthead {
     min-width: auto;
