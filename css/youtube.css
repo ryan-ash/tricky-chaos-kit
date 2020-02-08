@@ -44,18 +44,34 @@
 }
 
 .purge ytd-app:not([is-watch-page]) #video-title, .purge ytd-app:not([is-watch-page]) #video-title-link {
-    max-height: none;
+    max-height: none !important;
     height: auto;
-    -webkit-line-clamp: unset;
+    -webkit-line-clamp: unset !important;
 }
 
 .purge ytd-two-column-browse-results-renderer[page-subtype="channels"] {
-    width: 93% !important;
+    width: 95% !important;
+}
+
+.purge [page-subtype="channels"] #items {
+    justify-content: center;
 }
 
 .purge [page-subtype="channels"] ytd-grid-video-renderer {
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: 20px !important;
+    margin-left: 20px !important;
+    width: 300px !important;
+}
+
+.purge [page-subtype="channels"] ytd-thumbnail.ytd-grid-video-renderer {
+    /* height: 224px; */
+    /* width: 400px; */
+    height: 168px;
+    width: 300px;
+}
+
+.purge [page-subtype="channels"] ytd-thumbnail.ytd-grid-video-renderer img.yt-img-shadow {
+    width: 100%;
 }
 
 .purge [page-subtype="channels"] ytd-grid-video-renderer #video-title.yt-simple-endpoint.ytd-grid-video-renderer {
