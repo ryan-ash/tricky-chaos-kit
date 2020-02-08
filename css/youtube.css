@@ -20,27 +20,18 @@
     overflow: hidden;
 }
 
-.purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block {
-    display: block;
+.purge .ytd-thumbnail {
+    border-radius: 15px 5px;
     overflow: hidden;
-    text-shadow: 0 0 3px #111;
-    position: absolute;
-    top: 0;
-    left: 5px;
-    z-index: 9000;
-    height: 0;
-    transition: height 0.25s ease-out, opacity 0.25s ease-out, top 0.25s ease-out;
-    opacity: 0.9;
+    box-shadow: 0 0 5px #000;
+}
+
+.purge .ytd-thumbnail:focus {
+    outline: none !important;
 }
 
 .purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block a, .purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block span {
     color: #fff !important;
-}
-
-.purge ytd-app:not([is-watch-page]) ytd-rich-item-renderer:hover #meta ytd-video-meta-block {
-    height: 40px;
-    opacity: 1;
-    top: -40px;
 }
 
 .purge ytd-app:not([is-watch-page]) #video-title, .purge ytd-app:not([is-watch-page]) #video-title-link {
@@ -82,44 +73,72 @@
     margin-top: 20px;
 }
 
+.purge [page-subtype="home"] #details {
+    padding-top: 20px;
+}
+
+
 .purge [page-subtype="channels"] #menu button.yt-icon-button,
+.purge [page-subtype="home"] #menu button.yt-icon-button,
 .purge [page-subtype="subscriptions"] #menu button.yt-icon-button {
     transform: rotate(90deg);
-    margin-top: -5px;
+    margin-top: -7px;
+}
+
+.purge [page-subtype="home"] #menu button.yt-icon-button {
+    margin-top: -10px;
 }
 
 .purge [page-subtype="channels"] #meta,
+.purge [page-subtype="home"] #meta,
 .purge [page-subtype="subscriptions"] #meta {
     padding-right: 0;
 }
 
 .purge [page-subtype="channels"] #metadata-container,
+.purge [page-subtype="home"] #metadata,
 .purge [page-subtype="subscriptions"] #metadata-container {
     position: absolute;
-    top: 0px;
+    top: 0;
+    left: 0;
     width: 100%;
 }
 
+.purge [page-subtype="home"] #metadata {
+    top: 5px;
+}
+
 .purge [page-subtype="channels"] #metadata-line,
+.purge [page-subtype="home"] #metadata-line,
 .purge [page-subtype="subscriptions"] #metadata-line {
     font-size: 1rem;
 }
 
 .purge [page-subtype="channels"] #metadata-line > span:first-of-type, .purge [page-subtype="channels"] #metadata #byline-container, .purge [page-subtype="channels"] #details #video-badges,
+.purge [page-subtype="home"] #metadata-line > span:first-of-type, .purge [page-subtype="home"] #details #video-badges,
 .purge [page-subtype="subscriptions"] #metadata-line > span:first-of-type, .purge [page-subtype="subscriptions"] #details #video-badges {
     display: none;
 }
 
+.purge [page-subtype="home"] #metadata,
 .purge [page-subtype="subscriptions"] #metadata {
     display: block !important;
 }
 
+.purge [page-subtype="home"] #metadata #byline-container,
 .purge [page-subtype="subscriptions"] #metadata #byline-container {
     float: left;
 }
 
-.purge [page-subtype="subscriptions"] #metadata-line{
+.purge [page-subtype="home"] #metadata-line,
+.purge [page-subtype="subscriptions"] #metadata-line {
     float: right;
+    transition: margin 0.25s ease-out;
+}
+
+.purge [page-subtype="home"] ytd-rich-item-renderer:hover #metadata-line,
+.purge [page-subtype="subscriptions"] ytd-grid-video-renderer:hover #metadata-line {
+    margin-right: 25px;
 }
 
 .purge #end.ytd-masthead {
