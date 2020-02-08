@@ -113,7 +113,6 @@
 }
 
 .purge [page-subtype="channels"] #metadata-line,
-.purge [page-subtype="home"] #metadata-line,
 .purge [page-subtype="subscriptions"] #metadata-line {
     font-size: 1rem;
 }
