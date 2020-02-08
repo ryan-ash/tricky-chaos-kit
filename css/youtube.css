@@ -2,7 +2,7 @@
 .purge ytd-app[is-watch-page] #guide-spacer, .purge ytd-app[is-watch-page] #info .super-title, .purge ytd-app[is-watch-page] #info #info-text, 
 .purge ytd-app[is-watch-page] #info #menu a #text, .purge ytd-app[is-watch-page] #info #menu ytd-menu-renderer > #button,
 .purge ytd-app[is-watch-page] #meta, .purge ytd-app[is-watch-page] #comments, .purge ytd-app[is-watch-page] #related, .purge ytd-app[is-watch-page] #playlist,
-.purge ytd-app[is-watch-page] #columns #secondary, .purge [page-subtype="home"] ytd-rich-section-renderer, .purge [page-subtype="home"] .badge, .purge .badge-style-type-verified {
+.purge ytd-app[is-watch-page] #columns #secondary, .purge .badge-style-type-verified {
     display: none !important;
 }
 
@@ -20,17 +20,23 @@
     overflow: hidden;
 }
 
-.purge .ytd-thumbnail {
+.purge .ytd-thumbnail, .purge .ytd-playlist-thumbnail {
     border-radius: 15px 5px;
     overflow: hidden;
     box-shadow: 0 0 5px #000;
+    transition: opacity 0.25s ease-out;
 }
 
-.purge ytd-thumbnail, .purge ytd-thumbnail::before {
+.purge .ytd-thumbnail:hover {
+    opacity: 0.9;
+}
+
+.purge ytd-thumbnail, .purge ytd-thumbnail::before,
+.purge ytd-playlist-thumbnail, .purge ytd-playlist-thumbnail::before {
     background: none !important;
 }
 
-.purge .ytd-thumbnail:focus {
+.purge .ytd-thumbnail:focus, .purge .ytd-playlist-thumbnail:focus {
     outline: none !important;
 }
 
@@ -44,6 +50,10 @@
     -webkit-line-clamp: unset !important;
 }
 
+.purge [page-subtype="home"] ytd-rich-section-renderer, .purge [page-subtype="home"] .badge, .purge [page-subtype="home"] #avatar-link {
+    display: none;
+}
+
 .purge ytd-two-column-browse-results-renderer[page-subtype="channels"], 
 .purge ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] {
     width: 95% !important;
@@ -55,21 +65,24 @@
 }
 
 .purge [page-subtype="channels"] ytd-grid-video-renderer,
+.purge [page-subtype="channels"] ytd-grid-playlist-renderer,
 .purge [page-subtype="subscriptions"] ytd-grid-video-renderer {
     margin-right: 20px !important;
     margin-left: 20px !important;
     width: 300px !important;
 }
 
-.purge [page-subtype="channels"] ytd-thumbnail.ytd-grid-video-renderer,
-.purge [page-subtype="subscriptions"] ytd-thumbnail.ytd-grid-video-renderer {
-    height: 168px;
-    width: 300px;
+.purge [page-subtype="channels"] ytd-thumbnail,
+.purge [page-subtype="channels"] ytd-playlist-thumbnail,
+.purge [page-subtype="subscriptions"] ytd-thumbnail {
+    height: 168px !important;
+    width: 300px !important;
 }
 
-.purge [page-subtype="channels"] ytd-thumbnail.ytd-grid-video-renderer img.yt-img-shadow,
-.purge [page-subtype="subscriptions"] ytd-thumbnail.ytd-grid-video-renderer img.yt-img-shadow {
-    width: 100%;
+.purge [page-subtype="channels"] ytd-thumbnail img,
+.purge [page-subtype="channels"] ytd-playlist-thumbnail img,
+.purge [page-subtype="subscriptions"] ytd-thumbnail img {
+    width: 100% !important;
 }
 
 .purge [page-subtype="channels"] ytd-grid-video-renderer #video-title.yt-simple-endpoint.ytd-grid-video-renderer,
@@ -80,7 +93,6 @@
 .purge [page-subtype="home"] #details {
     padding-top: 20px;
 }
-
 
 .purge [page-subtype="channels"] #menu button.yt-icon-button,
 .purge [page-subtype="home"] #menu button.yt-icon-button,
@@ -140,7 +152,7 @@
 }
 
 .purge [page-subtype="home"] ytd-rich-item-renderer > #content:hover #metadata-line,
-.purge [page-subtype="subscriptions"] ytd-grid-video-renderer > #content:hover #metadata-line {
+.purge [page-subtype="subscriptions"] ytd-grid-video-renderer:hover #metadata-line {
     margin-right: 25px;
 }
 
