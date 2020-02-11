@@ -10,14 +10,24 @@
     "default_popup": "popup.html"
   },
   "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-   "128": "icons/icon128.png"
+    "16": "icons/16_off.png",
+    "32": "icons/32_off.png",
+    "48": "icons/48_off.png",
+   "128": "icons/128_off.png"
   },
   "permissions": [
     "activeTab",
-    "storage"
+    "storage",
+    "browserAction"
   ],
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/16_off.png",
+      "32": "icons/32_off.png",
+      "48": "icons/48_off.png",
+      "128": "icons/128_off.png"
+    }
+  },
   "content_scripts": [
     {
       "matches": ["https://trello.com/*"],
