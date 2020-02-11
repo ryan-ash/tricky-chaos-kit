@@ -88,8 +88,21 @@
     padding-top: 20px;
 }
 
-.purge [page-subtype="home"] #menu button.yt-icon-button {
-    margin-top: -10px;
+.purge .dropdown-trigger button.yt-icon-button {
+    transform: rotate(90deg);
+    margin-top: -7px;
+}
+
+.purge [page-subtype="home"] .dropdown-trigger button.yt-icon-button {
+    /* margin-top: -10px; */
+}
+
+.purge ytd-video-renderer .dropdown-trigger button.yt-icon-button {
+    margin-top: 0;
+}
+
+.purge ytd-video-renderer #menu {
+    margin-right: -10px;
 }
 
 .purge #meta {
@@ -133,11 +146,6 @@
 .purge ytd-browse ytd-grid-video-renderer:hover #metadata-line,
 .purge [page-subtype="home"] #content:hover #metadata-line {
     margin-right: 25px !important;
-}
-
-.purge #menu .dropdown-trigger button.yt-icon-button {
-    transform: rotate(90deg);
-    margin-top: -7px;
 }
 
 .purge #end.ytd-masthead {
