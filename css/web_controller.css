@@ -68,6 +68,14 @@
     top: 0;
 }
 
+.text-template .tc-wrapper .tc-button.tc-bottom {
+    right: -80px;
+}
+
+.text-template .tc-wrapper .tc-button.tc-up {
+    right: -118px;
+}
+
 /* Fields */
 .text-template textarea, .text-template .tc-button, .text-template .tc-form input[type=date],
 .text-template .tc-form input[type=datetime], .text-template .tc-form input[type=datetime-local],

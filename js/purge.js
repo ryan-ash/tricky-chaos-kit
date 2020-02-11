@@ -25,10 +25,26 @@ $(document).ready(function() {
     function enable() {
         $body.addClass(feature_name);
         $.cookie(save, true, { expires: cookie_lifetime });
+        // chrome.browserAction.setIcon({
+        //     imageData : {
+        //         "16": "icons/16_off.png",
+        //         "32": "icons/32_off.png",
+        //         "48": "icons/48_off.png",
+        //        "128": "icons/128_off.png"
+        //     }
+        // });
     }
 
     function disable() {
         $body.removeClass(feature_name);
         $.cookie(save, null);
+        // chrome.browserAction.setIcon({
+        //     imageData : {
+        //         "16": "icons/16_on.png",
+        //         "32": "icons/32_on.png",
+        //         "48": "icons/48_on.png",
+        //         "128": "icons/128_on.png"
+        //     }
+        // });
     }
 });

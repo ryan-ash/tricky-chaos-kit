@@ -1,10 +1,19 @@
+/* === display none graveyard === */
+
 .purge #content #masthead div#buttons > .ytd-masthead:not(ytd-notification-topbar-button-renderer), .purge #content #masthead #logo #country-code,
 .purge ytd-app[is-watch-page] #guide-spacer, .purge ytd-app[is-watch-page] #info .super-title, .purge ytd-app[is-watch-page] #info #info-text, 
 .purge ytd-app[is-watch-page] #info #menu a #text, .purge ytd-app[is-watch-page] #info #menu ytd-menu-renderer > #button,
-.purge ytd-app[is-watch-page] #meta, .purge ytd-app[is-watch-page] #comments, .purge ytd-app[is-watch-page] #related, .purge ytd-app[is-watch-page] #playlist,
-.purge ytd-app[is-watch-page] #columns #secondary, .purge [page-subtype="home"] ytd-rich-section-renderer {
-    display: none;
+.purge ytd-app[is-watch-page] #comments, .purge ytd-app[is-watch-page] #related, .purge ytd-app[is-watch-page] #playlist,
+.purge #secondary, .purge .badge-style-type-verified, .purge #byline-container #separator,
+.purge [page-subtype="home"] ytd-rich-section-renderer, .purge [page-subtype="home"] .badge, .purge [page-subtype="home"] #avatar-link,
+.purge ytd-app[is-watch-page] #meta-contents ytd-expander, .purge ytd-app[is-watch-page] #meta-contents #top-row > *:not(ytd-video-owner-renderer),
+.purge ytd-app[is-watch-page] ytd-video-owner-renderer > *:not(#upload-info), .purge ytd-app[is-watch-page] #owner-sub-count {
+    display: none !important;
 }
+
+
+
+/* === watch page === */
 
 .purge:not(.no-scroll) ytd-app[is-watch-page] {
     display: flex;
@@ -13,47 +22,6 @@
 
 .purge:not(.no-scroll) ytd-app[is-watch-page] #content {
     flex: 1;
-}
-
-.purge #content #masthead #logo {
-    width: 27px;
-    overflow: hidden;
-}
-
-.purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block {
-    display: block;
-    overflow: hidden;
-    text-shadow: 0 0 3px #111;
-    position: absolute;
-    top: 0;
-    left: 5px;
-    z-index: 9000;
-    height: 0;
-    transition: height 0.25s ease-out, opacity 0.25s ease-out, top 0.25s ease-out;
-    opacity: 0.9;
-}
-
-.purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block a, .purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block span {
-    color: #fff !important;
-}
-
-.purge ytd-app:not([is-watch-page]) ytd-rich-item-renderer:hover #meta ytd-video-meta-block {
-    height: 40px;
-    opacity: 1;
-    top: -40px;
-}
-
-.purge #end.ytd-masthead {
-    min-width: auto;
-}
-
-.purge #search-form.ytd-searchbox {
-    max-width: none;
-}
-
-.purge ytd-searchbox.ytd-masthead {
-    margin-left: 24px;
-    margin-right: 12px;
 }
 
 .purge ytd-app[is-watch-page] #info #menu-container {
@@ -71,4 +39,162 @@
 
 .purge ytd-app[is-watch-page] #content #page-manager {
     overflow: visible;
+}
+
+.purge ytd-app[is-watch-page] ytd-video-secondary-info-renderer {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* code for channel link position */
+
+
+
+/* === top bar === */
+
+.purge #content #masthead #logo {
+    width: 27px;
+    overflow: hidden;
+}
+
+.purge #end.ytd-masthead {
+    min-width: auto;
+}
+
+.purge #search-form.ytd-searchbox {
+    max-width: none;
+}
+
+.purge ytd-searchbox.ytd-masthead {
+    margin-left: 24px;
+    margin-right: 12px;
+}
+
+
+
+/* === item list === */
+
+.purge ytd-two-column-browse-results-renderer.grid-6-columns, .purge .grid-6-columns.ytd-two-column-browse-results-renderer {
+    width: 95% !important;
+}
+
+.purge #items, .purge ytd-rich-grid-renderer > #contents, .purge ytd-video-renderer > * {
+    justify-content: center;
+}
+
+.purge ytd-playlist-video-renderer #meta {
+    place-self: center;
+}
+
+/* === single item thumbnail === */
+
+.purge .ytd-thumbnail, .purge .ytd-playlist-thumbnail {
+    border-radius: 15px 5px;
+    overflow: hidden;
+    box-shadow: 0 0 5px #000;
+}
+
+.purge ytd-thumbnail, .purge ytd-thumbnail::before,
+.purge ytd-playlist-thumbnail, .purge ytd-playlist-thumbnail::before {
+    background: none !important;
+}
+
+.purge .ytd-thumbnail:focus, .purge .ytd-playlist-thumbnail:focus {
+    outline: none !important;
+}
+
+.purge ytd-grid-video-renderer, .purge ytd-rich-item-renderer, .purge ytd-grid-playlist-renderer {
+    margin-right: 20px !important;
+    margin-left: 20px !important;
+}
+
+.purge ytd-grid-video-renderer, .purge ytd-grid-playlist-renderer, .purge ytd-rich-item-renderer {
+    width: 300px !important;
+}
+
+.purge ytd-thumbnail, .purge ytd-playlist-thumbnail {
+    height: 168px !important;
+    width: 300px !important;
+}
+
+.purge ytd-thumbnail img, .purge ytd-playlist-thumbnail img {
+    width: 100% !important;
+}
+
+
+
+/* === single item meta === */
+
+.purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block a, .purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block span {
+    color: #fff !important;
+}
+
+.purge ytd-app:not([is-watch-page]) #video-title, .purge ytd-app:not([is-watch-page]) #video-title-link {
+    max-height: none !important;
+    height: auto;
+    -webkit-line-clamp: unset !important;
+}
+
+.purge ytd-grid-video-renderer #video-title.yt-simple-endpoint.ytd-grid-video-renderer {
+    margin-top: 20px;
+}
+
+.purge [page-subtype="home"] #details {
+    padding-top: 20px;
+}
+
+.purge .dropdown-trigger button.yt-icon-button {
+    transform: rotate(90deg);
+    margin-top: -7px;
+}
+
+.purge ytd-video-renderer .dropdown-trigger button.yt-icon-button {
+    margin-top: 0;
+}
+
+.purge ytd-video-renderer #menu {
+    margin-right: -10px;
+}
+
+.purge #meta {
+    padding-right: 0 !important;
+    width: 100%;
+}
+
+.purge #metadata-container, .purge [page-subtype="home"] ytd-video-meta-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.purge [page-subtype="home"] ytd-video-meta-block {
+    top: 7px;
+}
+
+.purge #metadata * {
+    font-size: 1rem !important;
+}
+
+.purge #metadata-line > span:first-of-type, .purge #details #video-badges {
+    display: none !important;
+}
+
+
+.purge #metadata {
+    display: block !important;
+}
+
+.purge #metadata #byline-container {
+    float: left;
+}
+
+.purge #metadata-line {
+    float: right;
+    transition: margin 0.25s ease-out;
+}
+
+.purge ytd-browse ytd-grid-video-renderer:hover #metadata-line, .purge [page-subtype="home"] #content:hover #metadata-line {
+    margin-right: 25px !important;
 }

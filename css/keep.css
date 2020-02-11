@@ -1,8 +1,15 @@
-body.purge > div:nth-of-type(6) {
+.purge > div:nth-of-type(6) {
     opacity: 1 !important;
     background-color: #111 !important;
 }
 
-body.purge header {
-    display: none;
+/* seems highly unstable, find a better way */
+.purge #ognwrapper,
+.purge .neVct-LS81yb-tJHJj,
+.purge .IZ65Hb-n0tgWb:not(.IZ65Hb-bJ69tf):not(.di8rgd-r4nke) {
+    display: none !important;
+}
+
+.purge .ma6Yeb-r8s4j-gkA7Yd > div {
+    height: auto !important;
 }
