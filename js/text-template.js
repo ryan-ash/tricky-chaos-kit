@@ -537,7 +537,9 @@ $(document).ready(function() {
             $this_title = $(this).parent();
             $other_title = $($this_title.prev());
             if (!$other_title.length) {
-                return;
+                $other_title = $this_title.siblings().last();
+                if (!$other_title.length)
+                    return;
             }
             this_content = $this_title.find(".tc-text-input").val();
             other_content = $other_title.find(".tc-text-input").val();
@@ -551,7 +553,9 @@ $(document).ready(function() {
             $this_title = $(this).parent();
             $other_title = $($this_title.next());
             if (!$other_title.length) {
-                return;
+                $other_title = $this_title.siblings().first();
+                if (!$other_title.length)
+                    return;
             }
             this_content = $this_title.find(".tc-text-input").val();
             other_content = $other_title.find(".tc-text-input").val();
@@ -742,7 +746,9 @@ $(document).ready(function() {
             $this_link = $(this).parent();
             $other_link = $($this_link.prev());
             if (!$other_link.length) {
-                return;
+                $other_link = $this_link.siblings().last();
+                if (!$other_link.length)
+                    return;
             }
             this_url = $this_link.find(".tc-link").val();
             this_text = $this_link.find(".tc-link-text").val();
@@ -760,7 +766,9 @@ $(document).ready(function() {
             $this_link = $(this).parent();
             $other_link = $($this_link.next());
             if (!$other_link.length) {
-                return;
+                $other_link = $this_link.siblings().first();
+                if (!$other_link.length)
+                    return;
             }
             this_url = $this_link.find(".tc-link").val();
             this_text = $this_link.find(".tc-link-text").val();
