@@ -4,6 +4,7 @@
 }
 
 /* seems highly unstable, find a better way */
+/* yeah, generated class names differ acc to acc, solve this */
 .purge #ognwrapper,
 .purge .neVct-LS81yb-tJHJj,
 .purge .IZ65Hb-n0tgWb:not(.IZ65Hb-bJ69tf):not(.di8rgd-r4nke) {
