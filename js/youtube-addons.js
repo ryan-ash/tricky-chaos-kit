@@ -1,56 +1,22 @@
-$(document).ready(function() {
-    var $body = $("body");
+$(document).ready(function () {
 
-    var cookie_lifetime = 365 * 5;
+    window.feature_name = "purge youtube-addons"
+
+    window.enable_handlers = [check_window_addons,]
+    window.disable_handlers = []
     var save = "trickychaos";
-    var feature_name = "youtube-addons"
-    var enabled = false;
+
     var guide_collapsed = false;
-
-
-    // === main ===
-
     if ($.cookie(save)) {
-        enable();
-    }
-
-    $(document).keydown(function(e) {
-        if (e.which != 113)
-            return;
-        toggle_display_mode();
-    });
-
-
-
-    // === functions ===
-
-    function toggle_display_mode() {
-        if ($body.hasClass(feature_name))
-            disable();
-        else
-            enable();
-    }
-
-    function enable() {
-        enabled = true;
-        $body.addClass(feature_name);
-        $.cookie(save, true, { expires: cookie_lifetime });
-
-        check_window_addons();
-    }
-
-    function disable() {
-        enabled = false;
-        $body.removeClass(feature_name);
-        $.cookie(save, null);
+        $("body").trigger("enable");
     }
 
     function check_window_addons() {
-        if (enabled) {
+        if (window.trickychaos_enabled) {
             if (guide_collapsed) {
                 return;
             }
-            setTimeout(function() {
+            setTimeout(function () {
                 check_window_addons();
             }, 100);
         }
@@ -58,7 +24,6 @@ $(document).ready(function() {
         if ($("ytd-app").attr("is-watch-page")) {
             return;
         }
-
         apply_windows_addons();
     }
 

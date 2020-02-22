@@ -1,9 +1,5 @@
-$(document).ready(function() {
-    var $body = $("body");
-
-    var cookie_lifetime = 365 * 5;
+$(document).ready(function () {
     var save = "trickychaos";
-    var feature_name = "trello-addons"
     var overlay_markup = `
         <a class="icon-lg tc-add-checklist" href="#"></a>
     `;
@@ -11,49 +7,19 @@ $(document).ready(function() {
     var checklist_count = 0;
     var check_delta = 333;
 
+    window.feature_name = "purge trello-addons"
 
-    // === main ===
+    window.enable_handlers = [check_window_addons,]
+    window.disable_handlers = [() => { $(".tc-add-checklist").remove() },]
+
 
     if ($.cookie(save)) {
-        enable();
-    }
-
-    $(document).keydown(function(e) {
-        if (e.which != 113)
-            return;
-        toggle_display_mode();
-    });
-
-
-
-    // === functions ===
-
-    function toggle_display_mode() {
-        if ($body.hasClass(feature_name))
-            disable();
-        else
-            enable();
-    }
-
-    function enable() {
-        enabled = true;
-        $body.addClass(feature_name);
-        $.cookie(save, true, { expires: cookie_lifetime });
-
-        check_window_addons();
-    }
-
-    function disable() {
-        enabled = false;
-        $body.removeClass(feature_name);
-        $.cookie(save, null);
-
-        $(".tc-add-checklist").remove();
+        $("body").trigger("enable");
     }
 
     function check_window_addons() {
         if (enabled) {
-            setTimeout(function() {
+            setTimeout(function () {
                 check_window_addons();
             }, check_delta);
         }
@@ -72,10 +38,10 @@ $(document).ready(function() {
 
         apply_windows_addons();
     }
-    
+
     function apply_checklist_lightup() {
         $checklist_items = $(".checklist-item");
-        $checklist_items.each(function() {
+        $checklist_items.each(function () {
             $this = $(this);
             $input = $this.find(".edit textarea");
 
@@ -100,8 +66,8 @@ $(document).ready(function() {
             $this.addClass("tc-checked");
             compare_item = compare_item.replace(/\./g, "");
 
-            mark = compare_item[compare_item.length-1];
-            switch(mark) {
+            mark = compare_item[compare_item.length - 1];
+            switch (mark) {
                 case "!":
                     $this.addClass("tc-important");
                     break;
@@ -123,18 +89,18 @@ $(document).ready(function() {
     }
 
     function hide_all_checked_items() {
-        $(".js-hide-checked-items").each(function() {
+        $(".js-hide-checked-items").each(function () {
             $(this)[0].click();
         });
     }
 
     function add_button_events() {
-        $(".tc-add-checklist").click(function(e){
+        $(".tc-add-checklist").click(function (e) {
             e.preventDefault();
             $(".js-add-checklist-menu")[0].click();
             $(".pop-over").addClass("checklist");
             $("#id-checklist").val("to do");
-            setTimeout(function() {
+            setTimeout(function () {
                 check_overlay_shown();
             }, 200);
         });
@@ -142,7 +108,7 @@ $(document).ready(function() {
 
     function check_overlay_shown() {
         if ($(".pop-over").hasClass("is-shown")) {
-            setTimeout(function() {
+            setTimeout(function () {
                 check_overlay_shown();
             }, 100);
             return;
