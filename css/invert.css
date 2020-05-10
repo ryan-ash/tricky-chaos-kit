@@ -2,8 +2,8 @@
     filter: invert(1);
 }
 
-.purge {
-    background: #fff;
+.purge, .purge body {
+    background: #fff !important;
 }
 
 .purge *:fullscreen {
