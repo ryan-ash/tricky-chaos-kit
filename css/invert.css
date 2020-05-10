@@ -1,0 +1,3 @@
+.purge, .purge video:not(:fullscreen), .purge img {
+    filter: invert(1);
+}

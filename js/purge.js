@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var $body = $("body");
+    var $html = $("html");
 
     var cookie_lifetime = 365 * 5;
     var save = "trickychaos";
@@ -16,14 +17,16 @@ $(document).ready(function() {
     });
 
     function toggle_display_mode() {
-        if ($body.hasClass(feature_name))
+        // if ($body.hasClass(feature_name))
+        if ($html.hasClass(feature_name))
             disable();
         else
             enable();
     }
 
     function enable() {
-        $body.addClass(feature_name);
+        // $body.addClass(feature_name);
+        $html.addClass(feature_name);
         $.cookie(save, true, { expires: cookie_lifetime });
         // chrome.browserAction.setIcon({
         //     imageData : {
@@ -36,7 +39,8 @@ $(document).ready(function() {
     }
 
     function disable() {
-        $body.removeClass(feature_name);
+        // $body.removeClass(feature_name);
+        $html.removeClass(feature_name);
         $.cookie(save, null);
         // chrome.browserAction.setIcon({
         //     imageData : {

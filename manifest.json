@@ -55,6 +55,18 @@
         "js/text-template-markup.js",
         "js/text-template.js"
       ]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "exclude_matches":[
+        "https://trello.com/*",
+        "https://youtube.com/*",
+        "https://www.youtube.com/*",
+        "https://keep.google.com/*",
+        "https://web.controller.bot/*"
+      ],
+      "css": ["css/invert.css"],
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js"]
     }
   ],
   "web_accessible_resources": [
