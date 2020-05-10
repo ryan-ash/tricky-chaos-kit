@@ -16,12 +16,12 @@
 
 /* === watch page === */
 
-.purge:not(.no-scroll) ytd-app[is-watch-page] {
+.purge body:not(.no-scroll) ytd-app[is-watch-page] {
     display: flex;
     align-items: center;
 }
 
-.purge:not(.no-scroll) ytd-app[is-watch-page] #content {
+.purge body:not(.no-scroll) ytd-app[is-watch-page] #content {
     flex: 1;
 }
 
