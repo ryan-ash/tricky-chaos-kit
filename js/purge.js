@@ -16,7 +16,6 @@ $(document).keydown(function(e) {
 });
 
 function toggle_display_mode() {
-    // if ($body.hasClass(feature_name))
     if ($html.hasClass(feature_name))
         disable();
     else
@@ -24,7 +23,6 @@ function toggle_display_mode() {
 }
 
 function enable() {
-    // $body.addClass(feature_name);
     $html.addClass(feature_name);
     $.cookie(save, true, { expires: cookie_lifetime });
     // chrome.browserAction.setIcon({
