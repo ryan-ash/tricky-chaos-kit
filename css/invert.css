@@ -1,4 +1,4 @@
-.purge, .purge video:not(:fullscreen), .purge iframe, .purge img {
+.purge, .purge video:not(:fullscreen), .purge img {
     filter: invert(1);
 }
 
