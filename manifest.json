@@ -2,7 +2,7 @@
   "manifest_version": 2,
   
   "name": "Tricky Chaos Kit",
-  "description": "Make web less distracting and more powerful. Press F2 at Trello, YT, Google Keep or Web Controller. IDDQD.",
+  "description": "Make web less distracting with a key. Press F2 to switch to dark mode anywhere or to enable custom style in certain places. IDDQD.",
   "version": "1.9.5",
   "author": "Ryan Ash",  
   "browser_action": {
