@@ -11,9 +11,6 @@
     "48": "icons/48_off.png",
    "128": "icons/128_off.png"
   },
-  "permissions": [
-    "activeTab"
-  ],
   "browser_action": {
     "default_icon": {
       "16": "icons/16_off.png",
