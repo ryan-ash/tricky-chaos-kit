@@ -5,10 +5,6 @@
   "description": "Make web less distracting with a key. Press F2 to switch to dark mode anywhere or to enable custom style in certain places. IDDQD.",
   "version": "1.9.5",
   "author": "Ryan Ash",  
-  "browser_action": {
-    "default_icon": "icons/icon128.png",
-    "default_popup": "popup.html"
-  },
   "icons": {
     "16": "icons/16_off.png",
     "32": "icons/32_off.png",
@@ -16,8 +12,7 @@
    "128": "icons/128_off.png"
   },
   "permissions": [
-    "activeTab",
-    "browserAction"
+    "activeTab"
   ],
   "browser_action": {
     "default_icon": {
