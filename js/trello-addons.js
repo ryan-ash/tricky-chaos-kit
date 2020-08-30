@@ -1,12 +1,18 @@
 $(document).ready(function() {
     var $body = $("body");
+    var $window_wrapper = undefined;
+    var $checklist_title = undefined;
 
     var cookie_lifetime = 365 * 5;
     var save = "trickychaos";
     var feature_name = "trello-addons"
-    var overlay_markup = `
+    var add_checklist_markup = `
         <a class="icon-lg tc-add-checklist" href="#"></a>
     `;
+    var checklist_buttons_markup = `
+        <div class="button subtle hide-on-edit tc-solo-button" href="#" style="margin: 0">Solo</div>
+        <div class="button subtle hide-on-edit tc-mute-button" href="#" style="margin: 0">Mute</div>
+    `
     var enabled = false;
     var checklist_count = 0;
     var check_delta = 333;
@@ -58,8 +64,9 @@ $(document).ready(function() {
             }, check_delta);
         }
 
-        $target = $(".window-wrapper");
-        if (!$target.length) {
+        $window_wrapper = $(".window-wrapper");
+        $checklist_title = $(".checklist .window-module-title");
+        if (!$window_wrapper.length) {
             return;
         }
 
@@ -117,7 +124,8 @@ $(document).ready(function() {
     }
 
     function apply_windows_addons() {
-        $target.append(overlay_markup);
+        $window_wrapper.append(add_checklist_markup);
+        $checklist_title.append(checklist_buttons_markup);
         add_button_events();
         hide_all_checked_items();
     }
@@ -137,6 +145,20 @@ $(document).ready(function() {
             setTimeout(function() {
                 check_overlay_shown();
             }, 200);
+        });
+        $(".tc-solo-button").click(function(e){
+            e.preventDefault();
+            $(this).toggleClass("tc-option-active");
+            $parent = $(this).parent().parent();
+            $target = $(".checklist").not($parent);
+            $target.toggleClass("tc-hidden");
+        });
+        $(".tc-mute-button").click(function(e){
+            e.preventDefault();
+            $(this).toggleClass("tc-option-active");
+            $parent = $(this).parent().parent();
+            $target = $parent.find(".checklist-items-list, .checklist-progress");
+            $target.toggleClass("tc-hidden");
         });
     }
 

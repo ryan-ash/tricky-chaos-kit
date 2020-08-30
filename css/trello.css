@@ -1,7 +1,7 @@
 .purge .window-sidebar, .purge .window-header-inline-content, .purge .card-detail-data, .purge .add-comment-section, .purge .window-module,
 .purge #header > div > *:not(:first-child), 
 .purge .js-plugin-header-btns, .purge .mod-show-menu .board-header-btn-text, .purge .js-star-board, .purge .board-header-btn-org-wrapper,
-.purge .board-header-btns.mod-left, .purge .open-card-composer .js-add-another-card, .purge .open-card-composer .js-add-a-card {
+.purge .board-header-btns.mod-left, .purge .open-card-composer .js-add-another-card, .purge .open-card-composer .js-add-a-card, .trello-addons .tc-hidden {
     display: none;
 }
 
@@ -122,4 +122,25 @@
 
 .trello-addons .tc-unsure {
     box-shadow: -3px 0 0 #16f;
+}
+
+.trello-addons .tc-solo-button.tc-option-active {
+    background: rgba(9,30,128,.2);
+}
+
+.trello-addons .tc-mute-button.tc-option-active {
+    background: rgba(128,30,9,.2);
+}
+
+.trello-addons .tc-solo-button.tc-option-active:hover {
+    background: rgba(30,30,128,.22);
+}
+
+.trello-addons .tc-mute-button.tc-option-active:hover {
+    background: rgba(128,30,30,.22);
+}
+
+.trello-addons .checklist-title {
+    width: 83%;
+    float: left;
 }
