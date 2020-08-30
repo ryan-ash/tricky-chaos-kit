@@ -63,6 +63,7 @@ $(document).ready(function() {
 
         $(".tc-add-checklist").remove().detach();
         $(".tc-custom-button").remove();
+        $(".tc-hidden").removeClass("tc-hidden");
     }
 
     function check_window_addons() {
