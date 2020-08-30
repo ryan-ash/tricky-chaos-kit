@@ -16,6 +16,7 @@ $(document).ready(function() {
     var enabled = false;
     var checklist_count = 0;
     var check_delta = 333;
+    var window_check = undefined;
 
     chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
         if (msg.text === 'toggle_display_mode') {
@@ -58,14 +59,15 @@ $(document).ready(function() {
         enabled = false;
         $body.removeClass(feature_name);
         $.cookie(save, null);
+        clearTimeout(window_check);
 
-        $(".tc-add-checklist").remove();
+        $(".tc-add-checklist").remove().detach();
         $(".tc-custom-button").remove();
     }
 
     function check_window_addons() {
         if (enabled) {
-            setTimeout(function() {
+            window_check = setTimeout(function() {
                 check_window_addons();
             }, check_delta);
         }
@@ -163,7 +165,7 @@ $(document).ready(function() {
             e.preventDefault();
             $(this).toggleClass("tc-option-active");
             $parent = $(this).parent().parent();
-            $target = $parent.find(".checklist-items-list, .checklist-progress");
+            $target = $parent.find(".checklist-items-list, .checklist-progress, .checklist-new-item");
             $target.toggleClass("tc-hidden");
         });
     }
