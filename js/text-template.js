@@ -49,6 +49,12 @@ $(document).ready(function() {
     var initial_tag_selector_help = tag_selector_help;
 
 
+    
+    chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+        if (msg.text === 'toggle_display_mode') {
+            toggle_display_mode();
+        }
+    });
 
     // === main ===
 

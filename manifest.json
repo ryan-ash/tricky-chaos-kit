@@ -19,6 +19,10 @@
       "128": "icons/128_off.png"
     }
   },
+  "background": {
+    "persistent": false,
+    "scripts": ["js/background.js"]
+  },
   "content_scripts": [
     {
       "matches": ["https://trello.com/*"],

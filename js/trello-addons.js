@@ -10,13 +10,18 @@ $(document).ready(function() {
         <a class="icon-lg tc-add-checklist" href="#"></a>
     `;
     var checklist_buttons_markup = `
-        <div class="button subtle hide-on-edit tc-solo-button" href="#" style="margin: 0">Solo</div>
-        <div class="button subtle hide-on-edit tc-mute-button" href="#" style="margin: 0">Mute</div>
+        <div class="button subtle hide-on-edit tc-solo-button tc-custom-button" href="#" style="margin: 0">Solo</div>
+        <div class="button subtle hide-on-edit tc-mute-button tc-custom-button" href="#" style="margin: 0">Mute</div>
     `
     var enabled = false;
     var checklist_count = 0;
     var check_delta = 333;
 
+    chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+        if (msg.text === 'toggle_display_mode') {
+            toggle_display_mode();
+        }
+    });
 
     // === main ===
 
@@ -55,6 +60,7 @@ $(document).ready(function() {
         $.cookie(save, null);
 
         $(".tc-add-checklist").remove();
+        $(".tc-custom-button").remove();
     }
 
     function check_window_addons() {

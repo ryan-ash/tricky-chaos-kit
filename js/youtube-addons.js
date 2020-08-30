@@ -8,6 +8,12 @@ $(document).ready(function() {
     var guide_collapsed = false;
 
 
+    chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+        if (msg.text === 'toggle_display_mode') {
+            toggle_display_mode();
+        }
+    });
+
     // === main ===
 
     if ($.cookie(save)) {

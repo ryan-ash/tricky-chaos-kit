@@ -5,6 +5,12 @@ var cookie_lifetime = 365 * 5;
 var save = "trickychaos";
 var feature_name = "purge";
 
+chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+    if (msg.text === 'toggle_display_mode') {
+        toggle_display_mode();
+    }
+});
+
 if ($.cookie(save)) {
     enable();
 }
@@ -20,31 +26,17 @@ function toggle_display_mode() {
         disable();
     else
         enable();
+
+    // todo: debug icon update logic
+    chrome.runtime.sendMessage({event: "update_icon", active: $html.hasClass(feature_name)});
 }
 
 function enable() {
     $html.addClass(feature_name);
-    $.cookie(save, true, { expires: cookie_lifetime });
-    // chrome.browserAction.setIcon({
-    //     imageData : {
-    //         "16": "icons/16_off.png",
-    //         "32": "icons/32_off.png",
-    //         "48": "icons/48_off.png",
-    //        "128": "icons/128_off.png"
-    //     }
-    // });
+    $.cookie(save, true, { expires: cookie_lifetime });    
 }
 
 function disable() {
-    // $body.removeClass(feature_name);
     $html.removeClass(feature_name);
     $.cookie(save, null);
-    // chrome.browserAction.setIcon({
-    //     imageData : {
-    //         "16": "icons/16_on.png",
-    //         "32": "icons/32_on.png",
-    //         "48": "icons/48_on.png",
-    //         "128": "icons/128_on.png"
-    //     }
-    // });
 }
