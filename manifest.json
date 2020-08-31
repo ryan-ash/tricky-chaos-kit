@@ -26,7 +26,7 @@
   "content_scripts": [
     {
       "matches": ["https://trello.com/*"],
-      "css": ["css/trello.css"],
+      "css": ["css/font-awesome.min.css", "css/trello.css"],
       "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js", "js/trello-addons.js"]
     },
     {

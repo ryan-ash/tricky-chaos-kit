@@ -10,8 +10,8 @@ $(document).ready(function() {
         <a class="icon-lg tc-add-checklist" href="#"></a>
     `;
     var checklist_buttons_markup = `
-        <div class="button subtle hide-on-edit tc-solo-button tc-custom-button" href="#" style="margin: 0">Solo</div>
-        <div class="button subtle hide-on-edit tc-mute-button tc-custom-button" href="#" style="margin: 0">Mute</div>
+        <div class="button subtle hide-on-edit tc-solo-button tc-custom-button fa fa-play" href="#" style="margin: 0">&nbsp;</div>
+        <div class="button subtle hide-on-edit tc-mute-button tc-custom-button fa fa-volume-off" href="#" style="margin: 0">&nbsp;</div>
     `
     var enabled = false;
     var check_delta = 333;
@@ -142,6 +142,9 @@ $(document).ready(function() {
             remove_checklist_controls();
             $checklist_title.append(checklist_buttons_markup);
             add_checklist_controls_events();
+            $(".js-confirm-delete").addClass("fa").addClass("fa-trash-o");
+            $(".js-show-checked-items").addClass("fa").addClass("fa-check-circle-o");
+            $(".js-hide-checked-items").addClass("fa").addClass("fa-check-circle");
         }
     }
 
@@ -149,6 +152,7 @@ $(document).ready(function() {
         $(".tc-add-checklist").remove().detach();
         $(".tc-custom-button").remove();
         $(".tc-hidden").removeClass("tc-hidden");
+        $(".fa").removeClass("fa").removeClass("fa-trash-o").removeClass("fa-check-circle").removeClass("fa-check-circle-o");
     }
 
     function hide_all_checked_items() {
