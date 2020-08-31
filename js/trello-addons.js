@@ -14,7 +14,6 @@ $(document).ready(function() {
         <div class="button subtle hide-on-edit tc-mute-button tc-custom-button" href="#" style="margin: 0">Mute</div>
     `
     var enabled = false;
-    var checklist_count = 0;
     var check_delta = 333;
     var window_check = undefined;
 
@@ -61,9 +60,7 @@ $(document).ready(function() {
         $.cookie(save, null);
         clearTimeout(window_check);
 
-        $(".tc-add-checklist").remove().detach();
-        $(".tc-custom-button").remove();
-        $(".tc-hidden").removeClass("tc-hidden");
+        remove_checklist_controls();
     }
 
     function check_window_addons() {
@@ -80,13 +77,14 @@ $(document).ready(function() {
         }
 
         apply_checklist_lightup();
+        add_checklist_controls();
 
         $addon = $(".tc-add-checklist");
         if ($addon.length) {
             return;
         }
 
-        apply_windows_addons();
+        add_checklist_maker();
     }
     
     function apply_checklist_lightup() {
@@ -132,11 +130,25 @@ $(document).ready(function() {
         });
     }
 
-    function apply_windows_addons() {
+    function add_checklist_maker() {
         $window_wrapper.append(add_checklist_markup);
-        $checklist_title.append(checklist_buttons_markup);
-        add_button_events();
+        add_checklist_maker_event();
         hide_all_checked_items();
+    }
+
+    function add_checklist_controls() {
+        if ($checklist_title.length != $(".tc-solo-button").length)
+        {
+            remove_checklist_controls();
+            $checklist_title.append(checklist_buttons_markup);
+            add_checklist_controls_events();
+        }
+    }
+
+    function remove_checklist_controls() {
+        $(".tc-add-checklist").remove().detach();
+        $(".tc-custom-button").remove();
+        $(".tc-hidden").removeClass("tc-hidden");
     }
 
     function hide_all_checked_items() {
@@ -145,7 +157,7 @@ $(document).ready(function() {
         });
     }
 
-    function add_button_events() {
+    function add_checklist_maker_event() {
         $(".tc-add-checklist").click(function(e){
             e.preventDefault();
             $(".js-add-checklist-menu")[0].click();
@@ -155,6 +167,9 @@ $(document).ready(function() {
                 check_overlay_shown();
             }, 200);
         });
+    }
+
+    function add_checklist_controls_events() {
         $(".tc-solo-button").click(function(e){
             e.preventDefault();
             $(this).toggleClass("tc-option-active");
