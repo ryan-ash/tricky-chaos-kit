@@ -1,5 +1,5 @@
 .purge .window-sidebar, .purge .window-header-inline-content, .purge .card-detail-data, .purge .add-comment-section, .purge .window-module,
-.purge #header > div > *:not(:first-child), 
+.purge #header > div > *:not(:first-child), .purge .js-fill-card-detail-desc .window-module-title > *:not(span),
 .purge .js-plugin-header-btns, .purge .mod-show-menu .board-header-btn-text, .purge .js-star-board, .purge .board-header-btn-org-wrapper,
 .purge .board-header-btns.mod-left, .purge .open-card-composer .js-add-another-card, .purge .open-card-composer .js-add-a-card, .trello-addons .tc-hidden {
     display: none;
@@ -7,6 +7,28 @@
 
 .purge .window-module.checklist-list {
     display: block;
+}
+
+.purge .js-fill-card-detail-desc .window-module {
+    display: block;
+}
+
+.purge .js-fill-card-detail-desc .window-module-title {
+    height: 0px;
+    min-height: 0px;
+}
+
+.purge .js-fill-card-detail-desc .window-module-title-icon {
+    top: 16px !important;
+}
+
+.purge .js-fill-card-detail-desc .description-fake-text-area {
+    color: rgba(0,0,0,0) !important;
+}
+
+.purge .js-fill-card-detail-desc .description-fake-text-area::before {
+    content: "Description...";
+    color: #172b4d;
 }
 
 .purge .checklist-new-item-text {
