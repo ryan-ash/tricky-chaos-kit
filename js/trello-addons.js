@@ -178,7 +178,7 @@ $(document).ready(function() {
             e.preventDefault();
             $(this).toggleClass("tc-option-active");
             $parent = $(this).parent().parent();
-            $target = $(".checklist, .js-fill-card-detail-desc").not($parent);
+            $target = $(".checklist, .js-fill-card-detail-desc, .card-detail-data").not($parent);
             $target.toggleClass("tc-hidden");
         });
         $(".tc-mute-button").click(function(e){
