@@ -142,9 +142,9 @@ $(document).ready(function() {
             remove_checklist_controls();
             $checklist_title.append(checklist_buttons_markup);
             add_checklist_controls_events();
-            $(".js-confirm-delete").addClass("fa").addClass("fa-trash-o");
-            $(".js-show-checked-items").addClass("fa").addClass("fa-check-circle-o");
-            $(".js-hide-checked-items").addClass("fa").addClass("fa-check-circle");
+            $(".checklist .js-confirm-delete").addClass("fa").addClass("fa-trash-o");
+            $(".checklist .js-show-checked-items").addClass("fa").addClass("fa-check-circle-o");
+            $(".checklist .js-hide-checked-items").addClass("fa").addClass("fa-check-circle");
         }
     }
 
