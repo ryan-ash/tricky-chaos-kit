@@ -1,4 +1,4 @@
-.purge .window-sidebar, .purge .window-header-inline-content, .purge .card-detail-data h3, .purge .add-comment-section, .purge .window-module,
+.purge .window-sidebar, .purge .window-header-inline-content:not(.js-current-list), .purge .card-detail-data h3, .purge .add-comment-section, .purge .window-module:not(.js-attachments-section),
 .purge #header > div > *:not(:first-child), .purge .js-fill-card-detail-desc .window-module-title > *:not(span),
 .purge .js-plugin-header-btns, .purge .mod-show-menu .board-header-btn-text, .purge .js-star-board, .purge .board-header-btn-org-wrapper,
 .purge .board-header-btns.mod-left, .purge .open-card-composer .js-add-another-card, .purge .open-card-composer .js-add-a-card, .trello-addons .tc-hidden {
@@ -13,13 +13,36 @@
     display: block;
 }
 
+.purge .js-current-list {
+    margin: 0;
+}
+
+.purge .js-current-list p {
+    overflow: hidden;
+    width: 0;
+    height: 0;
+}
+
+.purge .js-current-list p a {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    text-transform: lowercase;
+    text-decoration: none;
+}
+
+.purge .js-card-detail-header {
+    margin-bottom: 0;
+}
+
 .purge .js-fill-card-detail-desc .window-module-title {
     height: 0px;
     min-height: 0px;
+    padding: 0px;
 }
 
 .purge .js-fill-card-detail-desc .window-module-title-icon {
-    top: 16px !important;
+    top: 0 !important;
 }
 
 .purge .js-fill-card-detail-desc .description-fake-text-area {
