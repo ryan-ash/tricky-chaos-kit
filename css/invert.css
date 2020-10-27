@@ -1,4 +1,4 @@
-.purge, .purge video:not(:fullscreen), .purge img, .purge svg {
+.purge, .purge video:not(:fullscreen), .purge img, .purge svg, .purge *[role="img"] {
     filter: invert(1);
 }
 
