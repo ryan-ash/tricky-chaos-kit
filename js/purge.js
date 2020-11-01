@@ -28,7 +28,10 @@ function toggle_display_mode() {
         enable();
 
     // todo: debug icon update logic
-    chrome.runtime.sendMessage({event: "update_icon", active: $html.hasClass(feature_name)});
+    if (chrome && chrome.runtime)
+    {
+        chrome.runtime.sendMessage({event: "update_icon", active: $html.hasClass(feature_name)});
+    }
 }
 
 function enable() {
