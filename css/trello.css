@@ -5,6 +5,10 @@
     display: none;
 }
 
+.purge .js-card-detail-labels {
+    display: block !important;
+}
+
 .purge .window-module.checklist-list {
     display: block;
 }
