@@ -1,16 +1,27 @@
 $(document).ready(function() {
     var $body = $("body");
+    var $window_wrapper = undefined;
+    var $checklist_title = undefined;
 
     var cookie_lifetime = 365 * 5;
     var save = "trickychaos";
     var feature_name = "trello-addons"
-    var overlay_markup = `
+    var add_checklist_markup = `
         <a class="icon-lg tc-add-checklist" href="#"></a>
     `;
+    var checklist_buttons_markup = `
+        <div class="button subtle hide-on-edit tc-solo-button tc-custom-button fa fa-play" href="#" style="margin: 0">&nbsp;</div>
+        <div class="button subtle hide-on-edit tc-mute-button tc-custom-button fa fa-volume-off" href="#" style="margin: 0">&nbsp;</div>
+    `
     var enabled = false;
-    var checklist_count = 0;
     var check_delta = 333;
+    var window_check = undefined;
 
+    chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+        if (msg.text === 'toggle_display_mode') {
+            toggle_display_mode();
+        }
+    });
 
     // === main ===
 
@@ -47,30 +58,33 @@ $(document).ready(function() {
         enabled = false;
         $body.removeClass(feature_name);
         $.cookie(save, null);
+        clearTimeout(window_check);
 
-        $(".tc-add-checklist").remove();
+        remove_checklist_controls();
     }
 
     function check_window_addons() {
         if (enabled) {
-            setTimeout(function() {
+            window_check = setTimeout(function() {
                 check_window_addons();
             }, check_delta);
         }
 
-        $target = $(".window-wrapper");
-        if (!$target.length) {
+        $window_wrapper = $(".window-wrapper");
+        $checklist_title = $(".checklist .window-module-title");
+        if (!$window_wrapper.length) {
             return;
         }
 
         apply_checklist_lightup();
+        add_checklist_controls();
 
         $addon = $(".tc-add-checklist");
         if ($addon.length) {
             return;
         }
 
-        apply_windows_addons();
+        add_checklist_maker();
     }
     
     function apply_checklist_lightup() {
@@ -116,10 +130,29 @@ $(document).ready(function() {
         });
     }
 
-    function apply_windows_addons() {
-        $target.append(overlay_markup);
-        add_button_events();
+    function add_checklist_maker() {
+        $window_wrapper.append(add_checklist_markup);
+        add_checklist_maker_event();
         hide_all_checked_items();
+    }
+
+    function add_checklist_controls() {
+        if ($checklist_title.length != $(".tc-solo-button").length)
+        {
+            remove_checklist_controls();
+            $checklist_title.append(checklist_buttons_markup);
+            add_checklist_controls_events();
+            $(".checklist .js-confirm-delete").addClass("fa").addClass("fa-trash-o");
+            $(".checklist .js-show-checked-items").addClass("fa").addClass("fa-check-circle-o");
+            $(".checklist .js-hide-checked-items").addClass("fa").addClass("fa-check-circle");
+        }
+    }
+
+    function remove_checklist_controls() {
+        $(".tc-add-checklist").remove().detach();
+        $(".tc-custom-button").remove();
+        $(".tc-hidden").removeClass("tc-hidden");
+        $(".fa").removeClass("fa").removeClass("fa-trash-o").removeClass("fa-check-circle").removeClass("fa-check-circle-o");
     }
 
     function hide_all_checked_items() {
@@ -128,7 +161,7 @@ $(document).ready(function() {
         });
     }
 
-    function add_button_events() {
+    function add_checklist_maker_event() {
         $(".tc-add-checklist").click(function(e){
             e.preventDefault();
             $(".js-add-checklist-menu")[0].click();
@@ -137,6 +170,23 @@ $(document).ready(function() {
             setTimeout(function() {
                 check_overlay_shown();
             }, 200);
+        });
+    }
+
+    function add_checklist_controls_events() {
+        $(".tc-solo-button").click(function(e){
+            e.preventDefault();
+            $(this).toggleClass("tc-option-active");
+            $parent = $(this).parent().parent();
+            $target = $(".checklist, .js-fill-card-detail-desc, .card-detail-data, .js-open-move-from-header, .js-attachments-section").not($parent);
+            $target.toggleClass("tc-hidden");
+        });
+        $(".tc-mute-button").click(function(e){
+            e.preventDefault();
+            $(this).toggleClass("tc-option-active");
+            $parent = $(this).parent().parent();
+            $target = $parent.find(".checklist-items-list, .checklist-progress, .checklist-new-item");
+            $target.toggleClass("tc-hidden");
         });
     }
 

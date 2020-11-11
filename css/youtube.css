@@ -4,10 +4,11 @@
 .purge ytd-app[is-watch-page] #guide-spacer, .purge ytd-app[is-watch-page] #info .super-title, .purge ytd-app[is-watch-page] #info #info-text, 
 .purge ytd-app[is-watch-page] #info #menu a #text, .purge ytd-app[is-watch-page] #info #menu ytd-menu-renderer > #button,
 .purge ytd-app[is-watch-page] #comments, .purge ytd-app[is-watch-page] #related, .purge ytd-app[is-watch-page] #playlist,
-.purge #secondary, .purge .badge-style-type-verified, .purge #byline-container #separator,
+.purge #secondary, .purge .badge-style-type-verified, .purge #byline-container #separator, .purge ytd-app[is-watch-page] paper-toast#toast,
 .purge [page-subtype="home"] ytd-rich-section-renderer, .purge [page-subtype="home"] .badge, .purge [page-subtype="home"] #avatar-link,
 .purge ytd-app[is-watch-page] #meta-contents ytd-expander, .purge ytd-app[is-watch-page] #meta-contents #top-row > *:not(ytd-video-owner-renderer),
-.purge ytd-app[is-watch-page] ytd-video-owner-renderer > *:not(#upload-info), .purge ytd-app[is-watch-page] #owner-sub-count {
+.purge ytd-app[is-watch-page] ytd-video-owner-renderer > *:not(#upload-info), .purge ytd-app[is-watch-page] #owner-sub-count,
+.purge ytd-app[is-watch-page] #clarify-box, .purge ytd-app[is-watch-page] ytd-badge-supported-renderer {
     display: none !important;
 }
 
@@ -15,12 +16,12 @@
 
 /* === watch page === */
 
-.purge:not(.no-scroll) ytd-app[is-watch-page] {
+.purge body:not(.no-scroll) ytd-app[is-watch-page] {
     display: flex;
     align-items: center;
 }
 
-.purge:not(.no-scroll) ytd-app[is-watch-page] #content {
+.purge body:not(.no-scroll) ytd-app[is-watch-page] #content {
     flex: 1;
 }
 

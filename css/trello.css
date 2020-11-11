@@ -1,12 +1,62 @@
-.purge .window-sidebar, .purge .window-header-inline-content, .purge .card-detail-data, .purge .add-comment-section, .purge .window-module,
-.purge #header > div > *:not(:first-child), 
+.purge .window-sidebar, .purge .window-header-inline-content:not(.js-current-list), .purge .card-detail-data h3, .purge .add-comment-section, 
+.purge .window-module:not(.js-attachments-section), .purge #header > div > *:not(:first-child), .purge .js-fill-card-detail-desc .window-module-title > *:not(span),
 .purge .js-plugin-header-btns, .purge .mod-show-menu .board-header-btn-text, .purge .js-star-board, .purge .board-header-btn-org-wrapper,
-.purge .board-header-btns.mod-left, .purge .open-card-composer .js-add-another-card, .purge .open-card-composer .js-add-a-card {
+.purge .board-header-btns.mod-left, .purge .open-card-composer .js-add-another-card, .purge .open-card-composer .js-add-a-card, .trello-addons .tc-hidden {
     display: none;
+}
+
+.purge .js-card-detail-labels {
+    display: block !important;
 }
 
 .purge .window-module.checklist-list {
     display: block;
+}
+
+.purge .js-fill-card-detail-desc .window-module {
+    display: block;
+}
+
+.purge .js-current-list {
+    margin: 0;
+}
+
+.purge .js-current-list p {
+    overflow: hidden;
+    width: 0;
+    height: 0;
+}
+
+.purge .js-current-list p a {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    text-transform: lowercase;
+    text-decoration: none;
+}
+
+.purge .js-card-detail-header {
+    margin-bottom: 0;
+}
+
+.purge .js-fill-card-detail-desc .window-module-title {
+    height: 0px;
+    min-height: 0px;
+    padding: 0px;
+}
+
+.purge .js-fill-card-detail-desc .window-module-title-icon {
+    top: 0 !important;
+}
+
+.purge .js-fill-card-detail-desc .description-fake-text-area {
+    color: rgba(0,0,0,0) !important;
+    min-height: auto !important;
+}
+
+.purge .js-fill-card-detail-desc .description-fake-text-area::before {
+    content: "Description...";
+    color: #172b4d;
 }
 
 .purge .checklist-new-item-text {
@@ -122,4 +172,46 @@
 
 .trello-addons .tc-unsure {
     box-shadow: -3px 0 0 #16f;
+}
+
+.trello-addons .tc-solo-button.tc-option-active {
+    background: rgba(9,30,128,.2);
+}
+
+.trello-addons .tc-mute-button.tc-option-active {
+    background: rgba(128,30,9,.2);
+}
+
+.trello-addons .tc-solo-button.tc-option-active:hover {
+    background: rgba(30,30,128,.22);
+}
+
+.trello-addons .tc-mute-button.tc-option-active:hover {
+    background: rgba(128,30,30,.22);
+}
+
+.trello-addons .checklist-title {
+    width: 88%;
+    margin-right: 7px;
+    float: left;
+}
+
+.trello-addons .checklist .window-module-title-options .button {
+    color: rgba(0,0,0,0);
+}
+
+.trello-addons .checklist .window-module-title-options .button::before {
+    color: rgba(0,0,0,1);
+}
+
+.trello-addons .checklist .window-module-title-options .button, .trello-addons .tc-custom-button {
+    overflow: hidden;
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+    font-family: FontAwesome !important;
+}
+
+.trello-addons .tc-solo-button {
+    margin-right: 6px !important;
 }

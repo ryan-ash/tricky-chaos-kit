@@ -1,0 +1,11 @@
+.purge, .purge video:not(:fullscreen), .purge img, .purge svg, .purge *[role="img"], .purge iframe {
+    filter: invert(1);
+}
+
+.purge, .purge body {
+    background: #fff !important;
+}
+
+.purge *:fullscreen {
+    filter: invert(1);
+}
