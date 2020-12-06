@@ -196,20 +196,27 @@
     float: left;
 }
 
-.trello-addons .checklist .window-module-title-options .button {
+.trello-addons .checklist .window-module-title-options .nch-button {
     color: rgba(0,0,0,0);
 }
 
-.trello-addons .checklist .window-module-title-options .button::before {
+.trello-addons .checklist .window-module-title-options .nch-button::before {
     color: rgba(0,0,0,1);
 }
 
-.trello-addons .checklist .window-module-title-options .button, .trello-addons .tc-custom-button {
+.trello-addons .checklist .window-module-title-options .nch-button, .trello-addons .tc-custom-button {
     overflow: hidden;
+    padding-left: 10px;
+    width: 10px;
+    height: 20px;
+    margin-right: 10px;
+    font-family: FontAwesome !important;
+    justify-content: initial;
+}
+
+.trello-addons .tc-custom-button {
     width: 32px;
     height: 32px;
-    margin-right: 8px;
-    font-family: FontAwesome !important;
 }
 
 .trello-addons .tc-solo-button {
