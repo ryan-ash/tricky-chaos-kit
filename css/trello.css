@@ -207,16 +207,11 @@
 .trello-addons .checklist .window-module-title-options .nch-button, .trello-addons .tc-custom-button {
     overflow: hidden;
     padding-left: 10px;
-    width: 10px;
-    height: 20px;
+    width: 32px;
+    height: 32px;
     margin-right: 10px;
     font-family: FontAwesome !important;
     justify-content: initial;
-}
-
-.trello-addons .tc-custom-button {
-    width: 32px;
-    height: 32px;
 }
 
 .trello-addons .tc-solo-button {
