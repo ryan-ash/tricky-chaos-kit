@@ -3,7 +3,7 @@
   
   "name": "Tricky Chaos Kit",
   "description": "Make web less distracting with a key. Press F2 to switch to dark mode anywhere or to enable custom style in certain places. IDDQD.",
-  "version": "2.3.0",
+  "version": "2.3.3",
   "author": "Ryan Ash",  
   "icons": {
     "16": "icons/16_off.png",

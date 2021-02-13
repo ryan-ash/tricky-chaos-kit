@@ -8,7 +8,7 @@
 .purge [page-subtype="home"] ytd-rich-section-renderer, .purge [page-subtype="home"] .badge, .purge [page-subtype="home"] #avatar-link,
 .purge ytd-app[is-watch-page] #meta-contents ytd-expander, .purge ytd-app[is-watch-page] #meta-contents #top-row > *:not(ytd-video-owner-renderer),
 .purge ytd-app[is-watch-page] ytd-video-owner-renderer > *:not(#upload-info), .purge ytd-app[is-watch-page] #owner-sub-count,
-.purge ytd-app[is-watch-page] #clarify-box, .purge ytd-app[is-watch-page] ytd-badge-supported-renderer {
+.purge ytd-app[is-watch-page] #clarify-box, .purge ytd-app[is-watch-page] ytd-badge-supported-renderer, .purge ytd-mealbar-promo-renderer {
     display: none !important;
 }
 
