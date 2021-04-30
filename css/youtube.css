@@ -1,14 +1,14 @@
 /* === display none graveyard === */
 
 .purge #content #masthead div#buttons > .ytd-masthead:not(ytd-notification-topbar-button-renderer), .purge #content #masthead #logo #country-code,
-.purge ytd-app[is-watch-page] #guide-spacer, .purge ytd-app[is-watch-page] #info .super-title, .purge ytd-app[is-watch-page] #info #info-text, 
-.purge ytd-app[is-watch-page] #info #menu a #text, .purge ytd-app[is-watch-page] #info #menu ytd-menu-renderer > #button,
-.purge ytd-app[is-watch-page] #comments, .purge ytd-app[is-watch-page] #related, .purge ytd-app[is-watch-page] #playlist,
-.purge #secondary, .purge .badge-style-type-verified, .purge #byline-container #separator, .purge ytd-app[is-watch-page] paper-toast#toast,
+.purge ytd-app:not([mini-guide-visible_]) #guide-spacer, .purge ytd-app:not([mini-guide-visible_]) #info .super-title, .purge ytd-app:not([mini-guide-visible_]) #info #info-text, 
+.purge ytd-app:not([mini-guide-visible_]) #info #menu a #text, .purge ytd-app:not([mini-guide-visible_]) #info #menu ytd-menu-renderer > #button,
+.purge ytd-app:not([mini-guide-visible_]) #comments, .purge ytd-app:not([mini-guide-visible_]) #related, .purge ytd-app:not([mini-guide-visible_]) #playlist,
+.purge #secondary, .purge .badge-style-type-verified, .purge #byline-container #separator, .purge ytd-app:not([mini-guide-visible_]) paper-toast#toast,
 .purge [page-subtype="home"] ytd-rich-section-renderer, .purge [page-subtype="home"] .badge, .purge [page-subtype="home"] #avatar-link,
-.purge ytd-app[is-watch-page] #meta-contents ytd-expander, .purge ytd-app[is-watch-page] #meta-contents #top-row > *:not(ytd-video-owner-renderer),
-.purge ytd-app[is-watch-page] ytd-video-owner-renderer > *:not(#upload-info), .purge ytd-app[is-watch-page] #owner-sub-count,
-.purge ytd-app[is-watch-page] #clarify-box, .purge ytd-app[is-watch-page] ytd-badge-supported-renderer, .purge ytd-mealbar-promo-renderer, .purge ytd-app[is-watch-page] .super-title-icon {
+.purge ytd-app:not([mini-guide-visible_]) #meta-contents ytd-expander, .purge ytd-app:not([mini-guide-visible_]) #meta-contents #top-row > *:not(ytd-video-owner-renderer),
+.purge ytd-app:not([mini-guide-visible_]) ytd-video-owner-renderer > *:not(#upload-info), .purge ytd-app:not([mini-guide-visible_]) #owner-sub-count,
+.purge ytd-app:not([mini-guide-visible_]) #clarify-box, .purge ytd-app:not([mini-guide-visible_]) ytd-badge-supported-renderer, .purge ytd-mealbar-promo-renderer, .purge ytd-app:not([mini-guide-visible_]) .super-title-icon {
     display: none !important;
 }
 
@@ -16,33 +16,33 @@
 
 /* === watch page === */
 
-.purge body:not(.no-scroll) ytd-app[is-watch-page] {
+.purge body:not(.no-scroll) ytd-app:not([mini-guide-visible_]) {
     display: flex;
     align-items: center;
 }
 
-.purge body:not(.no-scroll) ytd-app[is-watch-page] #content {
+.purge body:not(.no-scroll) ytd-app:not([mini-guide-visible_]) #content {
     flex: 1;
 }
 
-.purge ytd-app[is-watch-page] #info #menu-container {
+.purge ytd-app:not([mini-guide-visible_]) #info #menu-container {
     margin-top: -40px;
 }
 
-.purge ytd-app[is-watch-page] #info #menu-container #sentiment {
+.purge ytd-app:not([mini-guide-visible_]) #info #menu-container #sentiment {
     width: 100% !important;
 }
 
-.purge ytd-app[is-watch-page] #info #info {
+.purge ytd-app:not([mini-guide-visible_]) #info #info {
     height: 10px;
     margin-bottom: -5px;
 }
 
-.purge ytd-app[is-watch-page] #content #page-manager {
+.purge ytd-app:not([mini-guide-visible_]) #content #page-manager {
     overflow: visible;
 }
 
-.purge ytd-app[is-watch-page] ytd-video-secondary-info-renderer {
+.purge ytd-app:not([mini-guide-visible_]) ytd-video-secondary-info-renderer {
     border-bottom: none !important;
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
@@ -127,11 +127,11 @@
 
 /* === single item meta === */
 
-.purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block a, .purge ytd-app:not([is-watch-page]) #meta ytd-video-meta-block span {
+.purge ytd-app[mini-guide-visible] #meta ytd-video-meta-block a, .purge ytd-app[mini-guide-visible] #meta ytd-video-meta-block span {
     color: #fff !important;
 }
 
-.purge ytd-app:not([is-watch-page]) #video-title, .purge ytd-app:not([is-watch-page]) #video-title-link {
+.purge ytd-app[mini-guide-visible] #video-title, .purge ytd-app[mini-guide-visible] #video-title-link {
     max-height: none !important;
     height: auto;
     -webkit-line-clamp: unset !important;
