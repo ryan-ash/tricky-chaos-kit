@@ -61,15 +61,11 @@ $(document).ready(function() {
             }, 100);
         }
 
-        if (!$("ytd-app").attr("mini-guide-visible_")) {
-            return;
-        }
-
         apply_windows_addons();
     }
 
     function apply_windows_addons() {
-        if ($("ytd-app:not([mini-guide-visible_])").length > 0) {
+        if (!is_guide_open()) {
             return;
         }
         $mini_guide = $("ytd-mini-guide-renderer");
@@ -81,5 +77,10 @@ $(document).ready(function() {
             $("#guide-button").click();
             guide_collapsed = true;
         }
+    }
+
+    function is_guide_open()
+    {
+        return $("ytd-app[guide-persistent-and-visible]").length != 0;
     }
 });
