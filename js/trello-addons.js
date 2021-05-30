@@ -12,10 +12,14 @@ $(document).ready(function() {
     var checklist_buttons_markup = `
         <div class="button subtle hide-on-edit tc-solo-button tc-custom-button fa fa-play" href="#" style="margin: 0">&nbsp;</div>
         <div class="button subtle hide-on-edit tc-mute-button tc-custom-button fa fa-volume-off" href="#" style="margin: 0">&nbsp;</div>
-    `
+    `;
     var enabled = false;
     var check_delta = 333;
     var window_check = undefined;
+
+    var remembered_solo = {};
+    var remembered_mute = {};
+    var current_window = "";
 
     chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
         if (msg.text === 'toggle_display_mode') {
@@ -84,6 +88,23 @@ $(document).ready(function() {
             return;
         }
 
+        register_window();
+    }
+
+    function register_window() {
+        current_window = $("h2.card-detail-title-assist").html();
+        window_solo = remembered_solo[current_window];
+        if (window_solo !== undefined) {
+            $item = $(".checklist:nth-child("+ (window_solo + 1) +")");
+            toggle_solo($item, true);
+        }
+        window_mute = remembered_mute[current_window];
+        if (window_mute !== undefined) {
+            for (i = 0; i < window_mute.length; i++) {
+                $item = $(".checklist:nth-child("+ (window_mute[i] + 1) +")");
+                toggle_mute($item, true);
+            }
+        }
         add_checklist_maker();
     }
     
@@ -176,18 +197,51 @@ $(document).ready(function() {
     function add_checklist_controls_events() {
         $(".tc-solo-button").click(function(e){
             e.preventDefault();
-            $(this).toggleClass("tc-option-active");
-            $parent = $(this).parent().parent();
-            $target = $(".checklist, .js-fill-card-detail-desc, .card-detail-data, .js-open-move-from-header, .js-attachments-section").not($parent);
-            $target.toggleClass("tc-hidden");
+            $item = $(this).parent().parent();
+            toggle_solo($item);
         });
         $(".tc-mute-button").click(function(e){
             e.preventDefault();
-            $(this).toggleClass("tc-option-active");
-            $parent = $(this).parent().parent();
-            $target = $parent.find(".checklist-items-list, .checklist-progress, .checklist-new-item");
-            $target.toggleClass("tc-hidden");
+            $item = $(this).parent().parent();
+            toggle_mute($item);
         });
+    }
+
+    function toggle_solo($item, tech=false)
+    {
+        $solo_button = $item.find(".tc-solo-button");
+        $solo_button.toggleClass("tc-option-active");
+        $target = $(".checklist, .js-fill-card-detail-desc, .card-detail-data, .js-open-move-from-header, .js-attachments-section").not($item);
+        $target.toggleClass("tc-hidden");
+        if (tech)
+            return;
+
+        list_number = $item.index();
+        if ($solo_button.hasClass("tc-option-active")) {
+            if (remembered_solo[current_window] == undefined)
+                remembered_solo[current_window] = list_number;
+        } else {
+            delete remembered_solo[current_window];
+        }
+    }
+
+    function toggle_mute($item, tech=false)
+    {
+        $mute_button = $item.find(".tc-mute-button");
+        $mute_button.toggleClass("tc-option-active");
+        $target = $item.find(".checklist-items-list, .checklist-progress, .checklist-new-item");
+        $target.toggleClass("tc-hidden");
+        if (tech)
+            return;
+
+        list_number = $item.index();
+        if ($mute_button.hasClass("tc-option-active")) {
+            if (remembered_mute[current_window] == undefined)
+                remembered_mute[current_window] = [];
+            remembered_mute[current_window].push(list_number);
+        } else if (remembered_mute[current_window]) {
+            remembered_mute[current_window] = arrayRemove(remembered_mute[current_window], list_number);
+        }
     }
 
     function check_overlay_shown() {
@@ -198,5 +252,12 @@ $(document).ready(function() {
             return;
         }
         $(".pop-over").removeClass("checklist");
+    }
+
+    // from the net
+    function arrayRemove(arr, value) { 
+        return arr.filter(function(ele){ 
+            return ele != value; 
+        });
     }
 });
