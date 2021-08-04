@@ -7,12 +7,14 @@
 .purge #secondary, .purge .badge-style-type-verified, .purge #byline-container #separator, .purge paper-toast#toast,
 .purge [page-subtype="home"] ytd-rich-section-renderer, .purge [page-subtype="home"] .badge, .purge [page-subtype="home"] #avatar-link,
 .purge #meta-contents ytd-expander, .purge #meta-contents #top-row > *:not(ytd-video-owner-renderer),
-.purge ytd-video-owner-renderer > *:not(#upload-info), .purge #owner-sub-count,
-.purge #clarify-box, .purge ytd-badge-supported-renderer, .purge ytd-mealbar-promo-renderer, .purge .super-title-icon {
+.purge ytd-video-owner-renderer > *:not(#upload-info), .purge #owner-sub-count, .purge .super-title-icon, .purge #masthead-ad,
+.purge #clarify-box, .purge ytd-badge-supported-renderer, .purge ytd-mealbar-promo-renderer, .purge ytd-display-ad-renderer {
     display: none !important;
 }
 
-
+.purge ytd-rich-item-renderer:has(.ytd-display-ad-renderer) {
+    display: none !important;
+}
 
 /* === watch page === */
 
