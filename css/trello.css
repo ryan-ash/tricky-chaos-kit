@@ -128,24 +128,39 @@
     top: -5px;
 }
 
-.trello-addons .tc-add-checklist {
+.trello-addons .tc-collapsed {
+    margin-bottom: 0;
+}
+
+.trello-addons .tc-window-button {
     color: #42526e;
     border-radius: 50%;
     position: absolute;
     top: 8px;
-    right: 57px;
+    width: 32px;
     height: 32px;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding: 4px;
     margin: 4px;
-    width: 32px;
     z-index: 2;
     transition: background-color .1s,color .1s;
     background: rgba(0,0,0,0);
 }
 
-.trello-addons .tc-add-checklist:hover {
+.trello-addons .tc-window-button:hover, .trello-addons .tc-window-button.tc-option-active {
     background-color: rgba(9,30,66,.08);
+}
+
+.trello-addons .tc-window-button.fa {
+    font-family: FontAwesome !important;
+}
+
+.trello-addons .tc-add-checklist {
+    right: 57px;
+}
+
+.trello-addons .tc-mute-all {
+    right: 100px;
 }
 
 .trello-addons .tc-add-checklist::before {

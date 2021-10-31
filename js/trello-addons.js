@@ -6,8 +6,9 @@ $(document).ready(function() {
     var cookie_lifetime = 365 * 5;
     var save = "trickychaos";
     var feature_name = "trello-addons"
-    var add_checklist_markup = `
-        <a class="icon-lg tc-add-checklist" href="#"></a>
+    var window_top_markup = `
+    <a class="icon-lg tc-window-button tc-mute-all fa fa-volume-off" href="#"></a>
+    <a class="icon-lg tc-window-button tc-add-checklist" href="#"></a>
     `;
     var checklist_buttons_markup = `
         <div class="button subtle hide-on-edit tc-solo-button tc-custom-button fa fa-play" href="#" style="margin: 0">&nbsp;</div>
@@ -83,7 +84,7 @@ $(document).ready(function() {
         apply_checklist_lightup();
         add_checklist_controls();
 
-        $addon = $(".tc-add-checklist");
+        $addon = $(".tc-window-button");
         if ($addon.length) {
             return;
         }
@@ -105,7 +106,7 @@ $(document).ready(function() {
                 toggle_mute($item, true);
             }
         }
-        add_checklist_maker();
+        add_window_buttons();
     }
     
     function apply_checklist_lightup() {
@@ -151,9 +152,9 @@ $(document).ready(function() {
         });
     }
 
-    function add_checklist_maker() {
-        $window_wrapper.append(add_checklist_markup);
-        add_checklist_maker_event();
+    function add_window_buttons() {
+        $window_wrapper.append(window_top_markup);
+        add_window_buttons_events();
         hide_all_checked_items();
     }
 
@@ -170,7 +171,7 @@ $(document).ready(function() {
     }
 
     function remove_checklist_controls() {
-        $(".tc-add-checklist").remove().detach();
+        $(".tc-window-button").remove().detach();
         $(".tc-custom-button").remove();
         $(".tc-hidden").removeClass("tc-hidden");
         $(".fa").removeClass("fa").removeClass("fa-trash-o").removeClass("fa-check-circle").removeClass("fa-check-circle-o");
@@ -182,7 +183,7 @@ $(document).ready(function() {
         });
     }
 
-    function add_checklist_maker_event() {
+    function add_window_buttons_events() {
         $(".tc-add-checklist").click(function(e){
             e.preventDefault();
             $(".js-add-checklist-menu")[0].click();
@@ -191,6 +192,12 @@ $(document).ready(function() {
             setTimeout(function() {
                 check_overlay_shown();
             }, 200);
+        });
+        $(".tc-mute-all").click(function(e){
+            e.preventDefault();
+            selector = $(this).hasClass("tc-option-active") ? ".tc-collapsed" : ":not(.tc-collapsed)";
+            toggle_mute($(".checklist" + selector), true);
+            $(this).toggleClass("tc-option-active");
         });
     }
 
@@ -231,6 +238,7 @@ $(document).ready(function() {
         $mute_button.toggleClass("tc-option-active");
         $target = $item.find(".checklist-items-list, .checklist-progress, .checklist-new-item");
         $target.toggleClass("tc-hidden");
+        $item.toggleClass("tc-collapsed");
         if (tech)
             return;
 
