@@ -196,7 +196,7 @@ $(document).ready(function() {
         $(".tc-mute-all").click(function(e){
             e.preventDefault();
             selector = $(this).hasClass("tc-option-active") ? ".tc-collapsed" : ":not(.tc-collapsed)";
-            toggle_mute($(".checklist" + selector), true);
+            toggle_mute($(".checklist" + selector));
             $(this).toggleClass("tc-option-active");
         });
     }
