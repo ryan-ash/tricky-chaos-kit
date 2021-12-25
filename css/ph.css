@@ -1,0 +1,23 @@
+.purge #countryRedirectMessage, .purge #js-networkBar, .purge .headerBtnsWrapper, .purge .main-sprite, .purge .views, .purge .footerContentWrapper {
+    display: none !important;
+}
+
+.purge .container, html.purge:not(.fluidContainer) .container:not(.blogLayout) {
+    width: 85% !important;
+    max-width: 85% !important;
+    margin-top: 20px !important;
+}
+
+.purge .videoDetailsBlock {
+    display: inline-block !important;
+    margin-left: 10px;
+    margin-bottom: -4px;
+}
+
+.purge .videoUploaderBlock {
+    display: inline-block !important;
+}
+
+.purge .videoPreviewBg img {
+    height: auto !important;
+}

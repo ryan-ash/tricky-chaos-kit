@@ -3,7 +3,7 @@
   
   "name": "Tricky Chaos Kit",
   "description": "Make web less distracting with a key. Press F2 to switch to dark mode anywhere or to enable custom style in certain places. IDDQD.",
-  "version": "2.3.7",
+  "version": "2.4.0",
   "author": "Ryan Ash",  
   "icons": {
     "16": "icons/16_off.png",
@@ -40,16 +40,9 @@
       "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js"]
     },
     {
-      "matches": ["https://web.controller.bot/*"],
-      "css": ["css/font-awesome.min.css", "css/quill.bubble.css", "css/web_controller.css"],
-      "js": [
-        "js/jquery-3.2.1.min.js",
-        "js/jquery.enhanced.cookie.js",
-        "js/quill.min.js",
-        "js/purge.js",
-        "js/text-template-markup.js",
-        "js/text-template.js"
-      ]
+      "matches": ["https://pornhub.com/*", "https://*.pornhub.com/*"],
+      "css": ["css/font-awesome.min.css", "css/ph.css"],
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js"]
     },
     {
       "matches": ["<all_urls>"],
@@ -58,7 +51,8 @@
         "https://youtube.com/*",
         "https://www.youtube.com/*",
         "https://keep.google.com/*",
-        "https://web.controller.bot/*"
+        "https://pornhub.com/*",
+        "https://*.pornhub.com/*"
       ],
       "css": ["css/invert.css"],
       "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js"]
