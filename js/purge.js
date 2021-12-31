@@ -50,3 +50,8 @@ $(document).ready(function() {
         $("html").addClass("tck-loaded");
     }, 250);
 });
+
+window.onbeforeunload = function(){
+    $("html").removeClass("tck-loaded");
+    $html.removeClass("tck-processed");
+};
