@@ -4,8 +4,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        console.log(2);
-        console.log(request);
         if (request.event == "update_icon") {
             if (request.active) {
                 chrome.browserAction.setIcon({

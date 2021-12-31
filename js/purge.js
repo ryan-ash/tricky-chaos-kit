@@ -11,6 +11,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     }
 });
 
+$("html").addClass("tck-processed");
 if ($.cookie(save)) {
     enable();
 }
@@ -43,3 +44,9 @@ function disable() {
     $html.removeClass(feature_name);
     $.cookie(save, null);
 }
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $("html").addClass("tck-loaded");
+    }, 250);
+});
