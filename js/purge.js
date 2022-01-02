@@ -29,15 +29,14 @@ function toggle_display_mode() {
         enable();
 
     // todo: debug icon update logic
-    if (chrome && chrome.runtime)
-    {
+    if (chrome && chrome.runtime) {
         chrome.runtime.sendMessage({event: "update_icon", active: $html.hasClass(feature_name)});
     }
 }
 
 function enable() {
     $html.addClass(feature_name);
-    $.cookie(save, true, { expires: cookie_lifetime });    
+    $.cookie(save, true, { expires: cookie_lifetime });
 }
 
 function disable() {
@@ -50,8 +49,3 @@ $(document).ready(function() {
         $("html").addClass("tck-loaded");
     }, 250);
 });
-
-window.onbeforeunload = function(){
-    $("html").removeClass("tck-loaded");
-    $html.removeClass("tck-processed");
-};
