@@ -27,8 +27,9 @@ function toggle_display_mode() {
         disable();
     else
         enable();
+}
 
-    // todo: debug icon update logic
+function update_icon() {
     if (chrome && chrome.runtime) {
         chrome.runtime.sendMessage({event: "update_icon", active: $html.hasClass(feature_name)});
     }
@@ -37,15 +38,21 @@ function toggle_display_mode() {
 function enable() {
     $html.addClass(feature_name);
     $.cookie(save, true, { expires: cookie_lifetime });
+    update_icon();
 }
 
 function disable() {
     $html.removeClass(feature_name);
     $.cookie(save, null);
+    update_icon();
 }
 
 $(document).ready(function() {
     setTimeout(function() {
         $("html").addClass("tck-loaded");
     }, 250);
+});
+
+$(window).focus(function(){
+    update_icon();
 });

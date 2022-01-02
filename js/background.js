@@ -7,7 +7,7 @@ chrome.runtime.onMessage.addListener(
         if (request.event == "update_icon") {
             if (request.active) {
                 chrome.browserAction.setIcon({
-                    imageData : {
+                    path : {
                         "16": "icons/16_on.png",
                         "32": "icons/32_on.png",
                         "48": "icons/48_on.png",
@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener(
                 });            
             } else {
                 chrome.browserAction.setIcon({
-                    imageData : {
+                    path : {
                         "16": "icons/16_off.png",
                         "32": "icons/32_off.png",
                         "48": "icons/48_off.png",
