@@ -168,6 +168,12 @@ html.tck-processed body::before {
 .purge .dropdown-trigger button.yt-icon-button {
     transform: rotate(90deg);
     margin-top: -7px;
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+}
+
+.purge ytd-grid-video-renderer:hover .dropdown-trigger button.yt-icon-button {
+    opacity: 0.8;
 }
 
 .purge ytd-video-renderer .dropdown-trigger button.yt-icon-button {
