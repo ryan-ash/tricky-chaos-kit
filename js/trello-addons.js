@@ -5,6 +5,7 @@ $(document).ready(function() {
 
     var cookie_lifetime = 365 * 5;
     var save = "trickychaos";
+    var remembered_save = "tc-remembered";
     var feature_name = "trello-addons"
     var window_top_markup = `
     <a class="icon-lg tc-window-button tc-mute-all fa fa-volume-off" href="#"></a>
@@ -34,6 +35,8 @@ $(document).ready(function() {
         enable();
     }
 
+    load_remembered();
+
     $(document).keydown(function(e) {
         if (e.which != 113)
             return;
@@ -43,6 +46,24 @@ $(document).ready(function() {
 
 
     // === functions ===
+
+    function save_remembered() {
+        var remembered_object = {
+            solo: remembered_solo,
+            mute: remembered_mute
+        }
+        $.cookie(remembered_save, JSON.stringify(remembered_object), { expires: cookie_lifetime });
+        console.log(remembered_object);
+    }
+
+    function load_remembered() {
+        if ($.cookie(remembered_save)) {
+            var remembered_object = JSON.parse($.cookie(remembered_save));
+            remembered_solo = remembered_object.solo;
+            remembered_mute = remembered_object.mute;
+            console.log(remembered_object);
+        }
+    }
 
     function toggle_display_mode() {
         if ($body.hasClass(feature_name))
@@ -230,6 +251,7 @@ $(document).ready(function() {
         } else {
             delete remembered_solo[current_window];
         }
+        save_remembered();
     }
 
     function toggle_mute($item, tech=false)
@@ -242,14 +264,23 @@ $(document).ready(function() {
         if (tech)
             return;
 
-        list_number = $item.index();
-        if ($mute_button.hasClass("tc-option-active")) {
-            if (remembered_mute[current_window] == undefined)
-                remembered_mute[current_window] = [];
-            remembered_mute[current_window].push(list_number);
-        } else if (remembered_mute[current_window]) {
-            remembered_mute[current_window] = arrayRemove(remembered_mute[current_window], list_number);
+        list_numbers = [];
+        $item.each(function() {
+            list_numbers.push($(this).index());
+        });
+
+        for (i = 0; i < list_numbers.length; i++) {
+            list_number = list_numbers[i];
+            if ($mute_button.hasClass("tc-option-active")) {
+                if (remembered_mute[current_window] == undefined)
+                    remembered_mute[current_window] = [];
+                if (remembered_mute[current_window].indexOf(list_number) == -1)
+                    remembered_mute[current_window].push(list_number);
+            } else if (remembered_mute[current_window]) {
+                remembered_mute[current_window] = arrayRemove(remembered_mute[current_window], list_number);
+            }
         }
+        save_remembered();
     }
 
     function check_overlay_shown() {
