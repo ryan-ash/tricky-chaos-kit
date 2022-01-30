@@ -134,7 +134,7 @@ html.tck-processed body::before {
     width: 300px !important;
 }
 
-.purge ytd-thumbnail, .purge ytd-playlist-thumbnail {
+.purge ytd-video-preview:not([active]) ytd-thumbnail, .purge ytd-grid-video-renderer ytd-thumbnail, .purge ytd-playlist-thumbnail {
     height: 168px !important;
     width: 300px !important;
 }

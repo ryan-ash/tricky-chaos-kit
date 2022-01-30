@@ -53,7 +53,7 @@ $(document).ready(function() {
             mute: remembered_mute
         }
         $.cookie(remembered_save, JSON.stringify(remembered_object), { expires: cookie_lifetime });
-        console.log(remembered_object);
+        // console.log(remembered_object);
     }
 
     function load_remembered() {
@@ -61,7 +61,7 @@ $(document).ready(function() {
             var remembered_object = JSON.parse($.cookie(remembered_save));
             remembered_solo = remembered_object.solo;
             remembered_mute = remembered_object.mute;
-            console.log(remembered_object);
+            // console.log(remembered_object);
         }
     }
 
