@@ -165,7 +165,9 @@ html.tck-processed body::before {
     background: rgba(0,0,0,0);
 }
 
-.trello-addons .tc-window-button:hover, .trello-addons .tc-window-button.tc-option-active, .trello-addons .icon-description:hover, .trello-addons .icon-description.tc-option-active {
+.trello-addons .tc-window-button:hover, .trello-addons .tc-window-button.tc-option-active, 
+.trello-addons .icon-description:hover, .trello-addons .icon-description.tc-option-active,
+.trello-addons .icon-checklist:hover {
     background-color: rgba(9,30,66,.08);
 }
 
@@ -259,6 +261,6 @@ html.tck-processed body::before {
     display: block !important;
 }
 
-.trello-addons .icon-description:hover {
+.trello-addons .icon-description:hover, .trello-addons .icon-checklist:hover {
     cursor: pointer;
 }

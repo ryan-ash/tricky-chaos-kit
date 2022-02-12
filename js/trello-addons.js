@@ -225,6 +225,18 @@ $(document).ready(function() {
             $body.toggleClass("tc-show-description");
             $(this).toggleClass("tc-option-active");
         });
+        $(".icon-checklist").click(function(e){
+            e.preventDefault();
+            $checklist = $(this).parents(".checklist");
+            $items = $checklist.find(".checklist-item");
+            $checked_items = $items.filter(".checklist-item-state-complete");
+            $unchecked_items = $items.filter(":not(.checklist-item-state-complete)");
+            enable_checkboxes = $checked_items.length < $unchecked_items.length;
+            $target_checkboxes = enable_checkboxes ? $unchecked_items : $checked_items;
+            $target_checkboxes.each(function() {
+                $(this).find(".checklist-item-checkbox").click();
+            });
+        });
     }
 
     function add_checklist_controls_events() {
