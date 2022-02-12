@@ -64,7 +64,7 @@ html.tck-processed body::before {
 }
 
 .purge .js-fill-card-detail-desc .window-module-title-icon {
-    top: 0 !important;
+    top: -50px !important;
 }
 
 .purge .js-fill-card-detail-desc .description-fake-text-area {
@@ -263,4 +263,9 @@ html.tck-processed body::before {
 
 .trello-addons .icon-description:hover, .trello-addons .icon-checklist:hover {
     cursor: pointer;
+}
+
+.trello-addons:not(.tc-show-description) .js-fill-card-detail-desc .window-module {
+    height: 0;
+    margin: 0;
 }
