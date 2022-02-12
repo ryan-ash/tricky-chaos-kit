@@ -196,6 +196,8 @@ $(document).ready(function() {
         $(".tc-custom-button").remove();
         $(".tc-hidden").removeClass("tc-hidden");
         $(".fa").removeClass("fa").removeClass("fa-trash-o").removeClass("fa-check-circle").removeClass("fa-check-circle-o");
+        $(".icon-description").unbind("click");
+        $(".icon-checklist").unbind("click");
     }
 
     function hide_all_checked_items() {
