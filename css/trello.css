@@ -251,11 +251,11 @@ html.tck-processed body::before {
     margin-right: 6px !important;
 }
 
-.trello-addons .u-gutter {
+.trello-addons .js-fill-card-detail-desc div.u-gutter {
     display: none;
 }
 
-.trello-addons.tc-show-description .u-gutter {
+.trello-addons.tc-show-description .js-fill-card-detail-desc div.u-gutter {
     display: block !important;
 }
 
