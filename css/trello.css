@@ -165,7 +165,7 @@ html.tck-processed body::before {
     background: rgba(0,0,0,0);
 }
 
-.trello-addons .tc-window-button:hover, .trello-addons .tc-window-button.tc-option-active {
+.trello-addons .tc-window-button:hover, .trello-addons .tc-window-button.tc-option-active, .trello-addons .icon-description:hover, .trello-addons .icon-description.tc-option-active {
     background-color: rgba(9,30,66,.08);
 }
 
@@ -249,4 +249,16 @@ html.tck-processed body::before {
 
 .trello-addons .tc-solo-button {
     margin-right: 6px !important;
+}
+
+.trello-addons .u-gutter {
+    display: none;
+}
+
+.trello-addons.tc-show-description .u-gutter {
+    display: block !important;
+}
+
+.trello-addons .icon-description:hover {
+    cursor: pointer;
 }

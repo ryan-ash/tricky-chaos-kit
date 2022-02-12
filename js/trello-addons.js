@@ -220,6 +220,11 @@ $(document).ready(function() {
             toggle_mute($(".checklist" + selector));
             $(this).toggleClass("tc-option-active");
         });
+        $(".icon-description").click(function(e){
+            e.preventDefault();
+            $body.toggleClass("tc-show-description");
+            $(this).toggleClass("tc-option-active");
+        });
     }
 
     function add_checklist_controls_events() {
