@@ -18,7 +18,7 @@ html.tck-processed body::before {
 
 /* === display none graveyard === */
 
-.purge #content #masthead div#buttons > .ytd-masthead:not(ytd-notification-topbar-button-shape-renderer), .purge #content #masthead #logo #country-code,
+.purge #content #masthead div#buttons > .ytd-masthead:not(ytd-notification-topbar-button-renderer), .purge #content #masthead #logo #country-code,
 .purge #guide-spacer, .purge #info .super-title, .purge #info #info-text, 
 .purge #info #menu a #text, .purge #info #menu ytd-menu-renderer > #button,
 .purge #comments, .purge #related, .purge #playlist,
