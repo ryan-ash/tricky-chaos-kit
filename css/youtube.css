@@ -49,6 +49,10 @@ html.tck-processed body::before {
     margin-top: -40px;
 }
 
+.purge .title.ytd-video-primary-info-renderer {
+    padding-right: 300px;
+}
+
 .purge #info #menu-container #sentiment {
     width: 100% !important;
 }
