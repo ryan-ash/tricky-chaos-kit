@@ -54,3 +54,15 @@ setTimeout(function() {
 $(window).focus(function(){
     update_icon();
 });
+
+function check_html() {
+    if (!$("html").hasClass("tck-processed")) {
+        $("html").addClass("tck-processed");
+        $("html").addClass("tck-loaded");
+    }
+    setTimeout(function() {
+        check_html();
+    }, 100);
+}
+
+check_html();
