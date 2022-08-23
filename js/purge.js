@@ -47,11 +47,9 @@ function disable() {
     update_icon();
 }
 
-$(document).ready(function() {
-    setTimeout(function() {
-        $("html").addClass("tck-loaded");
-    }, 250);
-});
+setTimeout(function() {
+    $("html").addClass("tck-loaded");
+}, 250);
 
 $(window).focus(function(){
     update_icon();
