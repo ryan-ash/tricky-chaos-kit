@@ -64,7 +64,7 @@ html.tck-processed body::before {
 }
 
 .purge .js-fill-card-detail-desc .window-module-title-icon {
-    top: -50px !important;
+    top: -40px !important;
 }
 
 .purge .js-fill-card-detail-desc .description-fake-text-area {
@@ -83,6 +83,16 @@ html.tck-processed body::before {
 
 .purge .window-overlay {
     background: #222;
+}
+
+.purge .window-overlay .card-detail-data {
+    margin-left: 34px;
+}
+
+.purge .window-overlay .card-detail-data button[data-test-id="card-label"] {
+    background: none;
+    padding: 0 15px;
+    min-width: 0;
 }
 
 .purge .window-main-col {
