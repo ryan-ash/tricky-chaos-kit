@@ -103,6 +103,21 @@ html.tck-processed body::before {
     padding-top: 2px;
 }
 
+.purge .list-card-details button {
+    position: absolute;
+    transform: rotate(90deg);
+    top: 50%;
+    left: -19px;
+}
+
+.purge .list-card-details .js-react-root > div {
+    margin-bottom: 0px !important;
+}
+
+.purge .list-card-title, .purge .list-card-details .list-card-edit-title {
+    margin-left: 3px;
+}
+
 .purge .list-card-operation {
     background: none !important;
     top: -2px !important;
