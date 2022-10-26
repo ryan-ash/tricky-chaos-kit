@@ -26,8 +26,44 @@ html.tck-processed body::before {
 .purge [page-subtype="home"] ytd-rich-section-renderer, .purge [page-subtype="home"] .badge, .purge [page-subtype="home"] #avatar-link,
 .purge #meta-contents ytd-expander, .purge #meta-contents #top-row > *:not(ytd-video-owner-renderer),
 .purge ytd-video-owner-renderer > *:not(#upload-info), .purge #owner-sub-count, .purge .super-title-icon, .purge #masthead-ad,
-.purge #clarify-box, .purge ytd-badge-supported-renderer, .purge ytd-mealbar-promo-renderer, .purge ytd-display-ad-renderer {
+.purge #clarify-box, .purge ytd-badge-supported-renderer, .purge ytd-mealbar-promo-renderer, .purge ytd-display-ad-renderer,
+.purge yt-formatted-string#super-title, .purge #top-row #actions .cbox.yt-spec-button-shape-next--button-text-content {
     display: none !important;
+}
+
+/* === last sub video menu fix === */
+
+.purge #above-the-fold {
+    margin-top: 15px !important;
+}
+
+.purge #top-row {
+    margin-top: 0px !important;
+}
+
+.purge #bottom-row {
+    margin-top: 15px !important;
+}
+
+.purge #top-row #actions {
+    margin-top: -70px !important;
+}
+
+.purge #top-row #actions .ytd-watch-metadata {
+    overflow: hidden;
+}
+
+.purge #top-row #actions button {
+    padding: 0 3px 0 16px !important;
+}
+
+.purge #top-row #actions #segmented-dislike-button button {
+    width: 38px !important;
+    padding: 0 16px !important;
+}
+
+.purge #top-row #actions yt-button-shape:last-child button {
+    padding: 0 16px !important;
 }
 
 .purge ytd-rich-item-renderer:has(.ytd-display-ad-renderer) {
