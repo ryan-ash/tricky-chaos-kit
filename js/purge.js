@@ -13,7 +13,10 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 
 $("html").addClass("tck-processed");
 if ($.cookie(save)) {
-    enable();
+    // url doesn't end with .log or .json; weird stuff can happen if you mirror those
+    if (window.location.href.indexOf(".log") == -1 && window.location.href.indexOf(".json") == -1) {
+        enable();
+    }
 }
 
 $(document).keydown(function(e) {
