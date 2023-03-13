@@ -13,8 +13,16 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 
 $("html").addClass("tck-processed");
 if ($.cookie(save)) {
-    // url doesn't end with .log or .json; weird stuff can happen if you mirror those
-    if (window.location.href.indexOf(".log") == -1 && window.location.href.indexOf(".json") == -1) {
+    // checking this isn't a text file, those shouldn't be auto-inverted
+    bad_endings = [".log", ".json", ".txt"]
+    var should_enable = true;
+    for (i = 0; i < bad_endings.length; i++) {
+        if (window.location.href.indexOf(bad_endings[i]) != -1) {
+            should_enable = false;
+        }
+    }
+    if (should_enable)
+    {
         enable();
     }
 }
