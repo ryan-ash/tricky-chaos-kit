@@ -27,7 +27,7 @@ html.tck-processed body::before {
 .purge #meta-contents ytd-expander, .purge #meta-contents #top-row > *:not(ytd-video-owner-renderer),
 .purge ytd-video-owner-renderer > *:not(#upload-info), .purge #owner-sub-count, .purge .super-title-icon, .purge #masthead-ad,
 .purge #clarify-box, .purge ytd-badge-supported-renderer, .purge ytd-mealbar-promo-renderer, .purge ytd-display-ad-renderer,
-.purge yt-formatted-string#super-title, .purge #top-row #actions .cbox.yt-spec-button-shape-next--button-text-content, div.yt-spec-button-shape-next__button-text-content {
+.purge yt-formatted-string#super-title, .purge #top-row #actions .cbox.yt-spec-button-shape-next--button-text-content, .purge #top-row #actions div.yt-spec-button-shape-next__button-text-content {
     display: none !important;
 }
 
