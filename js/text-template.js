@@ -1,3 +1,19 @@
+var cookie_lifetime = 365 * 5;
+var save = "trickychaos";
+var auto_save = "tc-auto-save";
+var drafts_save = "tc-drafts";
+var tag_save = "tc-tag-helper";
+var feature_name = "text-template";
+
+var last_title_id = 0;
+var last_bottom_link_id = 0;
+
+var handlers_active = false;
+var auto_save_inactive = false;
+var tag_hotkeys = false;
+
+var post_textarea = "";
+
 $(document).ready(function() {
     var $body = $("body");
     var $root = "";
@@ -8,22 +24,6 @@ $(document).ready(function() {
     var $titles = [];
     var $bottom_links_wrapper = "";
     var $bottom_links = [];
-
-    var cookie_lifetime = 365 * 5;
-    var save = "trickychaos";
-    var auto_save = "tc-auto-save";
-    var drafts_save = "tc-drafts";
-    var tag_save = "tc-tag-helper";
-    var feature_name = "text-template";
-
-    var last_title_id = 0;
-    var last_bottom_link_id = 0;
-
-    var handlers_active = false;
-    var auto_save_inactive = false;
-    var tag_hotkeys = false;
-
-    var post_textarea = "";
 
     // === data ===
 
@@ -83,7 +83,7 @@ $(document).ready(function() {
     }
 
     function enable() {
-        $root = $body.find(".el-form");
+        $root = $body.find(".form-horizontal");
         if (!$root.length) {
             setTimeout(function() {
                 enable();

@@ -45,6 +45,11 @@
       "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js"]
     },
     {
+      "matches": ["https://pastebin.com/*", "https://*.pastebin.com/*"],
+      "css": ["css/font-awesome.min.css", "css/pastebin.css"],
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/text-template.js", "js/text-template-markup.js", "js/quill.min.js"]
+    },
+    {
       "matches": ["<all_urls>"],
       "exclude_matches":[
         "https://trello.com/*",
@@ -52,7 +57,8 @@
         "https://www.youtube.com/*",
         "https://keep.google.com/*",
         "https://pornhub.com/*",
-        "https://*.pornhub.com/*"
+        "https://*.pornhub.com/*",
+        "https://pastebin.com/*"
       ],
       "css": ["css/invert.css"],
       "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js"]
