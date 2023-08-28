@@ -25,6 +25,7 @@ $(document).ready(function() {
     var $titles = [];
     var $bottom_links_wrapper = "";
     var $bottom_links = [];
+    var $preview_wrapper = "";
 
     // === data ===
 
@@ -160,6 +161,7 @@ $(document).ready(function() {
         $form.html(form_content);
         $titles_wrapper = $form.find(".tc-title-wrapper");
         $bottom_links_wrapper = $form.find(".tc-bottom-link-wrapper");
+        $preview_wrapper = $(".tc-preview-wrapper");
 
         for (var i in current_post.titles) {
             title = current_post.titles[i];
@@ -667,9 +669,8 @@ $(document).ready(function() {
     }
 
     function toggle_preview() {
-        $post = $(".tc-preview-wrapper");
-        $post.toggleClass("tc-collapsed");
-        if ($post.hasClass("tc-collapsed")) {
+        $preview_wrapper.toggleClass("tc-collapsed");
+        if ($preview_wrapper.hasClass("tc-collapsed")) {
             $(".tc-toggle-preview").removeClass("tc-active");
         } else {
             $(".tc-toggle-preview").addClass("tc-active");
@@ -709,7 +710,8 @@ $(document).ready(function() {
 
     function toggle_load_draft_form() {
         $(".tc-drafts").toggleClass("tc-visible");
-        $root.toggleClass("tc-collapsed");
+        $root.toggleClass("tc-pushed-down");
+        $preview_wrapper.toggleClass("tc-pushed-down");
 
         // a temporary clutch
         if ($(".tc-drafts").hasClass("tc-visible")) {
@@ -922,7 +924,6 @@ $(document).ready(function() {
 
         post_string = post_string.replace(/<strong>/g, "<b>").replace(/<\/strong>/g, "</b>").replace(/<em>/g, "<i>").replace(/<\/em>/g, "</i>").replace(/ rel="noopener noreferrer" target="_blank"/g, "");
 
-        $preview_wrapper = $(".tc-preview-wrapper");
         $preview_wrapper.css("height", "auto");
 
         post_preview = "<p>" + post_string.trim().replace(/\n/g, "</p><p>") + "</p>";
@@ -962,11 +963,12 @@ $(document).ready(function() {
         build_drafts();
         add_handlers();
 
-        $(".tc-preview").addClass("tc-disabled");
         $form.find(".tc-draft-list option:selected").removeAttr('selected');
         $form.find(".tc-draft-list option[value='" + selected_id + "']").attr('selected', true);
 
         parse_post();
+        $root.toggleClass("tc-pushed-down");
+        $preview_wrapper.toggleClass("tc-pushed-down");
     }
 
     function delete_selected_draft() {
