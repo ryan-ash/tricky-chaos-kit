@@ -18,10 +18,10 @@ var form_content = `
         <div class="tc-button-container">
             <div tabindex="0" class="tc-toggle-preview tc-top-button fa fa-eye"></div>
             <div tabindex="0" class="tc-toggle-form tc-top-button fa fa-list"></div>
-            <div tabindex="0" class="tc-clear-form tc-top-button fa fa-trash-o"></div>
+            <div tabindex="0" class="tc-load-draft tc-top-button fa fa-arrow-down"></div>
             <div tabindex="0" class="tc-save-draft tc-top-button fa fa-floppy-o"></div>
             <div tabindex="0" class="tc-save-draft-complete tc-top-button tc-disabled fa fa-check"></div>
-            <div tabindex="0" class="tc-load-draft tc-top-button fa fa-arrow-down"></div>
+            <div tabindex="0" class="tc-clear-form tc-top-button fa fa-trash-o"></div>
         </div>
         <div class="tc-drafts tc-hidden tc-wrapper">
             <div class="tc-select-wrapper">
