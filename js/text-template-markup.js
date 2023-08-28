@@ -1,15 +1,10 @@
 var overlay_markup = `
     <div class="overlay-text-template">
         <div class="tc-form"></div>
-
-        <div class="tc-ex">
-            <textarea class="tc-post-data"></textarea>
-        </div>
         <div class="tc-footer tc-disabled">
             <a href="">Export</a>
             <a href="">Import</a>
         </div>
-
         <div class="tc-preview-wrapper">
             <div class="tc-preview">
 
@@ -22,6 +17,7 @@ var form_content = `
     <div class="tc-form-controls">
         <div class="tc-button-container">
             <div tabindex="0" class="tc-toggle-preview tc-top-button fa fa-eye"></div>
+            <div tabindex="0" class="tc-toggle-form tc-top-button fa fa-list"></div>
             <div tabindex="0" class="tc-clear-form tc-top-button fa fa-trash-o"></div>
             <div tabindex="0" class="tc-save-draft tc-top-button fa fa-floppy-o"></div>
             <div tabindex="0" class="tc-save-draft-complete tc-top-button tc-disabled fa fa-check"></div>
@@ -87,7 +83,7 @@ var bottom_link_markup = `
 
 var link_preview_markup = `
     <div class="tc-link-preview">
-        <iframe src="LINK" width="560" height="315" frameborder="0"></iframe>
+        <iframe src="LINK" width="420" height="236" frameborder="0"></iframe>
     </div>
 `;
 

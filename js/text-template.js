@@ -17,6 +17,7 @@ var post_textarea = "";
 $(document).ready(function() {
     var $body = $("body");
     var $root = "";
+    var $root_content = "";
     var $overlay = "";
     var $tags_buttons = "";
     var $form = "";
@@ -83,7 +84,8 @@ $(document).ready(function() {
     }
 
     function enable() {
-        $root = $body.find(".form-horizontal");
+        $root = $body.find(".wrap > .container");
+        $root_content = $body.find(".wrap > .container > .content");
         if (!$root.length) {
             // retry init if no form is found on start
             setTimeout(function() {
@@ -130,6 +132,7 @@ $(document).ready(function() {
         generate_options_button();
         add_handlers();
         toggle_preview();
+        toggle_form_fields();
         toggle_reactions();
         toggle_url_buttons();
         toggle_switches();
@@ -371,6 +374,11 @@ $(document).ready(function() {
             check_tag_helper(this);
             e.preventDefault();
         });
+        $form.find(".tc-toggle-form").click(function(e) {
+            toggle_form_fields();
+            check_tag_helper(this);
+            e.preventDefault();
+        });
         $form.find(".tc-save-draft").click(function(e) {
             save_draft(current_post);
             build_drafts();
@@ -496,21 +504,6 @@ $(document).ready(function() {
             }
         }
         resize_tag_helper();        
-    }
-
-    function toggle_load_draft_form() {
-        $(".tc-drafts").toggleClass("tc-visible");
-
-        // a temporary clutch
-        if ($(".tc-drafts").hasClass("tc-visible")) {
-            setTimeout(function() {
-                $(".tc-drafts").css("overflow", "visible");
-            }, 250);
-            $(".tc-load-draft").addClass("tc-active");
-        } else {
-            $(".tc-drafts").css("overflow", "hidden");
-            $(".tc-load-draft").removeClass("tc-active");
-        }
     }
 
     function resize_textarea(target) {
@@ -675,13 +668,23 @@ $(document).ready(function() {
 
     function toggle_preview() {
         $post = $(".tc-preview-wrapper");
-        $post.toggleClass("tc-disabled");
-        if ($post.hasClass("tc-disabled")) {
+        $post.toggleClass("tc-collapsed");
+        if ($post.hasClass("tc-collapsed")) {
             $(".tc-toggle-preview").removeClass("tc-active");
-            $(".tc-form-inputs").removeClass("tc-disabled");
         } else {
             $(".tc-toggle-preview").addClass("tc-active");
-            $(".tc-form-inputs").addClass("tc-disabled");
+        }
+    }
+
+    function toggle_form_fields() {
+        $form_inputs = $(".tc-form-inputs");
+        $form_inputs.toggleClass("tc-collapsed");
+        if ($form_inputs.hasClass("tc-collapsed")) {
+            $(".tc-toggle-form").removeClass("tc-active");
+            $root_content.removeClass("tc-collapsed");
+        } else {
+            $(".tc-toggle-form").addClass("tc-active");
+            $root_content.addClass("tc-collapsed");
         }
     }
 
@@ -702,6 +705,22 @@ $(document).ready(function() {
         $option_on = $(".tc-options-button .on").toggleClass("tc-disabled");
         $option_off = $(".tc-options-button .off").toggleClass("tc-disabled");
         // todo: change switches button
+    }
+
+    function toggle_load_draft_form() {
+        $(".tc-drafts").toggleClass("tc-visible");
+        $root.toggleClass("tc-collapsed");
+
+        // a temporary clutch
+        if ($(".tc-drafts").hasClass("tc-visible")) {
+            setTimeout(function() {
+                $(".tc-drafts").css("overflow", "visible");
+            }, 250);
+            $(".tc-load-draft").addClass("tc-active");
+        } else {
+            $(".tc-drafts").css("overflow", "hidden");
+            $(".tc-load-draft").removeClass("tc-active");
+        }
     }
 
     function update_tags(tags) {
@@ -901,12 +920,21 @@ $(document).ready(function() {
             last_preview = preview;
         }
 
+        post_string = post_string.replace(/<strong>/g, "<b>").replace(/<\/strong>/g, "</b>").replace(/<em>/g, "<i>").replace(/<\/em>/g, "</i>").replace(/ rel="noopener noreferrer" target="_blank"/g, "");
+
+        $preview_wrapper = $(".tc-preview-wrapper");
+        $preview_wrapper.css("height", "auto");
+
         post_preview = "<p>" + post_string.trim().replace(/\n/g, "</p><p>") + "</p>";
+        post_preview = post_preview.replace(/<p><\/p>/g, "<p>&nbsp;</p>");
         $message_box = $(".tc-preview");
         $message_box.html(post_preview);
 
+        $preview_wrapper.css("height", $preview_wrapper[0].scrollHeight);
+
         $textarea = $("#postform-text");
         $textarea.val(post_string);
+        $textarea.height($textarea[0].scrollHeight);
     }
 
     function prepare_string(str) {
