@@ -85,13 +85,17 @@ $(document).ready(function() {
     function enable() {
         $root = $body.find(".form-horizontal");
         if (!$root.length) {
+            // retry init if no form is found on start
             setTimeout(function() {
                 enable();
             }, 100);
             return;
         }
+
+        // init start: add overlay base
         $root.prepend(overlay_markup);
 
+        // why do we touch footer?..
         $footer = $body.find("footer");
         $footer_name_span = $body.find("footer > span:first-child");
         $footer.css("max-width", $footer_name_span.width());
@@ -129,6 +133,7 @@ $(document).ready(function() {
         toggle_reactions();
         toggle_url_buttons();
         toggle_switches();
+        parse_post();
     }
 
     function disable() {
@@ -275,7 +280,7 @@ $(document).ready(function() {
 
     function generate_link_preview() {
         embed_link = get_embed_link(current_post.preview_link);
-        $sibling = $root.find(".cb-textarea-wrapper");
+        $sibling = $root.find(".tc-preview");
 
         $root.find('.tc-link-preview').remove();
         $root.append(link_preview_markup);
@@ -309,7 +314,7 @@ $(document).ready(function() {
     }
 
     function generate_options_button() {
-        $options = $body.find(".cb-newpost-options .cb-switchers");
+        $options = $body.find(".post-form__bottom");
         $root.append(options_button_markup);
 
         $instance = $body.find(".tc-options-button");
@@ -436,8 +441,9 @@ $(document).ready(function() {
             switch_tag_helper_edit(false, false);
         });
 
-        $buttons_headers = $(".cb-buttons > .form-item-like .label");
-        $buttons_headers.unbind("click");
+        $buttons_headers = $(".-paste");
+        // $buttons_headers.unbind("click");
+
         $reactions_button = $($buttons_headers[0]);
         $urls_button = $($buttons_headers[1]);
 
@@ -668,7 +674,7 @@ $(document).ready(function() {
     }
 
     function toggle_preview() {
-        $post = $(".cb-textarea-wrapper");
+        $post = $(".tc-preview-wrapper");
         $post.toggleClass("tc-disabled");
         if ($post.hasClass("tc-disabled")) {
             $(".tc-toggle-preview").removeClass("tc-active");
@@ -692,7 +698,7 @@ $(document).ready(function() {
     }
 
     function toggle_switches() {
-        $switchers = $(".cb-switchers").toggleClass("tc-hidden");
+        $switchers = $(".post-form__bottom").toggleClass("tc-hidden");
         $option_on = $(".tc-options-button .on").toggleClass("tc-disabled");
         $option_off = $(".tc-options-button .off").toggleClass("tc-disabled");
         // todo: change switches button
@@ -885,7 +891,7 @@ $(document).ready(function() {
             post.ps = ps;
 
             post_string += "\n\n";
-            post_string += "&gt; <code>" + ps + "</code>";
+            post_string += "> <i>" + ps + "</i>";
         }
 
         do_auto_save(post);
@@ -895,9 +901,12 @@ $(document).ready(function() {
             last_preview = preview;
         }
 
-        post_string = "<p>" + post_string.trim().replace(/\n/g, "</p><p>") + "</p>";
-        $message_box = $(".el-form .quill-editor .ql-editor");
-        $message_box.html(post_string);
+        post_preview = "<p>" + post_string.trim().replace(/\n/g, "</p><p>") + "</p>";
+        $message_box = $(".tc-preview");
+        $message_box.html(post_preview);
+
+        $textarea = $("#postform-text");
+        $textarea.val(post_string);
     }
 
     function prepare_string(str) {
@@ -925,7 +934,7 @@ $(document).ready(function() {
         build_drafts();
         add_handlers();
 
-        $(".cb-textarea-wrapper").addClass("tc-disabled");
+        $(".tc-preview").addClass("tc-disabled");
         $form.find(".tc-draft-list option:selected").removeAttr('selected');
         $form.find(".tc-draft-list option[value='" + selected_id + "']").attr('selected', true);
 

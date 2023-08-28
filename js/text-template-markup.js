@@ -9,6 +9,12 @@ var overlay_markup = `
             <a href="">Export</a>
             <a href="">Import</a>
         </div>
+
+        <div class="tc-preview-wrapper">
+            <div class="tc-preview">
+
+            </div>
+        </div>
     </div>
 `;
 

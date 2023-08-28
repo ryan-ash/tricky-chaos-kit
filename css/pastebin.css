@@ -60,15 +60,10 @@
     width: 100%;
 }
 
-.text-template .container {
+.text-template .wrap > .container {
     display: block !important;
-    padding: 10px !important;
+    padding: 70px 10px 10px 10px !important;
 }
-
-/* .text-template .container::after {
-    display: none;
-    width: 0;
-} */
 
 .text-template footer span {
     color: #666 !important;
@@ -121,8 +116,8 @@
 .text-template .tc-form input[type=time], .text-template .tc-form input[type=url],
 .text-template .tc-form input[type=week], .text-template .tc-form select, 
 .text-template .tc-form textarea {
-    background-color: transparent; /* Remove background fill */
-    border: 2px solid rgba(40, 35, 59, 0.801); /* 2px white border */
+    background-color: #0002; /* Remove background fill */
+    border: 2px solid rgba(60, 49, 90, 0.701); /* 2px white border */
     color: #fff; /* White text */
     height: 35px; /* Increase input height */
     border-radius: 30px 10px;
@@ -162,6 +157,16 @@
     overflow: hidden;
     border-radius: 30px 10px;
     border: none;
+}
+
+.text-template .tc-preview-wrapper {
+    position: fixed;
+    top: 60px;
+    left: 10px;
+}
+
+.text-template .tc-preview {
+    margin: 10px 0px;
 }
 
 /* Buttons */
@@ -238,9 +243,9 @@
     padding-top: 10px !important;
 }
 
-.text-template .cb-newpost-options label {
+/* .text-template .cb-newpost-options label {
     width: 166px !important;
-}
+} */
 
 .text-template .el-button:not(.el-button--text), .text-template .tc-button {
     transition: border 0.15s ease-out;
@@ -386,10 +391,6 @@
 
 .text-template .el-input__inner {
     margin-right: -5px !important;
-}
-
-.text-template .cb-textarea-wrapper {
-    margin: 10px 0px;
 }
 
 .text-template .keyboard-button-wrapper {
@@ -539,7 +540,7 @@
 /* todo: move form style here */
 /* =========== FORM CHANGES ============ */
 
-.text-template .cb-newpost-options .cb-buttons .form-item-like {
+/* .text-template .cb-newpost-options .cb-buttons .form-item-like {
     padding-bottom: 5px !important;
 }
 
@@ -547,13 +548,13 @@
     transition: opacity 0.25s ease-out;
     opacity: 0.8;
     margin: auto;
-}
+} */
 
 .text-template .tc-options-button {
     text-align: center;
 }
 
-.text-template .cb-newpost-options .cb-buttons .label:hover, .text-template .tc-options-button {
+/* .text-template .cb-newpost-options .cb-buttons .label:hover, .text-template .tc-options-button {
     cursor: pointer;
     opacity: 1;
     color: #4e7e4d !important;
@@ -617,4 +618,4 @@
 .text-template .cb-newpost-media .el-form-item__content {
     text-align: center;
 }
-
+ */
