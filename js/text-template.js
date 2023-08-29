@@ -935,7 +935,8 @@ $(document).ready(function() {
 
         $textarea = $("#postform-text");
         $textarea.val(post_string);
-        $textarea.height($textarea[0].scrollHeight);
+        $textarea.css("height", "auto");
+        $textarea.css("height", $textarea[0].scrollHeight);
     }
 
     function prepare_string(str) {
