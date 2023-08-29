@@ -4,7 +4,7 @@
 }
 
 .text-template footer, .text-template .sidebar, .text-template .content__text, .text-template .header__right, 
-.text-template .post-form__right, .text-template .badge-new, .text-template .top-footer {
+.text-template .post-form__right, .text-template .badge-new, .text-template .top-footer, .text-template .-paste {
     display: none;
 }
 
