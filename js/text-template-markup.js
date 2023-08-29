@@ -5,7 +5,7 @@ var overlay_markup = `
             <a href="">Export</a>
             <a href="">Import</a>
         </div>
-        <div class="tc-preview-wrapper">
+        <div class="tc-preview-wrapper tc-collapsed">
             <div class="tc-preview">
 
             </div>
@@ -31,7 +31,7 @@ var form_content = `
             <div tabindex="0" class="tc-delete tc-button fa fa-trash-o"></div>
         </div>
     </div>
-    <div class="tc-form-inputs">
+    <div class="tc-form-inputs tc-collapsed">
         <div class="tc-title-wrapper"></div>
         <div tabindex="0" class="tc-add tc-button tc-add-title fa fa-plus"></div><br/>
         <div class="tc-tag-selector tc-wide-input tc-wrapper">

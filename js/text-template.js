@@ -132,8 +132,8 @@ $(document).ready(function() {
         generate_link_preview();
         generate_options_button();
         add_handlers();
-        toggle_preview();
-        toggle_form_fields();
+        // toggle_preview();
+        // toggle_form_fields();
         toggle_reactions();
         toggle_url_buttons();
         toggle_switches();
@@ -997,4 +997,22 @@ $(document).ready(function() {
     function copy_json(src) {
         return JSON.parse(JSON.stringify(src));
     }
+
+    // initial fade in
+
+    setTimeout(function() {
+        $("html").addClass("tck-loaded");
+    }, 250);    
+
+    function check_html() {
+        if (!$("html").hasClass("tck-processed")) {
+            $("html").addClass("tck-processed");
+            $("html").addClass("tck-loaded");
+        }
+        setTimeout(function() {
+            check_html();
+        }, 100);
+    }
+    
+    check_html();
 });
