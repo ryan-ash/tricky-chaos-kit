@@ -46,8 +46,8 @@
     },
     {
       "matches": ["https://pastebin.com/*", "https://*.pastebin.com/*"],
-      "css": ["css/font-awesome.min.css", "css/pastebin.css", "css/quill.core.css", "css/quill.bubble.css"],
-      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/text-template.js", "js/text-template-markup.js", "js/quill.js"]
+      "css": ["css/font-awesome.min.css", "css/pastebin.css", "css/quill.bubble.css"],
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/text-template.js", "js/text-template-markup.js", "js/quill.min.js"]
     },
     {
       "matches": ["<all_urls>"],
