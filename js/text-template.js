@@ -1000,19 +1000,8 @@ $(document).ready(function() {
 
     // initial fade in
 
+    $("html").addClass("tck-processed");
     setTimeout(function() {
         $("html").addClass("tck-loaded");
-    }, 250);    
-
-    function check_html() {
-        if (!$("html").hasClass("tck-processed")) {
-            $("html").addClass("tck-processed");
-            $("html").addClass("tck-loaded");
-        }
-        setTimeout(function() {
-            check_html();
-        }, 100);
-    }
-    
-    check_html();
+    }, 250);
 });
