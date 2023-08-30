@@ -1,5 +1,5 @@
 var cookie_lifetime = 365 * 5;
-var save = "trickychaos";
+var global_save = "trickychaos";
 var auto_save = "tc-auto-save";
 var drafts_save = "tc-drafts";
 var tag_save = "tc-tag-helper";
@@ -14,6 +14,43 @@ var auto_save_inactive = false;
 var tag_hotkeys = false;
 
 var post_textarea = "";
+
+function save(name, value) {
+    // check if primitive, stringify otherwise
+    value_to_store = value;
+    if (typeof value != "number" && typeof value != "boolean" && typeof value != "string" && value != null && value != undefined) {
+        value_to_store = JSON.stringify(value);
+    }
+    $.cookie(name, value_to_store, { expires: cookie_lifetime });
+
+    if (chrome && chrome.runtime) {
+        chrome.runtime.sendMessage({event: "backup_cookie", name: name, value: value_to_store});
+    }
+}
+
+function restore_cookies(callback) {
+    if (chrome && chrome.runtime) {
+        chrome.runtime.sendMessage({event: "restore_cookie"}, function(response) {
+            if (!response || !response.response) {
+                return;
+            }
+
+            console.log("Restoring cookies...");
+
+            for (var key in response.response) {
+                value = response.response[key];
+                if (typeof value == "string" && (value[0] == "{" || value[0] == "[")) {
+                    value = JSON.parse(value);
+                }
+                save(key, value);
+            }
+
+            callback();
+        });
+    } else {
+        callback();
+    }
+}
 
 $(document).ready(function() {
     var $body = $("body");
@@ -62,10 +99,12 @@ $(document).ready(function() {
 
     // === main ===
 
-    if ($.cookie(save)) {
-        enable();
-    }
-
+    restore_cookies(function() {
+        if ($.cookie(global_save)) {
+            enable();
+        }    
+    });
+    
     $(document).keydown(function(e) {
         if (tag_hotkeys && (e.which >= 37 && e.which <= 40)) {
             handle_tag_hotkey(e.which > 38, e);
@@ -78,6 +117,12 @@ $(document).ready(function() {
 
 
     // === functions ===
+
+    function update_icon() {
+        if (chrome && chrome.runtime) {
+            chrome.runtime.sendMessage({event: "update_icon", active: $body.hasClass(feature_name)});
+        }
+    }
 
     function toggle_display_mode() {
         if ($body.hasClass(feature_name))
@@ -108,7 +153,7 @@ $(document).ready(function() {
         $footer.css("max-width", $footer_name_span.width());
 
         $body.addClass(feature_name);
-        $.cookie(save, true, { expires: cookie_lifetime });
+        save(global_save, true);
 
         if ($.cookie(auto_save)) {
             current_post = JSON.parse($.cookie(auto_save));
@@ -126,8 +171,8 @@ $(document).ready(function() {
             saved_drafts = JSON.parse($.cookie(drafts_save));
         }
 
-        if ($.cookie(tag_save) && JSON.parse($.cookie(tag_save)) != "") {
-            tag_selector_help = JSON.parse($.cookie(tag_save));
+        if ($.cookie(tag_save) && $.cookie(tag_save) != "") {
+            tag_selector_help = $.cookie(tag_save);
         }
 
         if ($.cookie(buttons_save)) {
@@ -156,6 +201,7 @@ $(document).ready(function() {
             toggle_switches();
         }
         schedule_refresh_post();
+        update_icon();
     }
 
     function disable() {
@@ -168,9 +214,10 @@ $(document).ready(function() {
         $body.find(".tc-hidden").removeClass("tc-hidden");
 
         $body.removeClass(feature_name);
-        $.cookie(save, null);
+        save(global_save, null);
 
         handlers_active = false;
+        update_icon();
     }
 
     function build_form() {
@@ -496,7 +543,7 @@ $(document).ready(function() {
         return ".overlay-" + feature_name;
     }
 
-    function switch_tag_helper_edit(enable, save = false) {
+    function switch_tag_helper_edit(enable, save_after = false) {
         $tag_helper_edit = $form.find(".tc-tag-helper-edit");
         if (enable) {
             $tag_helper_edit.removeClass("tc-disabled");
@@ -517,11 +564,11 @@ $(document).ready(function() {
             $form.find(".tc-tag-helper .tc-edit").removeClass("tc-disabled");
             $form.find(".tc-tag-helper .tc-tag-view").removeClass("tc-disabled");
 
-            if (save) {
+            if (save_after) {
                 tag_selector_help = $tag_helper_edit.val().trim();
                 if (tag_selector_help == "")
                     tag_selector_help = initial_tag_selector_help;
-                $.cookie(tag_save, JSON.stringify(tag_selector_help), { expires: cookie_lifetime });
+                save(tag_save, tag_selector_help);
 
                 build_tag_help();
                 refresh_tags_view();
@@ -761,7 +808,7 @@ $(document).ready(function() {
     }
 
     function save_button_states() {
-        $.cookie(buttons_save, JSON.stringify(button_states), { expires: cookie_lifetime });
+        save(buttons_save, button_states);
     }
 
     function update_tags(tags) {
@@ -973,9 +1020,11 @@ $(document).ready(function() {
         $preview_wrapper.css("height", $preview_wrapper[0].scrollHeight);
 
         $textarea = $("#postform-text");
-        $textarea.val(post_string);
-        $textarea.css("height", "auto");
-        $textarea.css("height", $textarea[0].scrollHeight);
+        if ($textarea.length) {
+            $textarea.val(post_string);
+            $textarea.css("height", "auto");
+            $textarea.css("height", $textarea[0].scrollHeight);    
+        }
     }
 
     function prepare_string(str) {
@@ -985,7 +1034,7 @@ $(document).ready(function() {
     function save_draft(post_data) {
         current_post = post_data;
         saved_drafts.push(current_post);
-        $.cookie(drafts_save, JSON.stringify(saved_drafts), { expires: cookie_lifetime });
+        save(drafts_save, saved_drafts);
     }
 
     function load_selected_draft() {
@@ -1023,7 +1072,7 @@ $(document).ready(function() {
         
         selected_id = $selected_option.val();
         saved_drafts.splice(selected_id, 1);
-        $.cookie(drafts_save, JSON.stringify(saved_drafts), { expires: cookie_lifetime });
+        save(drafts_save, saved_drafts);
         build_drafts();
     }
 
@@ -1031,7 +1080,7 @@ $(document).ready(function() {
         if (auto_save_inactive)
             return;
         current_post = post_data;
-        $.cookie(auto_save, JSON.stringify(current_post), { expires: cookie_lifetime });
+        save(auto_save, current_post);
     }
 
     function on_data_changed() {

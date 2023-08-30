@@ -2,6 +2,8 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     chrome.tabs.sendMessage(tab.id, {text: 'toggle_display_mode'});
 });
 
+storage_backup = {};
+
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request.event == "update_icon") {
@@ -24,7 +26,18 @@ chrome.runtime.onMessage.addListener(
                     }
                 });
             }
+            return("display mode changed");
         }
-        return("display mode changed");
+        if (request.event == "backup_cookie") {
+            source = sender.url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0];
+            if (storage_backup[source] == undefined) {
+                storage_backup[source] = {};
+            }
+            storage_backup[source][request.name] = request.value;
+        }
+        if (request.event == "restore_cookie") {
+            source = sender.url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0];
+            sendResponse({response: storage_backup[source]});
+        }
     }
 );
