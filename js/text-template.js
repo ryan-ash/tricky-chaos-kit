@@ -161,6 +161,7 @@ $(document).ready(function() {
         $body.find(get_overlay_class()).remove();
         $body.find(".tc-link-preview").remove();
         $body.find(".tc-options-button").remove();
+        $body.find(".tc-button").remove();
         $footer.css("max-width", "");
         $body.find(".tc-disabled").removeClass("tc-disabled");
         $body.find(".tc-hidden").removeClass("tc-hidden");
