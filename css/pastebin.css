@@ -96,6 +96,7 @@ html.tck-processed body::before {
 
 .text-template .wrap > .container > .content {
     transition: margin 0.25s ease-out;
+    position: relative;
 }
 
 .text-template .wrap > .container > .content.tc-collapsed {
@@ -158,12 +159,27 @@ html.tck-processed body::before {
     top: 0;
 }
 
+.text-template .tc-button:hover, .text-template .tc-tag:hover, .text-template select:hover {
+    cursor: pointer;
+}
+
+.text-template .tc-button:hover, .text-template .tc-button:focus {
+    border: 2px solid rgba(81, 71, 119, 0.801);
+}
+
 .text-template .tc-wrapper .tc-button.tc-bottom {
     right: -80px;
 }
 
 .text-template .tc-wrapper .tc-button.tc-up {
     right: -118px;
+}
+
+.text-template .tc-button.tc-copy {
+    position: absolute;
+    top: 12px;
+    right: 5px;
+    z-index: 22;
 }
 
 /* Fields */
@@ -311,12 +327,6 @@ html.tck-processed body::before {
     cursor: pointer;
 }
 
-.text-template .el-button--primary.is-plain, .text-template .tc-button {
-    background: none !important;
-    border: 2px solid rgba(40, 35, 59, 0);
-    width: 42px !important;
-}
-
 .text-template .control-buttons .el-button {
     text-transform: uppercase;
     margin-right: 0;
@@ -335,15 +345,6 @@ html.tck-processed body::before {
 
 .text-template .el-button:not(.el-button--text) {
     padding-top: 10px !important;
-}
-
-/* .text-template .cb-newpost-options label {
-    width: 166px !important;
-} */
-
-.text-template .el-button:not(.el-button--text), .text-template .tc-button {
-    transition: border 0.15s ease-out;
-    display: inline-block;
 }
 
 .text-template .tc-button.fa {
@@ -464,14 +465,6 @@ html.tck-processed body::before {
     background-color: #656B87 !important;
 }
 
-.text-template .tc-button:hover, .text-template .tc-tag:hover, .text-template select:hover, .text-template .el-button:not(.el-button--text):hover {
-    cursor: pointer;
-}
-
-.text-template .el-button:not(.el-button--text):hover, .text-template .tc-button:hover, .text-template .tc-button:focus {
-    border: 2px solid rgba(81, 71, 119, 0.801);
-}
-
 .text-template .tc-wide-button {
     display: block;
     margin: 10px 0px;
@@ -543,10 +536,15 @@ html.tck-processed body::before {
 }
 
 .text-template .tc-drafts .tc-button {
+    display: inline-block;
     top: 8px;
-    padding-left: 13px;
-    z-index: 23;
     right: -62px;
+    padding-left: 13px;
+    width: 42px !important;
+    z-index: 23;
+    background: none !important;
+    border: 2px solid rgba(40, 35, 59, 0);
+    transition: border 0.15s ease-out;
 }
 
 .text-template .tc-drafts .tc-delete {

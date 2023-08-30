@@ -100,6 +100,8 @@ $(document).ready(function() {
         // init start: add overlay base
         $root.prepend(overlay_markup);
 
+        $root_content.append($body.find(".tc-copy"));
+
         // why do we touch footer?..
         $footer = $body.find("footer");
         $footer_name_span = $body.find("footer > span:first-child");
@@ -423,6 +425,9 @@ $(document).ready(function() {
             clear_form();
             check_tag_helper(this);
             e.preventDefault();
+        });
+        $body.find(".tc-copy").click(function(e) {
+            copy_post();
         });
 
         // textarea auto-resize
@@ -1001,6 +1006,7 @@ $(document).ready(function() {
         parse_post();
         $root.toggleClass("tc-pushed-down");
         $preview_wrapper.toggleClass("tc-pushed-down");
+        $root_content.removeClass("tc-collapsed");
     }
 
     function delete_selected_draft() {
@@ -1027,6 +1033,14 @@ $(document).ready(function() {
     
     function copy_json(src) {
         return JSON.parse(JSON.stringify(src));
+    }
+
+    function copy_post() {
+        $textarea = $("#postform-text");
+        $textarea.select();
+        $textarea[0].setSelectionRange(0, 99999);
+
+        navigator.clipboard.writeText($textarea.val());
     }
 
     // initial fade in

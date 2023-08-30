@@ -10,6 +10,7 @@ var overlay_markup = `
 
             </div>
         </div>
+        <div tabindex="0" class="tc-copy tc-button fa fa-files-o"></div>
     </div>
 `;
 
