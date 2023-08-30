@@ -3,6 +3,7 @@ var save = "trickychaos";
 var auto_save = "tc-auto-save";
 var drafts_save = "tc-drafts";
 var tag_save = "tc-tag-helper";
+var buttons_save = "tc-buttons";
 var feature_name = "text-template";
 
 var last_title_id = 0;
@@ -49,6 +50,7 @@ $(document).ready(function() {
 
     var tag_selector_help = "Your #tag #map could be here...";
     var initial_tag_selector_help = tag_selector_help;
+    var button_states = {};
 
 
     
@@ -126,18 +128,31 @@ $(document).ready(function() {
             tag_selector_help = JSON.parse($.cookie(tag_save));
         }
 
+        if ($.cookie(buttons_save)) {
+            button_states = JSON.parse($.cookie(buttons_save));
+        }
+
         build_form();
         build_drafts();
         setup_textarea();
         generate_link_preview();
         generate_options_button();
         add_handlers();
-        // toggle_preview();
-        // toggle_form_fields();
         toggle_reactions();
         toggle_url_buttons();
-        toggle_switches();
         parse_post();
+        if (button_states["preview"]) {
+            toggle_preview();
+        }
+        if (button_states["form"]) {
+            toggle_form_fields();
+        }
+        if (button_states["drafts"]) {
+            toggle_load_draft_form();
+        }
+        if (button_states["switches"]) {
+            toggle_switches();
+        }
     }
 
     function disable() {
@@ -670,22 +685,28 @@ $(document).ready(function() {
 
     function toggle_preview() {
         $preview_wrapper.toggleClass("tc-collapsed");
-        if ($preview_wrapper.hasClass("tc-collapsed")) {
-            $(".tc-toggle-preview").removeClass("tc-active");
-        } else {
+        is_visible = !$preview_wrapper.hasClass("tc-collapsed");
+        button_states["preview"] = is_visible;
+        save_button_states();
+        if (is_visible) {
             $(".tc-toggle-preview").addClass("tc-active");
+        } else {
+            $(".tc-toggle-preview").removeClass("tc-active");
         }
     }
 
     function toggle_form_fields() {
         $form_inputs = $(".tc-form-inputs");
         $form_inputs.toggleClass("tc-collapsed");
-        if ($form_inputs.hasClass("tc-collapsed")) {
-            $(".tc-toggle-form").removeClass("tc-active");
-            $root_content.removeClass("tc-collapsed");
-        } else {
+        is_visible = !$form_inputs.hasClass("tc-collapsed");
+        button_states["form"] = is_visible;
+        save_button_states();
+        if (is_visible) {
             $(".tc-toggle-form").addClass("tc-active");
             $root_content.addClass("tc-collapsed");
+        } else {
+            $(".tc-toggle-form").removeClass("tc-active");
+            $root_content.removeClass("tc-collapsed");
         }
     }
 
@@ -702,27 +723,37 @@ $(document).ready(function() {
     }
 
     function toggle_switches() {
-        $switchers = $(".post-form__bottom").toggleClass("tc-hidden");
+        $switches = $(".post-form__bottom").toggleClass("tc-hidden");
+        button_states["switches"] = $switches.hasClass("tc-hidden");
+        save_button_states();
         $option_on = $(".tc-options-button .on").toggleClass("tc-disabled");
         $option_off = $(".tc-options-button .off").toggleClass("tc-disabled");
         // todo: change switches button
     }
 
     function toggle_load_draft_form() {
-        $(".tc-drafts").toggleClass("tc-visible");
+        $drafts = $(".tc-drafts");
+        $drafts.toggleClass("tc-visible");
+        is_visible = $drafts.hasClass("tc-visible");
+        button_states["drafts"] = is_visible;
+        save_button_states();
         $root.toggleClass("tc-pushed-down");
         $preview_wrapper.toggleClass("tc-pushed-down");
 
         // a temporary clutch
-        if ($(".tc-drafts").hasClass("tc-visible")) {
+        if (is_visible) {
             setTimeout(function() {
-                $(".tc-drafts").css("overflow", "visible");
+                $drafts.css("overflow", "visible");
             }, 250);
             $(".tc-load-draft").addClass("tc-active");
         } else {
-            $(".tc-drafts").css("overflow", "hidden");
+            $drafts.css("overflow", "hidden");
             $(".tc-load-draft").removeClass("tc-active");
         }
+    }
+
+    function save_button_states() {
+        $.cookie(buttons_save, JSON.stringify(button_states), { expires: cookie_lifetime });
     }
 
     function update_tags(tags) {
