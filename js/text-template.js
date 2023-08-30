@@ -32,6 +32,7 @@ function restore_cookies(callback) {
     if (chrome && chrome.runtime) {
         chrome.runtime.sendMessage({event: "restore_cookie"}, function(response) {
             if (!response || !response.response) {
+                callback();
                 return;
             }
 
@@ -451,8 +452,8 @@ $(document).ready(function() {
         $form.find(".tc-save-draft").click(function(e) {
             save_draft(current_post);
             build_drafts();
-            $(this).addClass("tc-disabled");
-            $(this).next().removeClass("tc-disabled");
+            $(".tc-save-draft").addClass("tc-disabled");
+            $(".tc-save-draft-complete").removeClass("tc-disabled");
             check_tag_helper(this);
             e.preventDefault();
         });
