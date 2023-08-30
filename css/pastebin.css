@@ -95,7 +95,7 @@ html.tck-processed body::before {
 }
 
 .text-template .wrap > .container > .content.tc-collapsed {
-    margin-left: 200px !important;
+    margin-left: 120px !important;
 }
 
 .text-template .tc-form-inputs {
@@ -120,7 +120,7 @@ html.tck-processed body::before {
 }
 
 .text-template .overlay-text-template {
-    max-width: 560px;
+    max-width: 600px;
     margin-bottom: 10px;
     margin-top: 10px;
 }
@@ -503,7 +503,7 @@ html.tck-processed body::before {
 }
 
 .text-template .tc-wide-input input {
-    width: 560px !important;
+    width: 600px !important;
 }
 
 .text-template .tc-bottom-link {
