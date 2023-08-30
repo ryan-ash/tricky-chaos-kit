@@ -21,6 +21,10 @@ html.tck-processed body::before {
     color: #ddd;
 }
 
+.text-template .ql-container, .text-template *:not(.fa) {
+    font-family: segoe ui,trebuchet MS,Lucida Sans Unicode,Lucida Sans,Sans-Serif;
+}
+
 .text-template footer, .text-template .sidebar, .text-template .content__text, .text-template .header__right, 
 .text-template .post-form__right, .text-template .badge-new, .text-template .top-footer, .text-template .-paste {
     display: none;
@@ -181,7 +185,7 @@ html.tck-processed body::before {
     margin: 2px;
     margin-right: 0;
     transition: border 0.25s ease-out;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .text-template .tc-form .tc-text-input:hover, .text-template textarea:hover {
@@ -205,6 +209,7 @@ html.tck-processed body::before {
 
 .text-template #postform-text {
     padding: 11px 15px 15px !important;
+    line-height: 22px;
 }
 
 .text-template .tc-text {
@@ -401,7 +406,7 @@ html.tck-processed body::before {
     padding: 5px;
     margin: 2px;
     transition: background 0.25s ease-out;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .text-template .tc-top-button::before {
@@ -516,7 +521,7 @@ html.tck-processed body::before {
 }
 
 .text-template .ql-editor {
-    font-size: 14px !important;
+    font-size: 16px !important;
 }
 
 .text-template .tc-narrow-button {
