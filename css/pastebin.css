@@ -313,7 +313,7 @@ html.tck-processed body::before {
 .text-template .el-button--primary.is-plain, .text-template .tc-button {
     background: none !important;
     border: 2px solid rgba(40, 35, 59, 0);
-    width: 40px !important;
+    width: 42px !important;
 }
 
 .text-template .control-buttons .el-button {
