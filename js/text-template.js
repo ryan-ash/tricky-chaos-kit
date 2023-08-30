@@ -155,6 +155,7 @@ $(document).ready(function() {
         if (button_states["switches"]) {
             toggle_switches();
         }
+        schedule_refresh_post();
     }
 
     function disable() {
@@ -714,6 +715,7 @@ $(document).ready(function() {
             $(".tc-toggle-form").removeClass("tc-active");
             $root_content.removeClass("tc-collapsed");
         }
+        schedule_refresh_post();
     }
 
     function toggle_reactions() {
@@ -1008,6 +1010,10 @@ $(document).ready(function() {
         $root.toggleClass("tc-pushed-down");
         $preview_wrapper.toggleClass("tc-pushed-down");
         $root_content.removeClass("tc-collapsed");
+
+        button_states["form"] = false;
+        save_button_states();
+        schedule_refresh_post();
     }
 
     function delete_selected_draft() {
@@ -1042,6 +1048,12 @@ $(document).ready(function() {
         $textarea[0].setSelectionRange(0, 99999);
 
         navigator.clipboard.writeText($textarea.val());
+    }
+
+    function schedule_refresh_post() {
+        setTimeout(function() {
+            parse_post();
+        }, 300);
     }
 
     // initial fade in
