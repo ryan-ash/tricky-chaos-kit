@@ -212,6 +212,7 @@ $(document).ready(function() {
         $footer.css("max-width", "");
         $body.find(".tc-disabled").removeClass("tc-disabled");
         $body.find(".tc-hidden").removeClass("tc-hidden");
+        $body.find(".tc-pushed-down").removeClass("tc-pushed-down");
 
         $body.removeClass(feature_name);
         save(global_save, null);
