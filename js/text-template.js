@@ -269,9 +269,7 @@ $(document).ready(function() {
         }
 
         update_ps(current_post.ps);
-
         auto_save_inactive = false;
-        parse_post();
     }
 
     function build_tag_help() {
