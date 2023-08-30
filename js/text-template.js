@@ -12,6 +12,7 @@ var last_bottom_link_id = 0;
 var handlers_active = false;
 var auto_save_inactive = false;
 var tag_hotkeys = false;
+var debug = false;
 
 var post_textarea = "";
 
@@ -24,28 +25,46 @@ function save(name, value) {
     $.cookie(name, value_to_store, { expires: cookie_lifetime });
 
     if (chrome && chrome.runtime) {
+        if (debug)
+            console.log("Saving cookie: " + name + " = " + value_to_store);
         chrome.runtime.sendMessage({event: "backup_cookie", name: name, value: value_to_store});
     }
 }
 
 function restore_cookies(callback) {
+    processed_keys = [];
+    function restore_backup() {
+        // app should backup existing cookie states
+        save_list = [global_save, auto_save, drafts_save, tag_save, buttons_save];
+        for (var i in save_list) {
+            key = save_list[i];
+            if (!processed_keys.includes(key) && $.cookie(key)) {
+                save(key, $.cookie(key));
+            }
+        }
+    }
     if (chrome && chrome.runtime) {
         chrome.runtime.sendMessage({event: "restore_cookie"}, function(response) {
             if (!response || !response.response) {
+                restore_backup();
                 callback();
                 return;
             }
-
-            console.log("Restoring cookies...");
+            if (debug)
+                console.log("Restoring cookies...");
 
             for (var key in response.response) {
                 value = response.response[key];
+                if (debug)
+                    console.log("Restoring cookie: " + key + " = " + value);
                 if (typeof value == "string" && (value[0] == "{" || value[0] == "[")) {
                     value = JSON.parse(value);
                 }
                 save(key, value);
+                processed_keys.push(key);
             }
 
+            restore_backup();
             callback();
         });
     } else {
