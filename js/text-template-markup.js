@@ -89,7 +89,7 @@ var link_preview_markup = `
 
 var options_button_markup = `
     <div class="tc-options-button">
-        <span class="label on fa fa-caret-down tc-disabled"></span>
-        <span class="label off fa fa-caret-up"></span>
+        <span class="label on fa fa-caret-down tc-disabled">&nbsp;</span>
+        <span class="label off fa fa-caret-up">&nbsp;</span>
     </div>
 `;

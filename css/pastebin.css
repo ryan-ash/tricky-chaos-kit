@@ -51,7 +51,8 @@ html.tck-processed body::before {
 
 .text-template .post-form__left > div {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .text-template .post-form__left .form-group .col-sm-9 {
@@ -63,7 +64,7 @@ html.tck-processed body::before {
 }
 
 .text-template .field-postform-name .field-wrapper {
-    width: 1140px !important;
+    /* width: 1140px !important; */
 }
 
 .text-template .field-postform-is_password_enabled {
