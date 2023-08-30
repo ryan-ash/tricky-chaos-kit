@@ -494,7 +494,7 @@ $(document).ready(function() {
         $tags = $(".tc-tag-selector");
 
         // autosave handling
-        $form.find(".tc-text-input").change(function() {
+        $form.find(".tc-text-input").on('input', function() {
             parse_post();
         });
         post_textarea.on('text-change', function(delta, oldDelta, source) {
