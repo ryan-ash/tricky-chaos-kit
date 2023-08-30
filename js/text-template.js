@@ -1060,9 +1060,13 @@ $(document).ready(function() {
         $preview_wrapper.toggleClass("tc-pushed-down");
         $root_content.removeClass("tc-collapsed");
 
-        button_states["form"] = false;
         save_button_states();
         schedule_refresh_post();
+
+        if (button_states["form"]) {
+            toggle_form_fields();
+        }
+        button_states["drafts"] = false;
     }
 
     function delete_selected_draft() {
