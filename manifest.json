@@ -3,7 +3,7 @@
   
   "name": "Tricky Chaos Kit",
   "description": "Make web less distracting with a key. Press F2 to switch to dark mode anywhere or to enable custom style in certain places. IDDQD.",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "author": "Ryan Ash",  
   "icons": {
     "16": "icons/16_off.png",
@@ -28,6 +28,11 @@
       "matches": ["https://trello.com/*"],
       "css": ["css/font-awesome.min.css", "css/trello.css"],
       "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js", "js/trello-addons.js"]
+    },
+    {
+      "matches": ["https://clickup.com/*", "https://*.clickup.com/*"],
+      "css": ["css/font-awesome.min.css", "css/clickup.css"],
+      "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js"]
     },
     {
       "matches": ["https://youtube.com/*", "https://www.youtube.com/*"],
@@ -58,7 +63,10 @@
         "https://keep.google.com/*",
         "https://pornhub.com/*",
         "https://*.pornhub.com/*",
-        "https://pastebin.com/*"
+        "https://pastebin.com/*",
+        "https://*.pastebin.com/*",
+        "https://clickup.com/*",
+        "https://*.clickup.com/*"
       ],
       "css": ["css/invert.css"],
       "js": ["js/jquery-3.2.1.min.js", "js/jquery.enhanced.cookie.js", "js/purge.js"]

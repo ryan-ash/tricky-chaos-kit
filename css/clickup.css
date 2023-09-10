@@ -1,0 +1,12 @@
+.purge .task-backdrop {
+    background: #000 !important;
+}
+
+.purge .cu-task-editor__footer, .purge .task-column__body-toolbar, .purge .cu-task-header__section_rightside, .purge .cu-todo-list__add,
+.purge cu-entity-followers, .purge .task-container__header-wrapper, .purge cu-attachments, .purge .task-column_main .task-column__footer {
+    display: none !important;
+}
+
+.purge .cu-editor-content {
+    padding-bottom: 20px !important;
+}
