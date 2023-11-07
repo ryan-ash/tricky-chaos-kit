@@ -4,7 +4,7 @@
 
 .purge .cu-task-editor__footer, .purge .task-column__body-toolbar, .purge .cu-task-header__section_rightside, .purge .cu-todo-list__add,
 .purge cu-entity-followers, .purge .task-container__header-wrapper, .purge cu-attachments, .purge .task-column_main .task-column__footer,
-.purge .column__right.task__column, .purge cu-task-relationships {
+.purge .column__right.task__column, .purge cu-task-relationships, .purge .column__right {
     display: none !important;
 }
 
