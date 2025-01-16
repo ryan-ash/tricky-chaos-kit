@@ -1,13 +1,14 @@
-.purge .task-backdrop {
-    background: #000 !important;
+.purge .cu-task-view__backdrop {
+    background: var(--cu-black) !important;
+    top: 0 !important;
+    height: 100% !important;
 }
 
-.purge .cu-task-editor__footer, .purge .task-column__body-toolbar, .purge .cu-task-header__section_rightside, .purge .cu-todo-list__add,
-.purge cu-entity-followers, .purge .task-container__header-wrapper, .purge cu-attachments, .purge .task-column_main .task-column__footer,
-.purge .column__right.task__column, .purge cu-task-relationships, .purge .column__right {
+.purge .cu-task-view__inner.full-screen {
+    top: 0 !important;
+    height: 100% !important;
+}
+
+.purge cu-global-actions-bar, .purge cu-header-sharing-trigger {
     display: none !important;
-}
-
-.purge .cu-editor-content {
-    padding-bottom: 20px !important;
 }
